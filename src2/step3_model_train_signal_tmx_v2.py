@@ -246,7 +246,7 @@ joblist=[
         
 ############################# Main: Run Different Classifiers ################################
 
-print
+print hey hey
 data_dir='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/'
 
 result_dir='/home/junhe/fraud_model/Results/Model_Results_Signal_Tmx_v2pmt_woeSmth=0/'
