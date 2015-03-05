@@ -72,8 +72,8 @@ def performance_eval_train_validation(y,p_pred,yv,pv_pred,result_dir,output_suff
     '''
     
     # save results to disk
-    pickle.dump(pv_pred,open(result_dir+"pv_pred.p",'wb'))
-    pickle.dump(yv,open(result_dir+"yv.p",'wb'))
+    #pickle.dump(pv_pred,open(result_dir+"pv_pred.p",'wb'))
+    #pickle.dump(yv,open(result_dir+"yv.p",'wb'))
     
     
     ############# # Output validation Lorenz and KS results to file ##############
