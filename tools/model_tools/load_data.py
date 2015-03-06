@@ -118,8 +118,10 @@ def load_data_fast(input_file, var_list_filename, target_name):
     
     full_var_list_index = []
     for var in full_var_list:
-        full_var_list_index.append(header.index(var))
-    
+        try:
+            full_var_list_index.append(header.index(var))
+        except:
+            print var,"not present in data"
     data=[]
     nRow=0
     for row in inscsv:
