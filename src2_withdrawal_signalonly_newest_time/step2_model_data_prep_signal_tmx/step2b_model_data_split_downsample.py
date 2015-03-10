@@ -83,15 +83,18 @@ def downsample_filter(input_file,output_file, downsamle_fieldname, downsample_fi
         if nRow%10000 ==0:
             print nRow," rows are processed"
 
-'''
+
+
+
 ################################################################################
 # Split ins and oos                                                            #
 ################################################################################
 oos_frac=0.2 #fraction used for oos
-work_dir='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt_signalonly/'
-input_file=work_dir+"model_data_pmt.csv.gz"
-ins_file=work_dir+"model_data_pmt_ins.csv.gz"
-oos_file=work_dir+"model_data_pmt_oos.csv.gz"
+in_dir='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt_signalonly_newest_time/'
+out_dir='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2wd_signalonly_newest_time/'
+input_file=in_dir+"model_data_wd.csv.gz"
+ins_file=out_dir+"model_data_wd_ins.csv.gz"
+oos_file=out_dir+"model_data_wd_oos.csv.gz"
 
 train_validation_split(input_file,oos_frac,ins_file,oos_file)
 
@@ -99,63 +102,26 @@ train_validation_split(input_file,oos_frac,ins_file,oos_file)
 ################################################################################
 # Downsample every data set                                                    #
 ################################################################################
-downsample_frac=0.05
+#downsample_frac=1.0001
+downsample_frac=0.2
 
-input_file=work_dir+"model_data_pmt_ins.csv.gz"
-output_file=work_dir+"model_data_pmt_ins_ds.csv.gz"
+input_file=out_dir+"model_data_wd_ins.csv.gz"
+output_file=out_dir+"model_data_wd_ins_ds.csv.gz"
 downsample_filter(input_file,output_file, downsamle_fieldname='target', downsample_field_equal_value='0', downsample_frac=downsample_frac)
 
-input_file=work_dir+"model_data_pmt_oos.csv.gz"
-output_file=work_dir+"model_data_pmt_oos_ds.csv.gz"
+input_file=out_dir+"model_data_wd_oos.csv.gz"
+output_file=out_dir+"model_data_wd_oos_ds.csv.gz"
 downsample_filter(input_file,output_file, downsamle_fieldname='target', downsample_field_equal_value='0', downsample_frac=downsample_frac)
 
-input_file=work_dir+"test_data_sept_pmt.csv.gz"
-output_file=work_dir+"test_data_sept_pmt_ds.csv.gz"
+input_file=in_dir+"test_data_nov_wd.csv.gz"
+output_file=out_dir+"test_data_nov_wd_ds.csv.gz"
 downsample_filter(input_file,output_file, downsamle_fieldname='target', downsample_field_equal_value='0', downsample_frac=downsample_frac)
 
-input_file=work_dir+"test_data_oct_pmt.csv.gz"
-output_file=work_dir+"test_data_oct_pmt_ds.csv.gz"
+input_file=in_dir+"test_data_oct_wd.csv.gz"
+output_file=out_dir+"test_data_oct_wd_ds.csv.gz"
 downsample_filter(input_file,output_file, downsamle_fieldname='target', downsample_field_equal_value='0', downsample_frac=downsample_frac)
 
-input_file=work_dir+"test_data_nov_pmt.csv.gz"
-output_file=work_dir+"test_data_nov_pmt_ds.csv.gz"
-downsample_filter(input_file,output_file, downsamle_fieldname='target', downsample_field_equal_value='0', downsample_frac=downsample_frac)
-
-input_file=work_dir+"test_data_dec_pmt.csv.gz"
-output_file=work_dir+"test_data_dec_pmt_ds.csv.gz"
-downsample_filter(input_file,output_file, downsamle_fieldname='target', downsample_field_equal_value='0', downsample_frac=downsample_frac)
-'''
-
-
-
-
-#===============================================================================
-# Newest Time
-#===============================================================================
-
-
-################################################################################
-# Split ins and oos                                                            #
-################################################################################
-oos_frac=0.2 #fraction used for oos
-work_dir='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt_signalonly/'
-input_file=work_dir+"newest_model_data_pmt.csv.gz"
-ins_file=work_dir+"newest_model_data_pmt_ins.csv.gz"
-oos_file=work_dir+"newest_model_data_pmt_oos.csv.gz"
-
-train_validation_split(input_file,oos_frac,ins_file,oos_file)
-
-
-################################################################################
-# Downsample every data set                                                    #
-################################################################################
-downsample_frac=0.05
-
-input_file=work_dir+"newest_model_data_pmt_ins.csv.gz"
-output_file=work_dir+"newest_model_data_pmt_ins_ds.csv.gz"
-downsample_filter(input_file,output_file, downsamle_fieldname='target', downsample_field_equal_value='0', downsample_frac=downsample_frac)
-
-input_file=work_dir+"newest_model_data_pmt_oos.csv.gz"
-output_file=work_dir+"newest_model_data_pmt_oos_ds.csv.gz"
+input_file=in_dir+"test_data_sept_wd.csv.gz"
+output_file=out_dir+"test_data_sept_wd_ds.csv.gz"
 downsample_filter(input_file,output_file, downsamle_fieldname='target', downsample_field_equal_value='0', downsample_frac=downsample_frac)
 

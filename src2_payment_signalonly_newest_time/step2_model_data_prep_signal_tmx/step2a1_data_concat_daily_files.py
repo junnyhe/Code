@@ -11,7 +11,7 @@ def cat_daily_files(start_day,out_file_name):
     signal_dir = "/home/junhe/fraud_model/Data/Raw_Data/signals/"
     tgt_dir = "/home/junhe/fraud_model/Data/Raw_Data/targets/"
     rule_dir = "/home/junhe/fraud_model/Data/Raw_Data/rule_results_pmt_direction/"
-    out_dir = "/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt_signalonly/"
+    out_dir = "/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt_signalonly_newest_time/"
     
     
     # load target to dict
@@ -127,19 +127,19 @@ def cat_daily_files(start_day,out_file_name):
     outfile_2.close()
     
 '''
-# model data july/aug
-start_day=datetime.date(2014,7,1) #start date
+
+# model data dec/jan
+start_day=datetime.date(2014,12,1) #start date
 nDays=62 # number of days to process
 out_file_name='model_data'
 cat_daily_files(start_day,out_file_name)
+'''
 
-
-# test data sept
-start_day=datetime.date(2014,9,1) #start date
+# test data nov
+start_day=datetime.date(2014,11,1) #start date
 nDays=30 # number of days to process
-out_file_name='test_data_sept'
-cat_daily_files(start_day,out_file_name)
-
+out_file_name='test_data_nov'
+#cat_daily_files(start_day,out_file_name)
 
 # test data oct
 start_day=datetime.date(2014,10,1) #start date
@@ -147,23 +147,9 @@ nDays=31 # number of days to process
 out_file_name='test_data_oct'
 cat_daily_files(start_day,out_file_name)
 
-
-# test data nov
-start_day=datetime.date(2014,11,1) #start date
+# test data sept
+start_day=datetime.date(2014,9,1) #start date
 nDays=30 # number of days to process
-out_file_name='test_data_nov'
-cat_daily_files(start_day,out_file_name)
- 
+out_file_name='test_data_sept'
+#cat_daily_files(start_day,out_file_name)
 
-# test data dec
-start_day=datetime.date(2014,12,1) #start date
-nDays=31 # number of days to process
-out_file_name='test_data_dec'
-cat_daily_files(start_day,out_file_name)
-'''
-
-# model data july/aug
-start_day=datetime.date(2014,12,1) #start date
-nDays=62 # number of days to process
-out_file_name='newest_model_data'
-cat_daily_files(start_day,out_file_name)
