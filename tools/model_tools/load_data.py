@@ -149,6 +149,7 @@ def load_data_with_key_tag_fast(input_file, var_list_filename, target_name, key_
     # also loads another tag, similar to target
     varlist_file=open(var_list_filename,'rU')
     varlist_csv=csv.reader(varlist_file)
+    
     var_list=[]
     for row in varlist_csv:
         var_list.append(row[0])
@@ -159,6 +160,9 @@ def load_data_with_key_tag_fast(input_file, var_list_filename, target_name, key_
     insfile=gzip.open(input_file,'rb')
     inscsv=csv.reader(insfile)
     header = inscsv.next()
+    for var in var_list:
+        if var not in header:
+            print var, "is not in header"
     
     full_var_list_index = []
     for var in full_var_list:
@@ -202,6 +206,7 @@ def load_data_fast_int(input_file, var_list_filename, target_name):
         var_list.append(row[0])
     
     full_var_list = var_list+[target_name]
+
     
     insfile=gzip.open(input_file,'rb')
     inscsv=csv.reader(insfile)

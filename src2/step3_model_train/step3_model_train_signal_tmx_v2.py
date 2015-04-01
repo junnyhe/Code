@@ -58,9 +58,9 @@ def model_train_validation(ins_file, oos_file, classifier, var_list_filename, ou
     print "Model training done, taking ",time.time()-t0,"secs"
     pickle.dump(model,open(output_dir+"model.p",'wb')) # save model to disk
     
-    #export to tree graph in DOT format, tree only
-    tree.export_graphviz(model,out_file=output_dir+'tree.dot')
-    os.system("dot -Tpng "+output_dir+"tree.dot -o "+output_dir+"tree.png")
+    # export to tree graph in DOT format, tree only
+    #tree.export_graphviz(model,out_file=output_dir+'tree.dot')
+    #os.system("dot -Tpng "+output_dir+"tree.dot -o "+output_dir+"tree.png")
     
     
     # Predict Train
@@ -72,10 +72,6 @@ def model_train_validation(ins_file, oos_file, classifier, var_list_filename, ou
     yv_pred = model.predict(Xv)
     pv_pred = model.predict_proba(Xv)
     pv_pred = pv_pred[:,1]
-    
-    print "dump data"
-    pickle.dump(Xv[:,:1000],open(output_dir+"Xv2.p",'wb'))
-    pickle.dump(pv_pred[:1000],open(output_dir+"pv_pred2.p",'wb'))
     
     
     # Performance Evaluation: Train and Validation
@@ -257,12 +253,22 @@ joblist=[
         #(classifiers["RandomForest"],'RandomForest_signal_rc_tmx_rc_ind_393','model_var_list_signal_rc_tmx_rc_ind_393.csv'),
         #(classifiers["RandomForest"],'RandomForest_signal_rc_tmx_rc_ind_456','model_var_list_signal_rc_tmx_rc_ind_456.csv'),
         #(classifiers["Logistic"],'Logistic_signal_full','model_var_list_signal.csv'), # suffix and varlist
-        (DecisionTreeClassifier(max_depth=32),'DecisionTree_signal_full_depth=32','model_var_list_signal.csv'), # suffix and varlist
+        #(DecisionTreeClassifier(max_depth=32),'DecisionTree_signal_full_depth=32','model_var_list_signal.csv'), # suffix and varlist
         #(DecisionTreeClassifier(max_depth=16),'DecisionTree_signal_full_depth=16','model_var_list_signal.csv'), # suffix and varlist
         #(DecisionTreeClassifier(max_depth=8),'DecisionTree_signal_full_depth=8','model_var_list_signal.csv'), # suffix and varlist
         #(DecisionTreeClassifier(max_depth=64),'DecisionTree_signal_full_depth=64','model_var_list_signal.csv'), # suffix and varlist
         #(DecisionTreeClassifier(max_depth=None),'DecisionTree_signal_full_depth=none','model_var_list_signal.csv'), # suffix and varlist
         #(DecisionTreeClassifier(max_depth=3),'DecisionTree_signal_full_depth=3','model_var_list_signal.csv'), # suffix and varlist
+        #(classifiers["RandomForest"],'RandomForest_signal_rc_tmx_rc_ind_288','model_var_list_signal_rc_tmx_rc_ind_288.csv'),
+        #(classifiers["RandomForest"],'RandomForest_signal_rc_tmx_rc_ind_291','model_var_list_signal_rc_tmx_rc_ind_291.csv'),
+        #(classifiers["RandomForest"],'RandomForest_signal_rc_tmx_rc_ind_301','model_var_list_signal_rc_tmx_rc_ind_301.csv'),
+        #(classifiers["RandomForest"],'RandomForest_signal_rc_tmx_rc_ind_317','model_var_list_signal_rc_tmx_rc_ind_317.csv'),
+        #(classifiers["RandomForest"],'RandomForest_signal_rc_tmx_rc_ind_344','model_var_list_signal_rc_tmx_rc_ind_344.csv'),
+        #(classifiers["RandomForest"],'RandomForest_signal_rc_tmx_rc_ind_382','model_var_list_signal_rc_tmx_rc_ind_382.csv'),
+        #(classifiers["RandomForest"],'RandomForest_signal_rc_tmx_rc_ind_426','model_var_list_signal_rc_tmx_rc_ind_426.csv'),
+        #(classifiers["RandomForest"],'RandomForest_signal_rc_tmx_rc_ind_488','model_var_list_signal_rc_tmx_rc_ind_488.csv'),
+        #(classifiers["RandomForest"],'RandomForest_signal_rc_tmx_rc_ind_577','model_var_list_signal_rc_tmx_rc_ind_577.csv'),
+        (classifiers["RandomForest"],'RandomForest_signal_rc_tmx_rc_ind_586','model_var_list_signal_rc_tmx_rc_ind_586.csv')
         ]
 
     

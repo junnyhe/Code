@@ -1,0 +1,5 @@
+python ./step1_data_rollup_merge/step1c_threatmetrix_payee_rollup.py
+
+python ./step1_data_rollup_merge/step1d_merge_signal_threatmetrix.py
+
+python ./step2_model_data_prep_signal_tmx/step2a1_data_concat_daily_files.py
