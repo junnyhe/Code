@@ -260,9 +260,9 @@ def feature_creation_batch(input_file,output_file):
     outcsv=csv.writer(outfile)
     
     ##### 2. instantiate scoring object #####
-    time_var_filename='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/var_list_time_diff.csv'
-    ppcmp_var_filename='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/var_list_ppcmp.csv'
-    leven_dist_var_filename='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/var_list_leven_dist.csv'
+    time_var_filename='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v3wd/var_list_time_diff.csv'
+    ppcmp_var_filename='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v3wd/var_list_ppcmp.csv'
+    leven_dist_var_filename='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v3wd/var_list_leven_dist.csv'
     
     step3_feature_creation = feature_creation(time_var_filename, ppcmp_var_filename, leven_dist_var_filename)
     
@@ -318,21 +318,21 @@ def feature_creation_batch_helper(arg):
     
 
 if __name__=="__main__":
-    work_dir='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v3pmt/'
+    work_dir='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v3wd/'
     
     
     input_list = (
-                  [work_dir+"model_data_pmt_ins_ds_rcind.csv.gz",work_dir+"model_data_pmt_ins_ds_rcind_fc.csv.gz"],
-                  [work_dir+"model_data_pmt_oos_ds_rcind.csv.gz",work_dir+"model_data_pmt_oos_ds_rcind_fc.csv.gz"],
-                  [work_dir+"test_data_sept_pmt_ds_rcind.csv.gz",work_dir+"test_data_sept_pmt_ds_rcind_fc.csv.gz"],
-                  [work_dir+"test_data_oct_pmt_ds_rcind.csv.gz",work_dir+"test_data_oct_pmt_ds_rcind_fc.csv.gz"],
-                  [work_dir+"test_data_nov_pmt_ds_rcind.csv.gz",work_dir+"test_data_nov_pmt_ds_rcind_fc.csv.gz"],
-                  [work_dir+"test_data_dec_pmt_ds_rcind.csv.gz",work_dir+"test_data_dec_pmt_ds_rcind_fc.csv.gz"],
+                  [work_dir+"model_data_wd_ins_ds_rcind.csv.gz",work_dir+"model_data_wd_ins_ds_rcind_fc.csv.gz"],
+                  [work_dir+"model_data_wd_oos_ds_rcind.csv.gz",work_dir+"model_data_wd_oos_ds_rcind_fc.csv.gz"],
+                  [work_dir+"test_data_sept_wd_ds_rcind.csv.gz",work_dir+"test_data_sept_wd_ds_rcind_fc.csv.gz"],
+                  [work_dir+"test_data_oct_wd_ds_rcind.csv.gz",work_dir+"test_data_oct_wd_ds_rcind_fc.csv.gz"],
+                  [work_dir+"test_data_nov_wd_ds_rcind.csv.gz",work_dir+"test_data_nov_wd_ds_rcind_fc.csv.gz"],
+                  [work_dir+"test_data_dec_wd_ds_rcind.csv.gz",work_dir+"test_data_dec_wd_ds_rcind_fc.csv.gz"],
                   )
                 # Inputs: feature_creation(input_file,output_file)
     pool = Pool(processes=3)
     pool.map(feature_creation_batch_helper, input_list)
     
-    #feature_creation_helper([work_dir+"model_data_pmt_oos_ds_rcind.csv.gz",work_dir+"model_data_pmt_oos_ds_rcind_fc.csv.gz"])    #csv_EDD(work_dir+"model_data_pmt_ins_ds_rcind_fc.csv.gz")
+    #feature_creation_helper([work_dir+"model_data_wd_oos_ds_rcind.csv.gz",work_dir+"model_data_wd_oos_ds_rcind_fc.csv.gz"])    #csv_EDD(work_dir+"model_data_wd_ins_ds_rcind_fc.csv.gz")
 
 

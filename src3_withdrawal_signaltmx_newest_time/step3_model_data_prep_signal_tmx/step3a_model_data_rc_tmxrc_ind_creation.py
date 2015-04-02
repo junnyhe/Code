@@ -101,7 +101,7 @@ class tmxrc_ind_creation:
                     else:
                         row["payer_tmxrc_ind_"+entry]=0
             
-    
+        
         # convert tmxrc for payee
         for tmxrc in self.payee_tmxrc_entry_set:
             row["payee_tmxrc_ind"+tmxrc]=0
@@ -183,26 +183,26 @@ def rc_tmxrc_ind_creation_batch(input_file,output_file):
 def rc_tmxrc_ind_creation_batch_helper(arg):
     rc_tmxrc_ind_creation_batch(arg[0],arg[1])
     
-
-work_dir = '/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v3pmt_newest_time/'
-
 if __name__=="__main__":
+    work_dir = "/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v3wd_newest_time/"
     
     input_list = (
-                  [work_dir+"model_data_pmt_ins_ds.csv.gz",work_dir+"model_data_pmt_ins_ds_rcind.csv.gz"],
-                  [work_dir+"model_data_pmt_oos_ds.csv.gz",work_dir+"model_data_pmt_oos_ds_rcind.csv.gz"],
-                  [work_dir+"test_data_sept_pmt_ds.csv.gz",work_dir+"test_data_sept_pmt_ds_rcind.csv.gz"],
-                  [work_dir+"test_data_oct_pmt_ds.csv.gz",work_dir+"test_data_oct_pmt_ds_rcind.csv.gz"],
-                  [work_dir+"test_data_nov_pmt_ds.csv.gz",work_dir+"test_data_nov_pmt_ds_rcind.csv.gz"],
-                  [work_dir+"test_data_dec_pmt_ds.csv.gz",work_dir+"test_data_dec_pmt_ds_rcind.csv.gz"],
+                  [work_dir+"model_data_wd_ins_ds.csv.gz",work_dir+"model_data_wd_ins_ds_rcind.csv.gz"],
+                  [work_dir+"model_data_wd_oos_ds.csv.gz",work_dir+"model_data_wd_oos_ds_rcind.csv.gz"],
+                  [work_dir+"test_data_dec_wd_ds.csv.gz",work_dir+"test_data_dec_wd_ds_rcind.csv.gz"],
+                  [work_dir+"test_data_nov_wd_ds.csv.gz",work_dir+"test_data_nov_wd_ds_rcind.csv.gz"],
+                  [work_dir+"test_data_oct_wd_ds.csv.gz",work_dir+"test_data_oct_wd_ds_rcind.csv.gz"],
+                  [work_dir+"test_data_sept_wd_ds.csv.gz",work_dir+"test_data_sept_wd_ds_rcind.csv.gz"],
+                  [work_dir+"test_data_aug_wd_ds.csv.gz",work_dir+"test_data_aug_wd_ds_rcind.csv.gz"],
+                  [work_dir+"test_data_jul_wd_ds.csv.gz",work_dir+"test_data_jul_wd_ds_rcind.csv.gz"]
                   )
                 # Inputs: rc_ind_creation(input_file,output_file)
     pool = Pool(processes=3)
     pool.map(rc_tmxrc_ind_creation_batch_helper, input_list)
     
-    #csv_EDD(work_dir+"model_data_pmt_ins_ds_rcind.csv.gz")
+    #csv_EDD(work_dir+"model_data_wd_ins_ds_rcind.csv.gz")
     
-    #rc_tmxrc_ind_creation_helper([work_dir+"model_data_pmt_oos_ds.csv.gz",work_dir+"model_data_pmt_oos_ds_rcind.csv.gz"])
+    #rc_tmxrc_ind_creation_helper([work_dir+"model_data_wd_oos_ds.csv.gz",work_dir+"model_data_wd_oos_ds_rcind.csv.gz"])
    
 
 

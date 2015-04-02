@@ -35,6 +35,7 @@ from load_data import *
 from model_performance_evaluation import performance_eval_train_validation
 from model_performance_evaluation import performance_eval_test
 
+from ffnetClassifier import *
 
 def model_train_validation(ins_file, oos_file, classifier, var_list_filename, output_dir, output_suffix):
     """
@@ -56,6 +57,7 @@ def model_train_validation(ins_file, oos_file, classifier, var_list_filename, ou
     model = classifier
     model.fit(X, y)
     print "Model training done, taking ",time.time()-t0,"secs"
+    
     pickle.dump(model,open(output_dir+"model.p",'wb')) # save model to disk
     
     # export to tree graph in DOT format, tree only
@@ -148,6 +150,7 @@ def model_test_data_evaluation_comp_ruletag(test_data_file, var_list_filename, m
     # Load Model
     print 'Loading model ...'
     t0=time.time()
+    
     model = pickle.load(open(model_file,'rb'))
     
     # Predict Test Data
@@ -208,6 +211,7 @@ def format_results_one_case(ks, auc, lorenz_curve_capt_rate, good_downsample_rat
 classifiers = {
     "Logistic":LogisticRegression(),
     "NearestNeighbors":KNeighborsClassifier(100),
+    "NNet":ffnetClassifier(nNodes=3,maxfun=400),
     "LinearSVM":SVC(kernel="linear", C=0.025),
     "RBFSVM":SVC(gamma=2, C=1),
     "DecisionTree":DecisionTreeClassifier(max_depth=32),
@@ -221,11 +225,18 @@ classifiers = {
     }
 
 joblist=[
-        (classifiers["Logistic"],'Logistic_signal_tmx_rc_ind','model_var_list_signal_tmx_rc_ind.csv'),
-        (classifiers["NaiveBayes"],'NaiveBayes_signal_tmx_rc_ind','model_var_list_signal_tmx_rc_ind.csv'),
-        (classifiers["DecisionTree"],'DecisionTree_signal_tmx_rc_ind','model_var_list_signal_tmx_rc_ind.csv'),
-        (classifiers["AdaBoost"],'AdaBoost_signal_tmx_rc_ind','model_var_list_signal_tmx_rc_ind.csv'),
-        (classifiers["GradientBoost"],'GradientBoost_signal_tmx_rc_ind','model_var_list_signal_tmx_rc_ind.csv'),
+        #(classifiers["Logistic"],'Logistic_signal_rc_tmx_rc_ind','model_var_list_signal_rc_tmx_rc_ind.csv'),
+        #(classifiers["NaiveBayes"],'NaiveBayes_signal_rc_tmx_rc_ind','model_var_list_signal_rc_tmx_rc_ind.csv'),
+        #(classifiers["DecisionTree"],'DecisionTree_signal_rc_tmx_rc_ind','model_var_list_signal_rc_tmx_rc_ind.csv'),
+        #(classifiers["AdaBoost"],'AdaBoost_signal_rc_tmx_rc_ind','model_var_list_signal_rc_tmx_rc_ind.csv'),
+        #(classifiers["GradientBoost"],'GradientBoost_signal_rc_tmx_rc_ind','model_var_list_signal_rc_tmx_rc_ind.csv'),
+        #(ffnetClassifier(nNodes=3,maxfun=400),'NNet_signal_rc_tmx_rc_ind_nNd=3_nFn=400','model_var_list_signal_tmx_rc_ind.csv'),
+        #(ffnetClassifier(nNodes=3,maxfun=1000),'NNet_signal_rc_tmx_rc_ind_nNd=3_nFn=1000','model_var_list_signal_tmx_rc_ind.csv'),
+        #(ffnetClassifier(nNodes=10,maxfun=1000),'NNet_signal_rc_tmx_rc_ind_nNd=10_nFn=1000','model_var_list_signal_tmx_rc_ind.csv'),
+        (ffnetClassifier(nNodes=25,maxfun=1000),'NNet_signal_rc_tmx_rc_ind_nNd=25_nFn=1000','model_var_list_signal_tmx_rc_ind.csv'),
+        (ffnetClassifier(nNodes=50,maxfun=1000),'NNet_signal_rc_tmx_rc_ind_nNd=50_nFn=1000','model_var_list_signal_tmx_rc_ind.csv'),
+        (ffnetClassifier(nNodes=100,maxfun=1000),'NNet_signal_rc_tmx_rc_ind_nNd=100_nFn=1000','model_var_list_signal_tmx_rc_ind.csv'),
+        (ffnetClassifier(nNodes=200,maxfun=1000),'NNet_signal_rc_tmx_rc_ind_nNd=200_nFn=1000','model_var_list_signal_tmx_rc_ind.csv'),
         
         #(classifiers["RandomForest"],'RandomForest_signal','model_var_list_signal.csv'), # suffix and varlist
         #(classifiers["RandomForest"],'RandomForest_tmxpayer','model_var_list_tmxpayer.csv'),
@@ -263,6 +274,7 @@ joblist=[
         #(classifiers["RandomForest"],'RandomForest_signal_rc_tmx_rc_ind_577','model_var_list_signal_rc_tmx_rc_ind_stepwiseback_577.csv'),
         #(classifiers["RandomForest"],'RandomForest_signal_rc_tmx_rc_ind_586','model_var_list_signal_rc_tmx_rc_ind_stepwiseback_586.csv'),
         
+        
         '''
         (classifiers["RandomForest"],'RandomForest_signal_rc_tmx_rc_ind_varsel_impor_154','model_var_list_signal_rc_tmx_rc_ind_varsel_impor_154.csv'),
         (classifiers["RandomForest"],'RandomForest_signal_rc_tmx_rc_ind_varsel_impor_166','model_var_list_signal_rc_tmx_rc_ind_varsel_impor_166.csv'),
@@ -281,6 +293,7 @@ joblist=[
         (classifiers["RandomForest"],'RandomForest_signal_rc_tmx_rc_ind_varsel_impor_571','model_var_list_signal_rc_tmx_rc_ind_varsel_impor_571.csv'),
         '''
         ]
+        
 
 ############################# Main: Run Different Classifiers ################################
 

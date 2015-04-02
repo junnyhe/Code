@@ -35,6 +35,7 @@ from load_data import *
 from model_performance_evaluation import performance_eval_train_validation
 from model_performance_evaluation import performance_eval_test
 
+#from ffnetClassifier import *
 
 def model_train_validation(ins_file, oos_file, classifier, var_list_filename, output_dir, output_suffix):
     """
@@ -172,8 +173,8 @@ def model_test_data_evaluation_comp_ruletag(test_data_file, var_list_filename, m
     refer_rate_rule = sum(tag*scale_factor)/sum(scale_factor) # fraud found by rule tag / total referred by rule
     
     # get score threshold for the same catch rate, and calculate hit_rate and refer_rate
-    score_fraud_pmt=p_pred[y==1]
-    score_threshold= percentile(score_fraud_pmt,(1-catch_rate_rule)*100) 
+    score_fraud_wd=p_pred[y==1]
+    score_threshold= percentile(score_fraud_wd,(1-catch_rate_rule)*100) 
     score_referred= p_pred>=score_threshold
     
     catch_rate_score = sum(y*score_referred*scale_factor)/sum(y*scale_factor) # fraud found by score referred / total fraud
@@ -221,49 +222,19 @@ classifiers = {
     }
 
 joblist=[
-        #(classifiers["RandomForest"],'RandomForest_signal','model_var_list_signal.csv'), # suffix and varlist
-        #(classifiers["RandomForest"],'RandomForest_tmxpayer','model_var_list_tmxpayer.csv'),
-        #(classifiers["RandomForest"],'RandomForest_tmxpayee','model_var_list_tmxpayee.csv'),
-        #(classifiers["RandomForest"],'RandomForest_signal_tmxpayer','model_var_list_signal_tmxpayer.csv'),
-        #(classifiers["RandomForest"],'RandomForest_signal_tmxpayee','model_var_list_signal_tmxpayee.csv'),
-        #(classifiers["RandomForest"],'RandomForest_tmxpayer_tmxpayee','model_var_list_tmxpayer_tmxpayee.csv'),
-        #(classifiers["RandomForest"],'RandomForest_tmxpayerpayee_comp','model_var_list_tmxpayerpayee_comp.csv'),
-        #(classifiers["RandomForest"],'RandomForest_signal_tmxboth','model_var_list_signal_tmxboth.csv'),
-        #(classifiers["RandomForest"],'RandomForest_signal_tmx_rc_ind','model_var_list_signal_tmx_rc_ind.csv'),
-        (classifiers["RandomForest"],'RandomForest_signal_rc_tmx_rc_ind','model_var_list_signal_rc_tmx_rc_ind.csv'),
-        
-        #(classifiers["RandomForest"],'RandomForest_signal_rc_tmx_rc_ind_400','model_var_list_signal_rc_tmx_rc_ind_400.csv'),
-        #(classifiers["RandomForest"],'RandomForest_signal_rc_tmx_rc_ind_163','model_var_list_signal_rc_tmx_rc_ind_163.csv'),
-        #(classifiers["RandomForest"],'RandomForest_signal_rc_tmx_rc_ind_292','model_var_list_signal_rc_tmx_rc_ind_292.csv'),
-        #(classifiers["RandomForest"],'RandomForest_signal_rc_tmx_rc_ind_393','model_var_list_signal_rc_tmx_rc_ind_393.csv'),
-        #(classifiers["RandomForest"],'RandomForest_signal_rc_tmx_rc_ind_456','model_var_list_signal_rc_tmx_rc_ind_456.csv'),
-        
-        #(classifiers["Logistic"],'Logistic_signal_full','model_var_list_signal.csv'), # suffix and varlist
-        #(DecisionTreeClassifier(max_depth=32),'DecisionTree_signal_full_depth=32','model_var_list_signal.csv'), # suffix and varlist
-        #(DecisionTreeClassifier(max_depth=16),'DecisionTree_signal_full_depth=16','model_var_list_signal.csv'), # suffix and varlist
-        #(DecisionTreeClassifier(max_depth=8),'DecisionTree_signal_full_depth=8','model_var_list_signal.csv'), # suffix and varlist
-        #(DecisionTreeClassifier(max_depth=64),'DecisionTree_signal_full_depth=64','model_var_list_signal.csv'), # suffix and varlist
-        #(DecisionTreeClassifier(max_depth=None),'DecisionTree_signal_full_depth=none','model_var_list_signal.csv'), # suffix and varlist
-        #(DecisionTreeClassifier(max_depth=3),'DecisionTree_signal_full_depth=3','model_var_list_signal.csv'), # suffix and varlist
-        
-        #(classifiers["RandomForest"],'RandomForest_signal_rc_tmx_rc_ind_288','model_var_list_signal_rc_tmx_rc_ind_stepwiseback_288.csv'),
-        #(classifiers["RandomForest"],'RandomForest_signal_rc_tmx_rc_ind_291','model_var_list_signal_rc_tmx_rc_ind_stepwiseback_291.csv'),
-        #(classifiers["RandomForest"],'RandomForest_signal_rc_tmx_rc_ind_301','model_var_list_signal_rc_tmx_rc_ind_stepwiseback_301.csv'),
-        #(classifiers["RandomForest"],'RandomForest_signal_rc_tmx_rc_ind_317','model_var_list_signal_rc_tmx_rc_ind_stepwiseback_317.csv'),
-        #(classifiers["RandomForest"],'RandomForest_signal_rc_tmx_rc_ind_344','model_var_list_signal_rc_tmx_rc_ind_stepwiseback_344.csv'),
-        #(classifiers["RandomForest"],'RandomForest_signal_rc_tmx_rc_ind_382','model_var_list_signal_rc_tmx_rc_ind_stepwiseback_382.csv'),
-        #(classifiers["RandomForest"],'RandomForest_signal_rc_tmx_rc_ind_426','model_var_list_signal_rc_tmx_rc_ind_stepwiseback_426.csv'),
-        #(classifiers["RandomForest"],'RandomForest_signal_rc_tmx_rc_ind_488','model_var_list_signal_rc_tmx_rc_ind_stepwiseback_488.csv'),
-        #(classifiers["RandomForest"],'RandomForest_signal_rc_tmx_rc_ind_577','model_var_list_signal_rc_tmx_rc_ind_stepwiseback_577.csv'),
-        #(classifiers["RandomForest"],'RandomForest_signal_rc_tmx_rc_ind_586','model_var_list_signal_rc_tmx_rc_ind_stepwiseback_586.csv'),
-        
+        (classifiers["RandomForest"],'RandomForest_signal','model_var_list_signal.csv'), # suffix and varlist
+        (classifiers["RandomForest"],'RandomForest_signal_tmxrc_ind','model_var_list_signal_tmxrc_ind.csv'),
+        (classifiers["RandomForest"],'RandomForest_signal_rc_tmxrc_ind','model_var_list_signal_rc_tmxrc_ind.csv'),
+        (classifiers["RandomForest"],'RandomForest_signal_tmxpayer','model_var_list_signal_tmxpayer.csv'),
+        (classifiers["RandomForest"],'RandomForest_signal_tmxpayer_tmxrc_ind','model_var_list_signal_tmxpayer_tmxrc_ind.csv'),
+        (classifiers["RandomForest"],'RandomForest_signal_tmxpayer_rc_tmxrc_ind','model_var_list_signal_tmxpayer_rc_tmxrc_ind.csv')
         ]
 
 ############################# Main: Run Different Classifiers ################################
 
-data_dir='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v3pmt/'
+data_dir='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v3wd/'
 
-result_dir='/home/junhe/fraud_model/Results/Model_Results_Signal_Tmx_v3pmt_woeSmth=0/'
+result_dir='/home/junhe/fraud_model/Results/Model_Results_Signal_Tmx_v3wd_woeSmth=0/'
 good_downsample_rate = 0.3 #used to scale back hit rate
 
 for job in joblist:
@@ -287,8 +258,8 @@ for job in joblist:
     ouput_result_summary_file = open(output_dir+'results_summary_'+output_suffix+'.csv','w')
     ouput_result_summary=csv.writer(ouput_result_summary_file)# output file for result summary
     
-    ins_file=data_dir+'model_data_pmt_ins_ds_rcind_fc_imp_woe.csv.gz'
-    oos_file=data_dir+'model_data_pmt_oos_ds_rcind_fc_imp_woe.csv.gz'
+    ins_file=data_dir+'model_data_wd_ins_ds_rcind_fc_imp_woe.csv.gz'
+    oos_file=data_dir+'model_data_wd_oos_ds_rcind_fc_imp_woe.csv.gz'
     
     
     ks, auc, lorenz_curve_capt_rate = model_train_validation(ins_file, oos_file, classifier, var_list_filename, output_dir, output_suffix)
@@ -296,32 +267,32 @@ for job in joblist:
     
     
     # Load Model and Evaluate Performance on Test Data
-    test_data_file = data_dir+'model_data_pmt_oos_ds_rcind_fc_imp_woe.csv.gz'
+    test_data_file = data_dir+'model_data_wd_oos_ds_rcind_fc_imp_woe.csv.gz'
     model_file = output_dir+"model.p"
     output_suffix = job[1]+'_test_JulAug'
     ks, auc, lorenz_curve_capt_rate, rule_model_rates = model_test_data_evaluation_comp_ruletag(test_data_file, var_list_filename, model_file, output_dir, output_suffix,good_downsample_rate)
     result_summary.append(['JulAug']+format_results_one_case(ks, auc, lorenz_curve_capt_rate, good_downsample_rate) + rule_model_rates)# append results for one case to summary
     
-    test_data_file = data_dir+'test_data_sept_pmt_ds_rcind_fc_imp_woe.csv.gz'
+    test_data_file = data_dir+'test_data_sept_wd_ds_rcind_fc_imp_woe.csv.gz'
     model_file = output_dir+"model.p"
     output_suffix = job[1]+'_test_sept'
     ks, auc, lorenz_curve_capt_rate, rule_model_rates = model_test_data_evaluation_comp_ruletag(test_data_file, var_list_filename, model_file, output_dir, output_suffix,good_downsample_rate)
     result_summary.append(['Sept']+format_results_one_case(ks, auc, lorenz_curve_capt_rate, good_downsample_rate) + rule_model_rates)# append results for one case to summary
     
-    test_data_file = data_dir+'test_data_oct_pmt_ds_rcind_fc_imp_woe.csv.gz'
+    test_data_file = data_dir+'test_data_oct_wd_ds_rcind_fc_imp_woe.csv.gz'
     model_file = output_dir+"model.p"
     output_suffix = job[1]+'_test_oct'
     ks, auc, lorenz_curve_capt_rate, rule_model_rates = model_test_data_evaluation_comp_ruletag(test_data_file, var_list_filename, model_file, output_dir, output_suffix,good_downsample_rate)
     result_summary.append(['Oct']+format_results_one_case(ks, auc, lorenz_curve_capt_rate, good_downsample_rate) + rule_model_rates)# append results for one case to summary
     
-    test_data_file = data_dir+'test_data_nov_pmt_ds_rcind_fc_imp_woe.csv.gz'
+    test_data_file = data_dir+'test_data_nov_wd_ds_rcind_fc_imp_woe.csv.gz'
     model_file = output_dir+"model.p"
     output_suffix = job[1]+'_test_nov'
     ks, auc, lorenz_curve_capt_rate, rule_model_rates = model_test_data_evaluation_comp_ruletag(test_data_file, var_list_filename, model_file, output_dir, output_suffix,good_downsample_rate)
     result_summary.append(['Nov']+format_results_one_case(ks, auc, lorenz_curve_capt_rate, good_downsample_rate) + rule_model_rates)# append results for one case to summary
     
     
-    test_data_file = data_dir+'test_data_dec_pmt_ds_rcind_fc_imp_woe.csv.gz'
+    test_data_file = data_dir+'test_data_dec_wd_ds_rcind_fc_imp_woe.csv.gz'
     model_file = output_dir+"model.p"
     output_suffix = job[1]+'_test_dec'
     ks, auc, lorenz_curve_capt_rate, rule_model_rates = model_test_data_evaluation_comp_ruletag(test_data_file, var_list_filename, model_file, output_dir, output_suffix,good_downsample_rate)
