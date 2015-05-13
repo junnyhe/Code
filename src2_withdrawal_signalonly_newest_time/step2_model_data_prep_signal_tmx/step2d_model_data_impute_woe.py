@@ -24,8 +24,17 @@ def woe_assign_pickle_helper(arg):
     #function inputs: woe_assign_pickle(work_dir,input_file,output_file)
 
 
+global work_dir
 
-work_dir='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2wd_signalonly_newest_time/' # everything should/will be in work_dir
+if len(sys.argv) <=1:
+    work_dir=''#/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2wd_signalonly_newest_time/'  # everything should/will be in work_dir
+elif len(sys.argv) ==2:
+    work_dir=sys.argv[1]
+else:
+    print "stdin input should be 0 or 1 vars, 0 using data location in code, 1 using input."
+    
+
+
 
 
 ################################################################################
@@ -47,12 +56,15 @@ impute_create_mapping(work_dir,ins_file,imp_median_var_list_file,imp_zero_var_li
 input_list = (
               [work_dir,"model_data_wd_ins_ds.csv.gz","model_data_wd_ins_ds_imp.csv.gz"], 
               [work_dir,"model_data_wd_oos_ds.csv.gz","model_data_wd_oos_ds_imp.csv.gz"],
-              [work_dir,"test_data_nov_wd_ds.csv.gz","test_data_nov_wd_ds_imp.csv.gz"],
-              [work_dir,"test_data_oct_wd_ds.csv.gz","test_data_oct_wd_ds_imp.csv.gz"],
-              [work_dir,"test_data_sept_wd_ds.csv.gz","test_data_sept_wd_ds_imp.csv.gz"]
+              [work_dir,"test_data_1mo_wd_ds.csv.gz","test_data_1mo_wd_ds_imp.csv.gz"],
+              [work_dir,"test_data_2mo_wd_ds.csv.gz","test_data_2mo_wd_ds_imp.csv.gz"],
+              [work_dir,"test_data_3mo_wd_ds.csv.gz","test_data_3mo_wd_ds_imp.csv.gz"],
+              [work_dir,"test_data_4mo_wd_ds.csv.gz","test_data_4mo_wd_ds_imp.csv.gz"],
+              [work_dir,"test_data_5mo_wd_ds.csv.gz","test_data_5mo_wd_ds_imp.csv.gz"],
+              [work_dir,"test_data_6mo_wd_ds.csv.gz","test_data_6mo_wd_ds_imp.csv.gz"]
               )
             # Inputs: impute_replace_pickle(work_dir,input_file,output_file)
-pool = Pool(processes=3)
+pool = Pool(processes=4)
 pool.map(impute_replace_pickle_helper, input_list)
 
 
@@ -76,12 +88,15 @@ risk_table(work_dir, input_file, woe_var_list_file, target='target', smooth_num=
 input_list = (
               [work_dir,"model_data_wd_ins_ds_imp.csv.gz","model_data_wd_ins_ds_imp_woe.csv.gz"],
               [work_dir,"model_data_wd_oos_ds_imp.csv.gz","model_data_wd_oos_ds_imp_woe.csv.gz"],
-              [work_dir,"test_data_nov_wd_ds_imp.csv.gz","test_data_nov_wd_ds_imp_woe.csv.gz"],
-              [work_dir,"test_data_oct_wd_ds_imp.csv.gz","test_data_oct_wd_ds_imp_woe.csv.gz"],
-              [work_dir,"test_data_sept_wd_ds_imp.csv.gz","test_data_sept_wd_ds_imp_woe.csv.gz"]
+              [work_dir,"test_data_1mo_wd_ds_imp.csv.gz","test_data_1mo_wd_ds_imp_woe.csv.gz"],
+              [work_dir,"test_data_2mo_wd_ds_imp.csv.gz","test_data_2mo_wd_ds_imp_woe.csv.gz"],
+              [work_dir,"test_data_3mo_wd_ds_imp.csv.gz","test_data_3mo_wd_ds_imp_woe.csv.gz"],
+              [work_dir,"test_data_4mo_wd_ds_imp.csv.gz","test_data_4mo_wd_ds_imp_woe.csv.gz"],
+              [work_dir,"test_data_5mo_wd_ds_imp.csv.gz","test_data_5mo_wd_ds_imp_woe.csv.gz"],
+              [work_dir,"test_data_6mo_wd_ds_imp.csv.gz","test_data_6mo_wd_ds_imp_woe.csv.gz"]
               )
             # Inputs: woe_assign_pickle(work_dir,input_file,output_file)
-pool = Pool(processes=3)
+pool = Pool(processes=4)
 pool.map(woe_assign_pickle_helper, input_list)
 
 
@@ -89,6 +104,6 @@ pool.map(woe_assign_pickle_helper, input_list)
 # check data quality, determine modeling var list                              #
 ################################################################################
 
-csv_EDD(work_dir+'model_data_wd_ins_ds_imp_woe.csv.gz')
+#csv_EDD(work_dir+'model_data_wd_ins_ds_imp_woe.csv.gz')
 
 

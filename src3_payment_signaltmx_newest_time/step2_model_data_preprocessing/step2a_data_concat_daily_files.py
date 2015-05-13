@@ -127,14 +127,45 @@ def cat_daily_files(start_day,out_file_name):
     outfile_2.close()
     
 
-
-# model data july/aug
+'''
+# model data jan/feb
 start_day=datetime.date(2015,1,1) #start date
 nDays=59 # number of days to process
 out_file_name='model_data'
+#cat_daily_files(start_day,out_file_name)
+
+# model data nov/dec
+start_day=datetime.date(2014,11,1) #start date
+nDays=61 # number of days to process
+out_file_name='model_data_novdec'
 cat_daily_files(start_day,out_file_name)
 
+# model data sept/oct
+start_day=datetime.date(2014,9,1) #start date
+nDays=61 # number of days to process
+out_file_name='model_data_septoct'
+cat_daily_files(start_day,out_file_name)
 
+# model data jul/aug
+start_day=datetime.date(2014,8,1) #start date
+nDays=62 # number of days to process
+out_file_name='model_data_julaug'
+cat_daily_files(start_day,out_file_name)
+'''
+
+# test data feb
+start_day=datetime.date(2015,2,1) #start date
+nDays=28 # number of days to process
+out_file_name='test_data_feb'
+cat_daily_files(start_day,out_file_name)
+
+# test data jan
+start_day=datetime.date(2015,1,1) #start date
+nDays=31 # number of days to process
+out_file_name='test_data_jan'
+cat_daily_files(start_day,out_file_name)
+
+'''
 # test data dec
 start_day=datetime.date(2014,12,1) #start date
 nDays=31 # number of days to process
@@ -147,7 +178,6 @@ nDays=30 # number of days to process
 out_file_name='test_data_nov'
 cat_daily_files(start_day,out_file_name)
 
-'''
 # test data oct
 start_day=datetime.date(2014,10,1) #start date
 nDays=31 # number of days to process

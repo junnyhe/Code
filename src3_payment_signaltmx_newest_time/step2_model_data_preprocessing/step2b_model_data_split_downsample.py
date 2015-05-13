@@ -71,7 +71,7 @@ def downsample_filter(input_file,output_file, downsamle_fieldname, downsample_fi
     nRow=0
     for row in incsv:
         if not (row['target']=='1' and row['target2'] !='1'):# additional filter (exclude nonfraud blacklisted):
-            if row[downsamle_fieldname]==downsample_field_equal_value: #downsample good
+            if float(row[downsamle_fieldname])==float(downsample_field_equal_value): #downsample good
                 if random.random() <  downsample_frac:
                     outcsv.writerow([row[key] for key in header_out])
             else: # keep bad

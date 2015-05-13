@@ -71,13 +71,13 @@ def downsample_filter(input_file,output_file, downsamle_fieldname, downsample_fi
     nRow=0
     for row in incsv:
         if not (row['target']=='1' and row['target2'] !='1'):# additional filter (exclude nonfraud blacklisted):
-            if row[downsamle_fieldname]==downsample_field_equal_value: #downsample good
+            if float(row[downsamle_fieldname])==float(downsample_field_equal_value): #downsample good
                 if random.random() <  downsample_frac:
                     outcsv.writerow([row[key] for key in header_out])
             else: # keep bad
                 outcsv.writerow([row[key] for key in header_out])
-        else: # exclusion
-            print row['target'], row['target2'], row['blacklist_reason']
+        #else: # exclusion
+        #    print row['target'], row['target2'], row['blacklist_reason']
             
         nRow+=1
         if nRow%10000 ==0:
@@ -100,8 +100,9 @@ train_validation_split(input_file,oos_frac,ins_file,oos_file)
 ################################################################################
 # Downsample every data set                                                    #
 ################################################################################
-downsample_frac=0.3
-#downsample_frac=0.2
+#downsample_frac=1.0
+downsample_frac=0.2
+
 
 input_file=out_dir+"model_data_wd_ins.csv.gz"
 output_file=out_dir+"model_data_wd_ins_ds.csv.gz"
@@ -109,6 +110,15 @@ downsample_filter(input_file,output_file, downsamle_fieldname='target', downsamp
 
 input_file=out_dir+"model_data_wd_oos.csv.gz"
 output_file=out_dir+"model_data_wd_oos_ds.csv.gz"
+downsample_filter(input_file,output_file, downsamle_fieldname='target', downsample_field_equal_value='0', downsample_frac=downsample_frac)
+
+'''
+input_file=in_dir+"test_data_feb_wd.csv.gz"
+output_file=out_dir+"test_data_feb_wd_ds.csv.gz"
+downsample_filter(input_file,output_file, downsamle_fieldname='target', downsample_field_equal_value='0', downsample_frac=downsample_frac)
+
+input_file=in_dir+"test_data_jan_wd.csv.gz"
+output_file=out_dir+"test_data_jan_wd_ds.csv.gz"
 downsample_filter(input_file,output_file, downsamle_fieldname='target', downsample_field_equal_value='0', downsample_frac=downsample_frac)
 
 input_file=in_dir+"test_data_dec_wd.csv.gz"
@@ -127,7 +137,6 @@ input_file=in_dir+"test_data_sept_wd.csv.gz"
 output_file=out_dir+"test_data_sept_wd_ds.csv.gz"
 downsample_filter(input_file,output_file, downsamle_fieldname='target', downsample_field_equal_value='0', downsample_frac=downsample_frac)
 
-
 input_file=in_dir+"test_data_aug_wd.csv.gz"
 output_file=out_dir+"test_data_aug_wd_ds.csv.gz"
 downsample_filter(input_file,output_file, downsamle_fieldname='target', downsample_field_equal_value='0', downsample_frac=downsample_frac)
@@ -136,7 +145,7 @@ input_file=in_dir+"test_data_jul_wd.csv.gz"
 output_file=out_dir+"test_data_jul_wd_ds.csv.gz"
 downsample_filter(input_file,output_file, downsamle_fieldname='target', downsample_field_equal_value='0', downsample_frac=downsample_frac)
 
-
+'''
 
 
 

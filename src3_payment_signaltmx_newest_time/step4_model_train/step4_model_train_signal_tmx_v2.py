@@ -50,6 +50,11 @@ def model_train_validation(ins_file, oos_file, classifier, var_list_filename, ou
     Xv,yv = load_data_fast(oos_file, var_list_filename, target_name)
     print "Loading data done, taking ",time.time()-t0,"secs"
     
+    # prepare trivial input values for generating reason code in production
+    trivial_input_values_file = output_dir+'trivial_input_values.p'
+    trivial_input_values = median(X,axis=0)
+    pickle.dump(trivial_input_values,open(trivial_input_values_file,'wb'))
+    
     # Train Model
     print '\nModel training starts...'
     t0=time.time()
@@ -230,7 +235,7 @@ joblist=[
         #(classifiers["RandomForest"],'RandomForest_tmxpayerpayee_comp','model_var_list_tmxpayerpayee_comp.csv'),
         #(classifiers["RandomForest"],'RandomForest_signal_tmxboth','model_var_list_signal_tmxboth.csv'),
         #(classifiers["RandomForest"],'RandomForest_signal_tmx_rc_ind','model_var_list_signal_tmx_rc_ind.csv'),
-        (classifiers["RandomForest"],'RandomForest_signal_rc_tmx_rc_ind','model_var_list_signal_rc_tmx_rc_ind.csv'),
+        (classifiers["RandomForest"],'RandomForest_signal_rc_tmx_rc_ind','model_var_list_signal_rc_tmxrc_ind.csv'),
         
         #(classifiers["RandomForest"],'RandomForest_signal_rc_tmx_rc_ind_400','model_var_list_signal_rc_tmx_rc_ind_400.csv'),
         #(classifiers["RandomForest"],'RandomForest_signal_rc_tmx_rc_ind_163','model_var_list_signal_rc_tmx_rc_ind_163.csv'),
@@ -287,13 +292,9 @@ for job in joblist:
     # Load Model and Evaluate Performance on Test Data
     test_data_file = data_dir+'model_data_pmt_oos_ds_rcind_fc_imp_woe.csv.gz'
     model_file = output_dir+"model.p"
-    output_suffix = job[1]+'_test_JulAug'
+    output_suffix = job[1]+'_test_janfeb'
     ks, auc, lorenz_curve_capt_rate, rule_model_rates = model_test_data_evaluation_comp_ruletag(test_data_file, var_list_filename, model_file, output_dir, output_suffix,good_downsample_rate)
-    result_summary.append(['JulAug']+format_results_one_case(ks, auc, lorenz_curve_capt_rate, good_downsample_rate) + rule_model_rates)# append results for one case to summary
-    
-    
-
-    
+    result_summary.append(['JanFeb']+format_results_one_case(ks, auc, lorenz_curve_capt_rate, good_downsample_rate) + rule_model_rates)# append results for one case to summary
     
     
     test_data_file = data_dir+'test_data_dec_pmt_ds_rcind_fc_imp_woe.csv.gz'

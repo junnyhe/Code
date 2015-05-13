@@ -8,7 +8,7 @@ import sys
 sys.path.append("/home/junhe/fraud_model/Code/tools/csv_operations")
 import csv_ops
 from csv_ops import *
-
+from multiprocessing import Pool
 
 def train_validation_split(input_file,oos_frac,ins_file,oos_file):
     
@@ -71,7 +71,7 @@ def downsample_filter(input_file,output_file, downsamle_fieldname, downsample_fi
     nRow=0
     for row in incsv:
         if not (row['target']=='1' and row['target2'] !='1'):# additional filter (exclude nonfraud blacklisted):
-            if row[downsamle_fieldname]==downsample_field_equal_value: #downsample good
+            if float(row[downsamle_fieldname])==float(downsample_field_equal_value): #downsample good
                 if random.random() <  downsample_frac:
                     outcsv.writerow([row[key] for key in header_out])
             else: # keep bad
@@ -84,14 +84,24 @@ def downsample_filter(input_file,output_file, downsamle_fieldname, downsample_fi
             print nRow," rows are processed"
 
 
-
+print len(sys.argv)
 
 ################################################################################
 # Split ins and oos                                                            #
 ################################################################################
 oos_frac=0.2 #fraction used for oos
-in_dir='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt_signalonly_newest_time/'
-out_dir='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2wd_signalonly_newest_time/'
+if len(sys.argv) <=1:
+    #in_dir='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt_signalonly_newest_time/'
+    #out_dir='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2wd_signalonly_newest_time/'
+    in_dir=''
+    out_dir=''
+elif len(sys.argv) ==3:
+    in_dir=sys.argv[1]
+    out_dir=sys.argv[2]
+else:
+    print "stdin input should be 0 or 2 vars, 0 using  pmt_data and wd_data location in code, 2 using input."
+    
+
 input_file=in_dir+"model_data_wd.csv.gz"
 ins_file=out_dir+"model_data_wd_ins.csv.gz"
 oos_file=out_dir+"model_data_wd_oos.csv.gz"
@@ -105,23 +115,23 @@ train_validation_split(input_file,oos_frac,ins_file,oos_file)
 #downsample_frac=1.0001
 downsample_frac=0.2
 
-input_file=out_dir+"model_data_wd_ins.csv.gz"
-output_file=out_dir+"model_data_wd_ins_ds.csv.gz"
-downsample_filter(input_file,output_file, downsamle_fieldname='target', downsample_field_equal_value='0', downsample_frac=downsample_frac)
+def downsample_filter_helper(arg):
+    input_file=arg[0]
+    output_file=arg[1]
+    downsample_filter(input_file,output_file, downsamle_fieldname='target', downsample_field_equal_value='0', downsample_frac=downsample_frac)
+    
+    
+input_list = [[out_dir+"model_data_wd_ins.csv.gz",out_dir+"model_data_wd_ins_ds.csv.gz"],
+              [out_dir+"model_data_wd_oos.csv.gz",out_dir+"model_data_wd_oos_ds.csv.gz"],
+              ]
 
-input_file=out_dir+"model_data_wd_oos.csv.gz"
-output_file=out_dir+"model_data_wd_oos_ds.csv.gz"
-downsample_filter(input_file,output_file, downsamle_fieldname='target', downsample_field_equal_value='0', downsample_frac=downsample_frac)
+for i in range(1,7):
+    input_list.append([in_dir+"test_data_"+str(i)+"mo_wd.csv.gz",out_dir+"test_data_"+str(i)+"mo_wd_ds.csv.gz"])
 
-input_file=in_dir+"test_data_nov_wd.csv.gz"
-output_file=out_dir+"test_data_nov_wd_ds.csv.gz"
-downsample_filter(input_file,output_file, downsamle_fieldname='target', downsample_field_equal_value='0', downsample_frac=downsample_frac)
+pool = Pool(processes=4)
+pool.map(downsample_filter_helper, input_list)
 
-input_file=in_dir+"test_data_oct_wd.csv.gz"
-output_file=out_dir+"test_data_oct_wd_ds.csv.gz"
-downsample_filter(input_file,output_file, downsamle_fieldname='target', downsample_field_equal_value='0', downsample_frac=downsample_frac)
 
-input_file=in_dir+"test_data_sept_wd.csv.gz"
-output_file=out_dir+"test_data_sept_wd_ds.csv.gz"
-downsample_filter(input_file,output_file, downsamle_fieldname='target', downsample_field_equal_value='0', downsample_frac=downsample_frac)
+
+
 

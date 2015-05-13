@@ -10,7 +10,7 @@ from numpy import *
 from math import radians, cos, sin, asin, sqrt
 from multiprocessing import Pool
 
-
+sys.path.append("/home/junhe/fraud_model/Code/src3/step3_model_data_prep_signal_tmx")
 from step3a_model_data_rc_tmxrc_ind_creation import *
 from step3b_model_data_feature_creation import *
 from step3c_model_data_impute_woe_assigin import *

@@ -178,6 +178,7 @@ def load_data_with_key_tag_fast(input_file, var_list_filename, target_name, key_
             
         except:
             print "Warning: Row contains none numeric values, skipping ............"
+            print row
         nRow+=1
         if nRow%10000 ==0:
             print nRow," rows loaded"

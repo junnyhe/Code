@@ -3,15 +3,20 @@ import gzip
 import os
 import datetime
 import random
+import sys
+from multiprocessing import Pool
+
+global signal_dir, tgt_dir, rule_dir, out_dir
 
 
-def cat_daily_files(start_day,out_file_name):
+# get input
+signal_dir = "/home/junhe/fraud_model/Data/Raw_Data/signals/"
+tgt_dir = "/home/junhe/fraud_model/Data/Raw_Data/targets/"
+rule_dir = "/home/junhe/fraud_model/Data/Raw_Data/rule_results_pmt_direction/"
+out_dir='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt_signalonly_newest_time/'
+
     
-    # get input
-    signal_dir = "/home/junhe/fraud_model/Data/Raw_Data/signals/"
-    tgt_dir = "/home/junhe/fraud_model/Data/Raw_Data/targets/"
-    rule_dir = "/home/junhe/fraud_model/Data/Raw_Data/rule_results_pmt_direction/"
-    out_dir = "/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt_signalonly_newest_time/"
+def cat_daily_files(start_day,nDays,out_file_name):
     
     
     # load target to dict
@@ -88,6 +93,7 @@ def cat_daily_files(start_day,out_file_name):
         input_file=signal_dir+"fraud_signal_flat_"+str(day)+".csv.gz"
         infile=gzip.open(input_file,'rb')
         incsv=csv.DictReader(infile)
+        print input_file
         
         for row in incsv:
             row['target']=0
@@ -125,31 +131,57 @@ def cat_daily_files(start_day,out_file_name):
         
     outfile_1.close()
     outfile_2.close()
-    
-'''
 
-# model data dec/jan
-start_day=datetime.date(2014,12,1) #start date
-nDays=62 # number of days to process
+
+def cat_daily_files_helper(arg):
+    start_day=arg[0] #start date
+    nDays=arg[1] # number of days to process
+    out_file_name=arg[2]
+    cat_daily_files(start_day,nDays,out_file_name)
+
+
+
+
+# last day the model will be trained on
+if len(sys.argv) <=1: # if last day is not specified by stdin
+    year=2015
+    month=3
+    day=31
+else:
+    year=int(sys.argv[1])
+    month=int(sys.argv[2])
+    day=int(sys.argv[3])
+
+print "Last day to train model:",year,'-',month,'-',day
+
+last_day=datetime.date(year,month,day)
+
+
+# prepare input list
+input_list = []
+
+# prepare training data with last two months
+start_day=last_day-datetime.timedelta(60-1) #start date
+nDays=60 # number of days to process
 out_file_name='model_data'
-cat_daily_files(start_day,out_file_name)
-'''
+input_list.append([start_day,nDays,out_file_name])
 
-# test data nov
-start_day=datetime.date(2014,11,1) #start date
+# prepare test data 6 months before training data
+for i in range(1,7):
+    start_day=last_day-datetime.timedelta(60+30*i-1) #start date
+    nDays=30 # number of days to process
+    out_file_name='test_data_'+str(i)+'mo'
+    input_list.append([start_day,nDays,out_file_name])
+
+
+pool = Pool(processes=4)
+pool.map(cat_daily_files_helper, input_list)
+
+
+
+
+# additional test data
+start_day=datetime.date(2015,4,1) #start date
 nDays=30 # number of days to process
-out_file_name='test_data_nov'
-#cat_daily_files(start_day,out_file_name)
-
-# test data oct
-start_day=datetime.date(2014,10,1) #start date
-nDays=31 # number of days to process
-out_file_name='test_data_oct'
-cat_daily_files(start_day,out_file_name)
-
-# test data sept
-start_day=datetime.date(2014,9,1) #start date
-nDays=30 # number of days to process
-out_file_name='test_data_sept'
-#cat_daily_files(start_day,out_file_name)
-
+out_file_name='test_data_-1mo'
+cat_daily_files(start_day,nDays,out_file_name)

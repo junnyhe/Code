@@ -50,6 +50,11 @@ def model_train_validation(ins_file, oos_file, classifier, var_list_filename, ou
     Xv,yv = load_data_fast(oos_file, var_list_filename, target_name)
     print "Loading data done, taking ",time.time()-t0,"secs"
     
+    # prepare trivial input values for generating reason code in production
+    trivial_input_values_file = output_dir+'trivial_input_values.p'
+    trivial_input_values = median(X,axis=0)
+    pickle.dump(trivial_input_values,open(trivial_input_values_file,'wb'))
+    
     # Train Model
     print '\nModel training starts...'
     t0=time.time()
@@ -201,6 +206,18 @@ def format_results_one_case(ks, auc, lorenz_curve_capt_rate, good_downsample_rat
     
     
 
+if len(sys.argv) <=1:
+    data_dir=''#/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt_signalonly_newest_time/'
+    result_dir=''#/home/junhe/fraud_model/Results/Model_Results_Signal_Only_v2pmt_woeSmth=0_newest_time/'
+elif len(sys.argv) ==3:
+    data_dir=sys.argv[1]
+    result_dir=sys.argv[2]
+else:
+    print "stdin input should be 0 or 2 vars, 0 using data and result location in code, 2 using input."
+    
+    
+good_downsample_rate = 0.05 #used to scale back hit rate
+
 
 ########################### Instantiate Classifiers ############################
 
@@ -264,11 +281,6 @@ joblist=[
     
 ############################# Main: Run Different Classifiers ################################
 
-data_dir='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt_signalonly_newest_time/'
-
-result_dir='/home/junhe/fraud_model/Results/Model_Results_Signal_Only_v2pmt_woeSmth=0_newest_time/'
-good_downsample_rate = 0.05 #used to scale back hit rate
-
 for job in joblist:
     
     result_summary = []
@@ -301,27 +313,54 @@ for job in joblist:
     # Load Model and Evaluate Performance on Test Data
     test_data_file = data_dir+'model_data_pmt_oos_ds_imp_woe.csv.gz'
     model_file = output_dir+"model.p"
-    output_suffix = job[1]+'_test_DecJan'
+    output_suffix = job[1]+'_train'
     ks, auc, lorenz_curve_capt_rate, rule_model_rates = model_test_data_evaluation_comp_ruletag(test_data_file, var_list_filename, model_file, output_dir, output_suffix,good_downsample_rate)
-    result_summary.append(['JulAug']+format_results_one_case(ks, auc, lorenz_curve_capt_rate, good_downsample_rate) + rule_model_rates)# append results for one case to summary
+    result_summary.append(['Train']+format_results_one_case(ks, auc, lorenz_curve_capt_rate, good_downsample_rate) + rule_model_rates)# append results for one case to summary
     
-    test_data_file = data_dir+'test_data_nov_pmt_ds_imp_woe.csv.gz'
+    test_data_file = data_dir+'test_data_1mo_pmt_ds_imp_woe.csv.gz'
     model_file = output_dir+"model.p"
-    output_suffix = job[1]+'_test_nov'
+    output_suffix = job[1]+'_test_1mo'
     ks, auc, lorenz_curve_capt_rate, rule_model_rates = model_test_data_evaluation_comp_ruletag(test_data_file, var_list_filename, model_file, output_dir, output_suffix,good_downsample_rate)
-    result_summary.append(['Nov']+format_results_one_case(ks, auc, lorenz_curve_capt_rate, good_downsample_rate) + rule_model_rates)# append results for one case to summary
+    result_summary.append(['1mo']+format_results_one_case(ks, auc, lorenz_curve_capt_rate, good_downsample_rate) + rule_model_rates)# append results for one case to summary
     
-    test_data_file = data_dir+'test_data_oct_pmt_ds_imp_woe.csv.gz'
+    test_data_file = data_dir+'test_data_2mo_pmt_ds_imp_woe.csv.gz'
     model_file = output_dir+"model.p"
-    output_suffix = job[1]+'_test_oct'
+    output_suffix = job[1]+'_test_2mo'
     ks, auc, lorenz_curve_capt_rate, rule_model_rates = model_test_data_evaluation_comp_ruletag(test_data_file, var_list_filename, model_file, output_dir, output_suffix,good_downsample_rate)
-    result_summary.append(['Oct']+format_results_one_case(ks, auc, lorenz_curve_capt_rate, good_downsample_rate) + rule_model_rates)# append results for one case to summary
+    result_summary.append(['2mo']+format_results_one_case(ks, auc, lorenz_curve_capt_rate, good_downsample_rate) + rule_model_rates)# append results for one case to summary
     
-    test_data_file = data_dir+'test_data_sept_pmt_ds_imp_woe.csv.gz'
+    test_data_file = data_dir+'test_data_3mo_pmt_ds_imp_woe.csv.gz'
     model_file = output_dir+"model.p"
-    output_suffix = job[1]+'_test_sept'
+    output_suffix = job[1]+'_test_3mo'
     ks, auc, lorenz_curve_capt_rate, rule_model_rates = model_test_data_evaluation_comp_ruletag(test_data_file, var_list_filename, model_file, output_dir, output_suffix,good_downsample_rate)
-    result_summary.append(['Sept']+format_results_one_case(ks, auc, lorenz_curve_capt_rate, good_downsample_rate) + rule_model_rates)# append results for one case to summary
+    result_summary.append(['3mo']+format_results_one_case(ks, auc, lorenz_curve_capt_rate, good_downsample_rate) + rule_model_rates)# append results for one case to summary
+    
+    test_data_file = data_dir+'test_data_4mo_pmt_ds_imp_woe.csv.gz'
+    model_file = output_dir+"model.p"
+    output_suffix = job[1]+'_test_4mo'
+    ks, auc, lorenz_curve_capt_rate, rule_model_rates = model_test_data_evaluation_comp_ruletag(test_data_file, var_list_filename, model_file, output_dir, output_suffix,good_downsample_rate)
+    result_summary.append(['4mo']+format_results_one_case(ks, auc, lorenz_curve_capt_rate, good_downsample_rate) + rule_model_rates)# append results for one case to summary
+    
+    test_data_file = data_dir+'test_data_5mo_pmt_ds_imp_woe.csv.gz'
+    model_file = output_dir+"model.p"
+    output_suffix = job[1]+'_test_5mo'
+    ks, auc, lorenz_curve_capt_rate, rule_model_rates = model_test_data_evaluation_comp_ruletag(test_data_file, var_list_filename, model_file, output_dir, output_suffix,good_downsample_rate)
+    result_summary.append(['5mo']+format_results_one_case(ks, auc, lorenz_curve_capt_rate, good_downsample_rate) + rule_model_rates)# append results for one case to summary
+    
+    test_data_file = data_dir+'test_data_6mo_pmt_ds_imp_woe.csv.gz'
+    model_file = output_dir+"model.p"
+    output_suffix = job[1]+'_test_6mo'
+    ks, auc, lorenz_curve_capt_rate, rule_model_rates = model_test_data_evaluation_comp_ruletag(test_data_file, var_list_filename, model_file, output_dir, output_suffix,good_downsample_rate)
+    result_summary.append(['6mo']+format_results_one_case(ks, auc, lorenz_curve_capt_rate, good_downsample_rate) + rule_model_rates)# append results for one case to summary
+    
+    
+    
+    test_data_file = data_dir+'test_data_-1mo_pmt_ds_imp_woe.csv.gz'
+    model_file = output_dir+"model.p"
+    output_suffix = job[1]+'_test_-1mo'
+    ks, auc, lorenz_curve_capt_rate, rule_model_rates = model_test_data_evaluation_comp_ruletag(test_data_file, var_list_filename, model_file, output_dir, output_suffix,good_downsample_rate)
+    result_summary.append(['-1mo']+format_results_one_case(ks, auc, lorenz_curve_capt_rate, good_downsample_rate) + rule_model_rates)# append results for one case to summary
+    
     
     
     for row in result_summary:
