@@ -10,10 +10,13 @@ import pickle
 from operator import itemgetter
 from multiprocessing import Pool
 
+
 sys.path.append("/home/junhe/fraud_model/Code/src3/step3_model_data_prep_signal_tmx")
+
 from step3a_model_data_rc_tmxrc_ind_creation import *
 from step3b_model_data_feature_creation import *
 from step3c_model_data_impute_woe_assigin import *
+
 
 def rc_tmxrc_ind_creation_batch(input_file,output_file):
     
@@ -71,23 +74,31 @@ def rc_tmxrc_ind_creation_batch(input_file,output_file):
             print nRow,"row has been processed; time lapsed:",time.time()-t0
 
 
+
+
 def rc_tmxrc_ind_creation_batch_helper(arg):
     rc_tmxrc_ind_creation_batch(arg[0],arg[1])
     
+
+
+if len(sys.argv) <=1:
+    work_dir=''#/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v3wd_newest_time/'
+elif len(sys.argv) ==2:
+    work_dir=sys.argv[1]
+else:
+    print "stdin input should be 0 or 1 vars, 0 using data location in code, 1 using input."
+    
 if __name__=="__main__":
-    work_dir = "/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v3wd_newest_time/"
     
     input_list = (
                   [work_dir+"model_data_wd_ins_ds.csv.gz",work_dir+"model_data_wd_ins_ds_rcind.csv.gz"],
                   [work_dir+"model_data_wd_oos_ds.csv.gz",work_dir+"model_data_wd_oos_ds_rcind.csv.gz"],
-                  [work_dir+"test_data_feb_wd_ds.csv.gz",work_dir+"test_data_feb_wd_ds_rcind.csv.gz"],
-                  [work_dir+"test_data_jan_wd_ds.csv.gz",work_dir+"test_data_jan_wd_ds_rcind.csv.gz"],
-                  [work_dir+"test_data_dec_wd_ds.csv.gz",work_dir+"test_data_dec_wd_ds_rcind.csv.gz"],
-                  [work_dir+"test_data_nov_wd_ds.csv.gz",work_dir+"test_data_nov_wd_ds_rcind.csv.gz"],
-                  [work_dir+"test_data_oct_wd_ds.csv.gz",work_dir+"test_data_oct_wd_ds_rcind.csv.gz"],
-                  [work_dir+"test_data_sept_wd_ds.csv.gz",work_dir+"test_data_sept_wd_ds_rcind.csv.gz"],
-                  [work_dir+"test_data_aug_wd_ds.csv.gz",work_dir+"test_data_aug_wd_ds_rcind.csv.gz"],
-                  [work_dir+"test_data_jul_wd_ds.csv.gz",work_dir+"test_data_jul_wd_ds_rcind.csv.gz"]
+                  [work_dir+"test_data_1mo_wd_ds.csv.gz",work_dir+"test_data_1mo_wd_ds_rcind.csv.gz"],
+                  [work_dir+"test_data_2mo_wd_ds.csv.gz",work_dir+"test_data_2mo_wd_ds_rcind.csv.gz"],
+                  [work_dir+"test_data_3mo_wd_ds.csv.gz",work_dir+"test_data_3mo_wd_ds_rcind.csv.gz"],
+                  [work_dir+"test_data_4mo_wd_ds.csv.gz",work_dir+"test_data_4mo_wd_ds_rcind.csv.gz"],
+                  [work_dir+"test_data_5mo_wd_ds.csv.gz",work_dir+"test_data_5mo_wd_ds_rcind.csv.gz"],
+                  [work_dir+"test_data_6mo_wd_ds.csv.gz",work_dir+"test_data_6mo_wd_ds_rcind.csv.gz"]
                   )
                 # Inputs: rc_ind_creation(input_file,output_file)
     pool = Pool(processes=4)
@@ -96,13 +107,6 @@ if __name__=="__main__":
     #csv_EDD(work_dir+"model_data_wd_ins_ds_rcind.csv.gz")
     
     #rc_tmxrc_ind_creation_helper([work_dir+"model_data_wd_oos_ds.csv.gz",work_dir+"model_data_wd_oos_ds_rcind.csv.gz"])
-   
-
-
-
-
-
-
 
 
 

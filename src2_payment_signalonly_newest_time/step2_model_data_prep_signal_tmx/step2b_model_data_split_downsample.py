@@ -130,13 +130,13 @@ pool = Pool(processes=4)
 pool.map(downsample_filter_helper, input_list)
 
 
-
+'''
 # additional test data
 downsample_frac=0.05
 input_file=work_dir+"test_data_-1mo_pmt.csv.gz"
 output_file=work_dir+"test_data_-1mo_pmt_ds.csv.gz"
 downsample_filter(input_file,output_file, downsamle_fieldname='target', downsample_field_equal_value='0', downsample_frac=downsample_frac)
-
+'''
 
 
 

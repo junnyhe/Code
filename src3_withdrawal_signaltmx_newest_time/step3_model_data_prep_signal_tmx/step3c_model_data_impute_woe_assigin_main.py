@@ -59,23 +59,26 @@ def impute_replace_woe_assign_batch(input_file,output_file):
 
 def impute_replace_woe_assign_batch_helper(arg):
     impute_replace_woe_assign_batch(arg[0],arg[1])
-
+    
+    
+if len(sys.argv) <=1:
+    work_dir=''#/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v3wd_newest_time/'
+elif len(sys.argv) ==2:
+    work_dir=sys.argv[1]
+else:
+    print "stdin input should be 0 or 1 vars, 0 using data location in code, 1 using input."
 
 if __name__=="__main__":  
-    
-    work_dir='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v3wd_newest_time/' # everything should/will be in work_dir
-    
+
     input_list = (
                   [work_dir+"model_data_wd_ins_ds_rcind_fc.csv.gz",work_dir+"model_data_wd_ins_ds_rcind_fc_imp_woe.csv.gz"], 
                   [work_dir+"model_data_wd_oos_ds_rcind_fc.csv.gz",work_dir+"model_data_wd_oos_ds_rcind_fc_imp_woe.csv.gz"],
-                  [work_dir+"test_data_feb_wd_ds_rcind_fc.csv.gz",work_dir+"test_data_feb_wd_ds_rcind_fc_imp_woe.csv.gz"],
-                  [work_dir+"test_data_jan_wd_ds_rcind_fc.csv.gz",work_dir+"test_data_jan_wd_ds_rcind_fc_imp_woe.csv.gz"],
-                  [work_dir+"test_data_dec_wd_ds_rcind_fc.csv.gz",work_dir+"test_data_dec_wd_ds_rcind_fc_imp_woe.csv.gz"],
-                  [work_dir+"test_data_oct_wd_ds_rcind_fc.csv.gz",work_dir+"test_data_oct_wd_ds_rcind_fc_imp_woe.csv.gz"],
-                  [work_dir+"test_data_nov_wd_ds_rcind_fc.csv.gz",work_dir+"test_data_nov_wd_ds_rcind_fc_imp_woe.csv.gz"],
-                  [work_dir+"test_data_sept_wd_ds_rcind_fc.csv.gz",work_dir+"test_data_sept_wd_ds_rcind_fc_imp_woe.csv.gz"],
-                  [work_dir+"test_data_aug_wd_ds_rcind_fc.csv.gz",work_dir+"test_data_aug_wd_ds_rcind_fc_imp_woe.csv.gz"],
-                  [work_dir+"test_data_jul_wd_ds_rcind_fc.csv.gz",work_dir+"test_data_jul_wd_ds_rcind_fc_imp_woe.csv.gz"]
+                  [work_dir+"test_data_1mo_wd_ds_rcind_fc.csv.gz",work_dir+"test_data_1mo_wd_ds_rcind_fc_imp_woe.csv.gz"],
+                  [work_dir+"test_data_2mo_wd_ds_rcind_fc.csv.gz",work_dir+"test_data_2mo_wd_ds_rcind_fc_imp_woe.csv.gz"],
+                  [work_dir+"test_data_3mo_wd_ds_rcind_fc.csv.gz",work_dir+"test_data_3mo_wd_ds_rcind_fc_imp_woe.csv.gz"],
+                  [work_dir+"test_data_4mo_wd_ds_rcind_fc.csv.gz",work_dir+"test_data_4mo_wd_ds_rcind_fc_imp_woe.csv.gz"],
+                  [work_dir+"test_data_5mo_wd_ds_rcind_fc.csv.gz",work_dir+"test_data_5mo_wd_ds_rcind_fc_imp_woe.csv.gz"],
+                  [work_dir+"test_data_6mo_wd_ds_rcind_fc.csv.gz",work_dir+"test_data_6mo_wd_ds_rcind_fc_imp_woe.csv.gz"],
                   )
     pool = Pool(processes=4)
     pool.map(impute_replace_woe_assign_batch_helper, input_list)

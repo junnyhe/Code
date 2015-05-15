@@ -313,9 +313,9 @@ for job in joblist:
     # Load Model and Evaluate Performance on Test Data
     test_data_file = data_dir+'model_data_pmt_oos_ds_imp_woe.csv.gz'
     model_file = output_dir+"model.p"
-    output_suffix = job[1]+'_train'
+    output_suffix = job[1]+'_Validation'
     ks, auc, lorenz_curve_capt_rate, rule_model_rates = model_test_data_evaluation_comp_ruletag(test_data_file, var_list_filename, model_file, output_dir, output_suffix,good_downsample_rate)
-    result_summary.append(['Train']+format_results_one_case(ks, auc, lorenz_curve_capt_rate, good_downsample_rate) + rule_model_rates)# append results for one case to summary
+    result_summary.append(['Validation']+format_results_one_case(ks, auc, lorenz_curve_capt_rate, good_downsample_rate) + rule_model_rates)# append results for one case to summary
     
     test_data_file = data_dir+'test_data_1mo_pmt_ds_imp_woe.csv.gz'
     model_file = output_dir+"model.p"
@@ -354,13 +354,13 @@ for job in joblist:
     result_summary.append(['6mo']+format_results_one_case(ks, auc, lorenz_curve_capt_rate, good_downsample_rate) + rule_model_rates)# append results for one case to summary
     
     
-    
+    '''
     test_data_file = data_dir+'test_data_-1mo_pmt_ds_imp_woe.csv.gz'
     model_file = output_dir+"model.p"
     output_suffix = job[1]+'_test_-1mo'
     ks, auc, lorenz_curve_capt_rate, rule_model_rates = model_test_data_evaluation_comp_ruletag(test_data_file, var_list_filename, model_file, output_dir, output_suffix,good_downsample_rate)
     result_summary.append(['-1mo']+format_results_one_case(ks, auc, lorenz_curve_capt_rate, good_downsample_rate) + rule_model_rates)# append results for one case to summary
-    
+    '''
     
     
     for row in result_summary:

@@ -14,12 +14,13 @@ from csv_impute import *
 from multiprocessing import Pool
 
 
-
-def impute_replace_woe_assign_helper(arg):
-    impute_replace_woe_assign(arg[0],arg[1])
-
-    
-work_dir='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v3wd_newest_time/' # everything should/will be in work_dir
+   
+if len(sys.argv) <=1:
+    work_dir=''#/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v3wd_newest_time/'
+elif len(sys.argv) ==2:
+    work_dir=sys.argv[1]
+else:
+    print "stdin input should be 0 or 1 vars, 0 using data location in code, 1 using input."
 
 
 #===============================================================================

@@ -91,7 +91,7 @@ input_list = (
               [work_dir,"test_data_4mo_pmt_ds_imp.csv.gz","test_data_4mo_pmt_ds_imp_woe.csv.gz"],
               [work_dir,"test_data_5mo_pmt_ds_imp.csv.gz","test_data_5mo_pmt_ds_imp_woe.csv.gz"],
               [work_dir,"test_data_6mo_pmt_ds_imp.csv.gz","test_data_6mo_pmt_ds_imp_woe.csv.gz"],
-              [work_dir,"test_data_-1mo_pmt_ds_imp.csv.gz","test_data_-1mo_pmt_ds_imp_woe.csv.gz"]
+              #[work_dir,"test_data_-1mo_pmt_ds_imp.csv.gz","test_data_-1mo_pmt_ds_imp_woe.csv.gz"]
               )
             # Inputs: woe_assign_pickle(work_dir,input_file,output_file)
 pool = Pool(processes=5)
