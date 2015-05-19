@@ -11,7 +11,7 @@ from multiprocessing import Pool
 
 
 
-sys.path.append("/home/junhe/fraud_model/Code/src3/step3_model_data_prep_signal_tmx")
+sys.path.append("/fraud_model/Code/src3/step3_model_data_prep_signal_tmx")
 from step3a_model_data_rc_tmxrc_ind_creation import *
 from step3b_model_data_feature_creation import *
 from step3c_model_data_impute_woe_assigin import *
@@ -64,7 +64,7 @@ def impute_replace_woe_assign_batch_helper(arg):
 
 global work_dir
 
-work_dir='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v3pmt_test_period/' # everything should/will be in work_dir
+work_dir='/fraud_model/Data/Model_Data_Signal_Tmx_v3pmt_test_period/' # everything should/will be in work_dir
 
 if __name__=="__main__":  
 

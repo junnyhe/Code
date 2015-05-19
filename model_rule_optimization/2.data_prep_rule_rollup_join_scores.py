@@ -25,7 +25,7 @@ def find_rule_list():
     day=dayStart
     for iDay in range(nDays): 
         print "sample day:",str(day)
-        input_file="/home/junhe/fraud_model/Data/Raw_Data/rule_fire_review_results/rule_fire_and_review_results_"+str(day)+".csv.gz"
+        input_file="/fraud_model/Data/Raw_Data/rule_fire_review_results/rule_fire_and_review_results_"+str(day)+".csv.gz"
         infile=gzip.open(input_file,'rb')
         incsv=csv.DictReader(infile)
         
@@ -58,7 +58,7 @@ def load_score_dict():
     
         print "loading payment model score for day: ",str(day)
             
-        input_file="/home/junhe/fraud_model/Data/Raw_Data/rule_fire_review_results/model_score_payment_"+str(day)+".csv.gz"
+        input_file="/fraud_model/Data/Raw_Data/rule_fire_review_results/model_score_payment_"+str(day)+".csv.gz"
         infile=gzip.open(input_file,'rb')
         incsv=csv.DictReader(infile)
         
@@ -87,7 +87,7 @@ def load_score_dict():
     
         print "loading withdrawal model score for day: ",str(day)
             
-        input_file="/home/junhe/fraud_model/Data/Raw_Data/rule_fire_review_results/model_score_withdrawal_"+str(day)+".csv.gz"
+        input_file="/fraud_model/Data/Raw_Data/rule_fire_review_results/model_score_withdrawal_"+str(day)+".csv.gz"
         infile=gzip.open(input_file,'rb')
         incsv=csv.DictReader(infile)
         
@@ -126,7 +126,7 @@ def rollup_rules(output_file_pmt,output_file_wd):
     
         print "rolling up threatmetrix signals for day: ",str(day)
             
-        input_file="/home/junhe/fraud_model/Data/Raw_Data/rule_fire_review_results/rule_fire_and_review_results_"+str(day)+".csv.gz"
+        input_file="/fraud_model/Data/Raw_Data/rule_fire_review_results/rule_fire_and_review_results_"+str(day)+".csv.gz"
         infile=gzip.open(input_file,'rb')
         incsv=csv.DictReader(infile)
         
@@ -195,8 +195,8 @@ load_score_dict()
 rule_list = find_rule_list()
 
 # rollup and join
-output_file_pmt = "/home/junhe/fraud_model/Data/model_rule_optimization/rule_score_pmt_20150409_20150415.csv"
-output_file_wd  = "/home/junhe/fraud_model/Data/model_rule_optimization/rule_score_wd_20150409_20150415.csv"
+output_file_pmt = "/fraud_model/Data/model_rule_optimization/rule_score_pmt_20150409_20150415.csv"
+output_file_wd  = "/fraud_model/Data/model_rule_optimization/rule_score_wd_20150409_20150415.csv"
 rollup_rules(output_file_pmt,output_file_wd)
 
 

@@ -4,7 +4,7 @@ import os
 import sys
 import time
 import datetime
-sys.path.append("/home/junhe/fraud_model/Code/tools/csv_operations")
+sys.path.append("/fraud_model/Code/tools/csv_operations")
 import csv_ops
 from csv_ops import *
 
@@ -17,11 +17,11 @@ def merge_all_data_sources( day_start,  n_Days):
     nDays=n_Days # number of days to process
     
     for iDay in range(nDays):
-        file1="/home/junhe/fraud_model/Data/Raw_Data/signals/fraud_signal_flat_"+str(day)+".csv.gz"
-        file2="/home/junhe/fraud_model/Data/Raw_Data/threatmetrix_payer_w_tmxrc/threatmetrix_payer_flat_"+str(day)+".csv.gz"
-        file3="/home/junhe/fraud_model/Data/Raw_Data/threatmetrix_payee_w_tmxrc/threatmetrix_payee_flat_"+str(day)+".csv.gz"
-        file_out="/home/junhe/fraud_model/Data/Raw_Data/merged_data_w_tmxrc/signals_threatmetrix_payer_payee_"+str(day)+".csv.gz"
-        file_out_tmp= "/home/junhe/fraud_model/Data/Raw_Data/merged_data_w_tmxrc/merge_tmp_"+str(day)+".csv.gz"
+        file1="/fraud_model/Data/Raw_Data/signals/fraud_signal_flat_"+str(day)+".csv.gz"
+        file2="/fraud_model/Data/Raw_Data/threatmetrix_payer_w_tmxrc/threatmetrix_payer_flat_"+str(day)+".csv.gz"
+        file3="/fraud_model/Data/Raw_Data/threatmetrix_payee_w_tmxrc/threatmetrix_payee_flat_"+str(day)+".csv.gz"
+        file_out="/fraud_model/Data/Raw_Data/merged_data_w_tmxrc/signals_threatmetrix_payer_payee_"+str(day)+".csv.gz"
+        file_out_tmp= "/fraud_model/Data/Raw_Data/merged_data_w_tmxrc/merge_tmp_"+str(day)+".csv.gz"
         
         
         key_list=['payment_request_id']

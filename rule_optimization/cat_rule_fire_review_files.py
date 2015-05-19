@@ -25,7 +25,7 @@ def find_rule_list(dayStart,nDays):
     day=dayStart
     for iDay in range(nDays): 
         print "sample day:",str(day)
-        input_file="/home/junhe/fraud_model/Data/Raw_Data/rule_fire_review_results/rule_fire_and_review_results_"+str(day)+".csv.gz"
+        input_file="/fraud_model/Data/Raw_Data/rule_fire_review_results/rule_fire_and_review_results_"+str(day)+".csv.gz"
         infile=gzip.open(input_file,'rb')
         incsv=csv.DictReader(infile)
         
@@ -63,7 +63,7 @@ def rollup_rules(dayStart,nDays,output_file):
     
         print "rolling up threatmetrix signals for day: ",str(day)
             
-        input_file="/home/junhe/fraud_model/Data/Raw_Data/rule_fire_review_results/rule_fire_and_review_results_"+str(day)+".csv.gz"
+        input_file="/fraud_model/Data/Raw_Data/rule_fire_review_results/rule_fire_and_review_results_"+str(day)+".csv.gz"
         infile=gzip.open(input_file,'rb')
         incsv=csv.DictReader(infile)
         
@@ -116,7 +116,7 @@ nDays=31 # number of days to process
 
 rule_list = find_rule_list(dayStart,nDays)
 
-output_file = "/home/junhe/fraud_model/Data/rule_optimization/rule_fire_and_review_results_all.csv.gz"
+output_file = "/fraud_model/Data/rule_optimization/rule_fire_and_review_results_all.csv.gz"
 rollup_rules(dayStart,nDays,output_file)
 
 

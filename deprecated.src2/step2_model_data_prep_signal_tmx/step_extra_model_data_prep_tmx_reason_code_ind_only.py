@@ -7,7 +7,7 @@ import datetime
 import random
 from numpy import *
 from operator import itemgetter
-sys.path.append("/home/junhe/fraud_model/Code/tools/csv_operations")
+sys.path.append("/fraud_model/Code/tools/csv_operations")
 import csv_ops
 from csv_ops import *
 from multiprocessing import Pool
@@ -22,9 +22,9 @@ from nltk.stem.porter import PorterStemmer
     
 def compute_rc_stats(input_file,output_file, rc_ind_file,rc_var_name):
     
-    #input_file="/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/model_data_pmt_tmxpatched.csv.gz"
-    #output_file="/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/"+out_stats_filename
-    #rc_ind_file="/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/"+rc_ind_var_list_file
+    #input_file="/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/model_data_pmt_tmxpatched.csv.gz"
+    #output_file="/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/"+out_stats_filename
+    #rc_ind_file="/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/"+rc_ind_var_list_file
     
     infile=gzip.open(input_file,'rb')
     incsv=csv.DictReader(infile)
@@ -84,15 +84,15 @@ def compute_rc_stats(input_file,output_file, rc_ind_file,rc_var_name):
 
 
 '''
-input_file="/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/model_data_pmt_ins_ds.csv.gz"
-output_file="/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/model_data_pmt_ins_ds_tmxrc_risk_rate_payer.csv"
-rc_ind_file="/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/var_list_rc_ind_payer.csv"
+input_file="/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/model_data_pmt_ins_ds.csv.gz"
+output_file="/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/model_data_pmt_ins_ds_tmxrc_risk_rate_payer.csv"
+rc_ind_file="/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/var_list_rc_ind_payer.csv"
 compute_rc_stats(input_file, output_file, rc_ind_file, rc_var_name='tmx_payer_tmx_reason_code')
 
 
-input_file="/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/model_data_pmt_ins_ds.csv.gz"
-output_file="/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/model_data_pmt_ins_ds_tmxrc_risk_rate_payee.csv"
-rc_ind_file="/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/var_list_rc_ind_payee.csv"
+input_file="/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/model_data_pmt_ins_ds.csv.gz"
+output_file="/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/model_data_pmt_ins_ds_tmxrc_risk_rate_payee.csv"
+rc_ind_file="/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/var_list_rc_ind_payee.csv"
 compute_rc_stats(input_file, output_file, rc_ind_file, rc_var_name='tmx_payee_tmx_reason_code')
 '''
 
@@ -147,7 +147,7 @@ def rc_ind_creation(input_file,output_file):
     outcsv=csv.writer(outfile)
     
     # payer rc var list 
-    payer_rc_var_filename='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/var_list_rc_ind_payer.csv'
+    payer_rc_var_filename='/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/var_list_rc_ind_payer.csv'
     payer_rc_var_file=open(payer_rc_var_filename,'rU')
     payer_rc_var_csv=csv.reader(payer_rc_var_file)
     payer_rc_var_list=[]
@@ -156,7 +156,7 @@ def rc_ind_creation(input_file,output_file):
     payer_rc_var_set=set(payer_rc_var_list)
     
     # payee rc var list 
-    payee_rc_var_filename='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/var_list_rc_ind_payee.csv'
+    payee_rc_var_filename='/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/var_list_rc_ind_payee.csv'
     payee_rc_var_file=open(payee_rc_var_filename,'rU')
     payee_rc_var_csv=csv.reader(payee_rc_var_file)
     payee_rc_var_list=[]
@@ -188,7 +188,7 @@ def rc_ind_creation_helper(arg):
     rc_ind_creation(arg[0],arg[1])
     
 
-work_dir = "/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/"
+work_dir = "/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/"
 
 input_list = (
               [work_dir+"model_data_pmt_ins_ds.csv.gz",work_dir+"model_data_pmt_ins_ds_rc_ind.csv.gz"],
@@ -207,28 +207,28 @@ pool.map(rc_ind_creation_helper, input_list)
 #===============================================================================
 # Old non-parallel
 #===============================================================================
-input_file="/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/model_data_pmt_ins_ds.csv.gz"
-output_file="/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/model_data_pmt_ins_ds_rc_ind.csv.gz"
+input_file="/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/model_data_pmt_ins_ds.csv.gz"
+output_file="/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/model_data_pmt_ins_ds_rc_ind.csv.gz"
 rc_ind_creation(input_file,output_file)
 
-input_file="/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/model_data_pmt_oos_ds.csv.gz"
-output_file="/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/model_data_pmt_oos_ds_rc_ind.csv.gz"
+input_file="/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/model_data_pmt_oos_ds.csv.gz"
+output_file="/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/model_data_pmt_oos_ds_rc_ind.csv.gz"
 rc_ind_creation(input_file,output_file)
 
-input_file="/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/test_data_sept_pmt_ds.csv.gz"
-output_file="/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/test_data_sept_pmt_ds_rc_ind.csv.gz"
+input_file="/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/test_data_sept_pmt_ds.csv.gz"
+output_file="/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/test_data_sept_pmt_ds_rc_ind.csv.gz"
 rc_ind_creation(input_file,output_file)
 
-input_file="/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/test_data_oct_pmt_ds.csv.gz"
-output_file="/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/test_data_oct_pmt_ds_rc_ind.csv.gz"
+input_file="/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/test_data_oct_pmt_ds.csv.gz"
+output_file="/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/test_data_oct_pmt_ds_rc_ind.csv.gz"
 rc_ind_creation(input_file,output_file)
 
-input_file="/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/test_data_nov_pmt_ds.csv.gz"
-output_file="/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/test_data_nov_pmt_ds_rc_ind.csv.gz"
+input_file="/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/test_data_nov_pmt_ds.csv.gz"
+output_file="/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/test_data_nov_pmt_ds_rc_ind.csv.gz"
 rc_ind_creation(input_file,output_file)
 
-input_file="/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/test_data_dec_pmt_ds.csv.gz"
-output_file="/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/test_data_dec_pmt_ds_rc_ind.csv.gz"
+input_file="/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/test_data_dec_pmt_ds.csv.gz"
+output_file="/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/test_data_dec_pmt_ds_rc_ind.csv.gz"
 rc_ind_creation(input_file,output_file)
 
 '''

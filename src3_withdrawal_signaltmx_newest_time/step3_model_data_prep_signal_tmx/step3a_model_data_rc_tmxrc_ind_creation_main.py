@@ -11,7 +11,7 @@ from operator import itemgetter
 from multiprocessing import Pool
 
 
-sys.path.append("/home/junhe/fraud_model/Code/src3/step3_model_data_prep_signal_tmx")
+sys.path.append("/fraud_model/Code/src3/step3_model_data_prep_signal_tmx")
 
 from step3a_model_data_rc_tmxrc_ind_creation import *
 from step3b_model_data_feature_creation import *
@@ -82,7 +82,7 @@ def rc_tmxrc_ind_creation_batch_helper(arg):
 
 
 if len(sys.argv) <=1:
-    work_dir=''#/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v3wd_newest_time/'
+    work_dir=''#/fraud_model/Data/Model_Data_Signal_Tmx_v3wd_newest_time/'
 elif len(sys.argv) ==2:
     work_dir=sys.argv[1]
 else:

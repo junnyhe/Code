@@ -24,8 +24,8 @@ from sklearn.lda import LDA
 from sklearn.qda import QDA
 
 from sklearn.metrics import roc_curve, auc
-sys.path.append("/home/junhe/fraud_model/Code/tools/model_tools")
-sys.path.append("/home/junhe/fraud_model/Code/tools/csv_operations")
+sys.path.append("/fraud_model/Code/tools/model_tools")
+sys.path.append("/fraud_model/Code/tools/csv_operations")
 
 import csv_ops
 from csv_ops import *
@@ -207,8 +207,8 @@ def format_results_one_case(ks, auc, lorenz_curve_capt_rate, good_downsample_rat
     
 
 if len(sys.argv) <=1:
-    data_dir='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v3pmt_newest_time_tune_param/'
-    result_dir='/home/junhe/fraud_model/Results/Model_Results_Signal_Tmx_v3pmt_woeSmth=0_newest_time_tune_param/'
+    data_dir='/fraud_model/Data/Model_Data_Signal_Tmx_v3pmt_newest_time_tune_param/'
+    result_dir='/fraud_model/Results/Model_Results_Signal_Tmx_v3pmt_woeSmth=0_newest_time_tune_param/'
 elif len(sys.argv) ==3:
     data_dir=sys.argv[1]
     result_dir=sys.argv[2]
@@ -249,16 +249,19 @@ joblist=[
         
         #(classifiers["RandomForest"],'RandomForest_signal_rc_tmx_rc_ind','model_var_list_signal_rc_tmxrc_ind.csv'),
         #(RandomForestClassifier(max_depth=None, n_estimators=200, max_features=22,random_state=0,n_jobs=-1),'RandomForest_signal_rc_tmx_rc_ind_22feat','model_var_list_signal_rc_tmxrc_ind.csv'),
-        (RandomForestClassifier(max_depth=None, n_estimators=200, max_features=30,random_state=0,n_jobs=-1),'RandomForest_signal_rc_tmx_rc_ind_30feat','model_var_list_signal_rc_tmxrc_ind.csv'),
-        (RandomForestClassifier(max_depth=None, n_estimators=200, max_features=40,random_state=0,n_jobs=-1),'RandomForest_signal_rc_tmx_rc_ind_40feat','model_var_list_signal_rc_tmxrc_ind.csv'),
-        (RandomForestClassifier(max_depth=None, n_estimators=200, max_features=50,random_state=0,n_jobs=-1),'RandomForest_signal_rc_tmx_rc_ind_50feat','model_var_list_signal_rc_tmxrc_ind.csv'),
-        (RandomForestClassifier(max_depth=None, n_estimators=200, max_features=60,random_state=0,n_jobs=-1),'RandomForest_signal_rc_tmx_rc_ind_60feat','model_var_list_signal_rc_tmxrc_ind.csv'),
-        (RandomForestClassifier(max_depth=None, n_estimators=200, max_features=70,random_state=0,n_jobs=-1),'RandomForest_signal_rc_tmx_rc_ind_70feat','model_var_list_signal_rc_tmxrc_ind.csv'),
-        (RandomForestClassifier(max_depth=None, n_estimators=200, max_features=80,random_state=0,n_jobs=-1),'RandomForest_signal_rc_tmx_rc_ind_80feat','model_var_list_signal_rc_tmxrc_ind.csv'),
-        (RandomForestClassifier(max_depth=None, n_estimators=200, max_features=90,random_state=0,n_jobs=-1),'RandomForest_signal_rc_tmx_rc_ind_90feat','model_var_list_signal_rc_tmxrc_ind.csv'),
-        (RandomForestClassifier(max_depth=None, n_estimators=200, max_features=100,random_state=0,n_jobs=-1),'RandomForest_signal_rc_tmx_rc_ind_100feat','model_var_list_signal_rc_tmxrc_ind.csv'),
-        (RandomForestClassifier(max_depth=None, n_estimators=200, max_features=120,random_state=0,n_jobs=-1),'RandomForest_signal_rc_tmx_rc_ind_120feat','model_var_list_signal_rc_tmxrc_ind.csv'),
-        
+        #(RandomForestClassifier(max_depth=None, n_estimators=200, max_features=30,random_state=0,n_jobs=-1),'RandomForest_signal_rc_tmx_rc_ind_30feat','model_var_list_signal_rc_tmxrc_ind.csv'),
+        #(RandomForestClassifier(max_depth=None, n_estimators=200, max_features=40,random_state=0,n_jobs=-1),'RandomForest_signal_rc_tmx_rc_ind_40feat','model_var_list_signal_rc_tmxrc_ind.csv'),
+        #(RandomForestClassifier(max_depth=None, n_estimators=200, max_features=50,random_state=0,n_jobs=-1),'RandomForest_signal_rc_tmx_rc_ind_50feat','model_var_list_signal_rc_tmxrc_ind.csv'),
+        #(RandomForestClassifier(max_depth=None, n_estimators=200, max_features=60,random_state=0,n_jobs=-1),'RandomForest_signal_rc_tmx_rc_ind_60feat','model_var_list_signal_rc_tmxrc_ind.csv'),
+        #(RandomForestClassifier(max_depth=None, n_estimators=200, max_features=70,random_state=0,n_jobs=-1),'RandomForest_signal_rc_tmx_rc_ind_70feat','model_var_list_signal_rc_tmxrc_ind.csv'),
+        #(RandomForestClassifier(max_depth=None, n_estimators=200, max_features=80,random_state=0,n_jobs=-1),'RandomForest_signal_rc_tmx_rc_ind_80feat','model_var_list_signal_rc_tmxrc_ind.csv'),
+        #(RandomForestClassifier(max_depth=None, n_estimators=200, max_features=90,random_state=0,n_jobs=-1),'RandomForest_signal_rc_tmx_rc_ind_90feat','model_var_list_signal_rc_tmxrc_ind.csv'),
+        #(RandomForestClassifier(max_depth=None, n_estimators=200, max_features=100,random_state=0,n_jobs=-1),'RandomForest_signal_rc_tmx_rc_ind_100feat','model_var_list_signal_rc_tmxrc_ind.csv'),
+        #(RandomForestClassifier(max_depth=None, n_estimators=200, max_features=120,random_state=0,n_jobs=-1),'RandomForest_signal_rc_tmx_rc_ind_120feat','model_var_list_signal_rc_tmxrc_ind.csv'),
+        (RandomForestClassifier(max_depth=None, n_estimators=200, max_features="auto",random_state=0,n_jobs=-1),'RandomForest_signal_rc_tmx_rc_ind_200trees','model_var_list_signal_rc_tmxrc_ind.csv'),
+        (RandomForestClassifier(max_depth=None, n_estimators=300, max_features="auto",random_state=0,n_jobs=-1),'RandomForest_signal_rc_tmx_rc_ind_300trees','model_var_list_signal_rc_tmxrc_ind.csv'),
+        (RandomForestClassifier(max_depth=None, n_estimators=400, max_features="auto",random_state=0,n_jobs=-1),'RandomForest_signal_rc_tmx_rc_ind_400trees','model_var_list_signal_rc_tmxrc_ind.csv'),
+        (RandomForestClassifier(max_depth=None, n_estimators=500, max_features="auto",random_state=0,n_jobs=-1),'RandomForest_signal_rc_tmx_rc_ind_500trees','model_var_list_signal_rc_tmxrc_ind.csv'),
         ]
 
 ############################# Main: Run Different Classifiers ################################

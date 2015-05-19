@@ -10,7 +10,7 @@ from numpy import *
 from math import radians, cos, sin, asin, sqrt
 from multiprocessing import Pool
 
-sys.path.append("/home/junhe/fraud_model/Code/src3/step3_model_data_prep_signal_tmx")
+sys.path.append("/fraud_model/Code/src3/step3_model_data_prep_signal_tmx")
 from step3a_model_data_rc_tmxrc_ind_creation import *
 from step3b_model_data_feature_creation import *
 from step3c_model_data_impute_woe_assigin import *
@@ -121,7 +121,7 @@ def model_data_processing_batch_helper(arg):
     model_data_processing_batch(arg[0],arg[1])
 
 
-work_dir = "/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v3pmt_newest_time/" 
+work_dir = "/fraud_model/Data/Model_Data_Signal_Tmx_v3pmt_newest_time/" 
 
 input_list = (
               [work_dir+"model_data_pmt_ins_ds.csv.gz",work_dir+"model_data_pmt_ins_ds_rcind_fc_imp_woe.csv.gz"],

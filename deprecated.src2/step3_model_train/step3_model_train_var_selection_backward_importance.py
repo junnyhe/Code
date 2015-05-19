@@ -24,8 +24,8 @@ from sklearn.lda import LDA
 from sklearn.qda import QDA
 
 from sklearn.metrics import roc_curve, auc
-sys.path.append("/home/junhe/fraud_model/Code/tools/model_tools")
-sys.path.append("/home/junhe/fraud_model/Code/tools/csv_operations")
+sys.path.append("/fraud_model/Code/tools/model_tools")
+sys.path.append("/fraud_model/Code/tools/csv_operations")
 
 import csv_ops
 from csv_ops import *
@@ -124,8 +124,8 @@ def backward_selection_by_importance(classifier,train_data_file,test_data_file,v
     
     
 
-data_dir='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v3pmt/'
-result_dir='/home/junhe/fraud_model/Results/Model_Results_Signal_Tmx_v3pmt_var_selection/'
+data_dir='/fraud_model/Data/Model_Data_Signal_Tmx_v3pmt/'
+result_dir='/fraud_model/Results/Model_Results_Signal_Tmx_v3pmt_var_selection/'
 
 train_data_file=data_dir+'model_data_pmt_oos_ds_rcind_fc_imp_woe.csv.gz'
 test_data_file=data_dir+'test_data_sept_pmt_ds_rcind_fc_imp_woe.csv.gz'

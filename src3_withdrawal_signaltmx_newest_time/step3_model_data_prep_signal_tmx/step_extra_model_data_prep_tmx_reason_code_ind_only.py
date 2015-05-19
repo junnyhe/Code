@@ -7,7 +7,7 @@ import datetime
 import random
 from numpy import *
 from operator import itemgetter
-sys.path.append("/home/junhe/fraud_model/Code/tools/csv_operations")
+sys.path.append("/fraud_model/Code/tools/csv_operations")
 import csv_ops
 from csv_ops import *
 from multiprocessing import Pool
@@ -18,9 +18,9 @@ from sklearn.feature_extraction.text import TfidfVectorizer
     
 def compute_tmxrc_stats(input_file,output_file, rc_ind_file,rc_var_name):
     
-    #input_file="/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v3wd/model_data_wd_tmxpatched.csv.gz"
-    #output_file="/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v3wd/"+out_stats_filename
-    #rc_ind_file="/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v3wd/"+rc_ind_var_list_file
+    #input_file="/fraud_model/Data/Model_Data_Signal_Tmx_v3wd/model_data_wd_tmxpatched.csv.gz"
+    #output_file="/fraud_model/Data/Model_Data_Signal_Tmx_v3wd/"+out_stats_filename
+    #rc_ind_file="/fraud_model/Data/Model_Data_Signal_Tmx_v3wd/"+rc_ind_var_list_file
     
     infile=gzip.open(input_file,'rb')
     incsv=csv.DictReader(infile)
@@ -80,15 +80,15 @@ def compute_tmxrc_stats(input_file,output_file, rc_ind_file,rc_var_name):
 
 
 '''
-input_file="/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v3wd/model_data_wd_ins_ds.csv.gz"
-output_file="/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v3wd/model_data_wd_ins_ds_tmxrc_risk_rate_payer.csv"
-rc_ind_file="/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v3wd/entry_list_tmxrc_payer.csv"
+input_file="/fraud_model/Data/Model_Data_Signal_Tmx_v3wd/model_data_wd_ins_ds.csv.gz"
+output_file="/fraud_model/Data/Model_Data_Signal_Tmx_v3wd/model_data_wd_ins_ds_tmxrc_risk_rate_payer.csv"
+rc_ind_file="/fraud_model/Data/Model_Data_Signal_Tmx_v3wd/entry_list_tmxrc_payer.csv"
 compute_tmxrc_stats(input_file, output_file, rc_ind_file, rc_var_name='tmx_payer_tmx_reason_code')
 
 
-input_file="/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v3wd/model_data_wd_ins_ds.csv.gz"
-output_file="/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v3wd/model_data_wd_ins_ds_tmxrc_risk_rate_payee.csv"
-rc_ind_file="/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v3wd/entry_list_tmxrc_payee.csv"
+input_file="/fraud_model/Data/Model_Data_Signal_Tmx_v3wd/model_data_wd_ins_ds.csv.gz"
+output_file="/fraud_model/Data/Model_Data_Signal_Tmx_v3wd/model_data_wd_ins_ds_tmxrc_risk_rate_payee.csv"
+rc_ind_file="/fraud_model/Data/Model_Data_Signal_Tmx_v3wd/entry_list_tmxrc_payee.csv"
 compute_tmxrc_stats(input_file, output_file, rc_ind_file, rc_var_name='tmx_payee_tmx_reason_code')
 '''
 
@@ -142,7 +142,7 @@ def tmxrc_ind_creation(input_file,output_file):
     outcsv=csv.writer(outfile)
     
     # payer rc var list 
-    payer_tmxrc_var_filename='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v3pmt/entry_list_tmxrc_payer.csv'
+    payer_tmxrc_var_filename='/fraud_model/Data/Model_Data_Signal_Tmx_v3pmt/entry_list_tmxrc_payer.csv'
     payer_tmxrc_var_file=open(payer_tmxrc_var_filename,'rU')
     payer_tmxrc_var_csv=csv.reader(payer_tmxrc_var_file)
     payer_tmxrc_var_list=[]
@@ -152,7 +152,7 @@ def tmxrc_ind_creation(input_file,output_file):
 
     
     # payee rc var list 
-    payee_tmxrc_var_filename='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v3pmt/entry_list_tmxrc_payee.csv'
+    payee_tmxrc_var_filename='/fraud_model/Data/Model_Data_Signal_Tmx_v3pmt/entry_list_tmxrc_payee.csv'
     payee_tmxrc_var_file=open(payee_tmxrc_var_filename,'rU')
     payee_tmxrc_var_csv=csv.reader(payee_tmxrc_var_file)
     payee_tmxrc_var_list=[]
@@ -186,7 +186,7 @@ def tmxrc_ind_creation_helper(arg):
     tmxrc_ind_creation(arg[0],arg[1])
     
 
-work_dir = "/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v3wd/"
+work_dir = "/fraud_model/Data/Model_Data_Signal_Tmx_v3wd/"
 
 input_list = (
               [work_dir+"model_data_wd_ins_ds.csv.gz",work_dir+"model_data_wd_ins_ds_tmxrc_ind.csv.gz"],

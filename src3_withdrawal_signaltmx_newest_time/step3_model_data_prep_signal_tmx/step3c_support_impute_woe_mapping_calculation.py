@@ -6,7 +6,7 @@ import time
 import datetime
 import random
 from numpy import *
-sys.path.append("/home/junhe/fraud_model/Code/tools/csv_operations")
+sys.path.append("/fraud_model/Code/tools/csv_operations")
 import csv_ops
 from csv_ops import *
 from csv_woe_cat import *
@@ -16,7 +16,7 @@ from multiprocessing import Pool
 
    
 if len(sys.argv) <=1:
-    work_dir=''#/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v3wd_newest_time/'
+    work_dir=''#/fraud_model/Data/Model_Data_Signal_Tmx_v3wd_newest_time/'
 elif len(sys.argv) ==2:
     work_dir=sys.argv[1]
 else:

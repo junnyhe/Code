@@ -23,8 +23,8 @@ from sklearn.lda import LDA
 from sklearn.qda import QDA
 
 from sklearn.metrics import roc_curve, auc
-sys.path.append("/home/junhe/fraud_model/Code/tools/model_tools")
-sys.path.append("/home/junhe/fraud_model/Code/tools/csv_operations")
+sys.path.append("/fraud_model/Code/tools/model_tools")
+sys.path.append("/fraud_model/Code/tools/csv_operations")
 
 import csv_ops
 from csv_ops import *
@@ -144,8 +144,8 @@ def backward_selection(classifier,train_data_file,test_data_file,full_var_list_f
 
 
 
-data_dir='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/'
-result_dir='/home/junhe/fraud_model/Results/Model_Results_Signal_Tmx_v2pmt_var_selection/'
+data_dir='/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/'
+result_dir='/fraud_model/Results/Model_Results_Signal_Tmx_v2pmt_var_selection/'
 
 classifier = RandomForestClassifier(max_depth=16, n_estimators=100, max_features="auto",random_state=0,n_jobs=-1)
 train_data_file=data_dir+'model_data_pmt_oos_ds_fc_imp_woe_add_rc_ind.csv.gz'

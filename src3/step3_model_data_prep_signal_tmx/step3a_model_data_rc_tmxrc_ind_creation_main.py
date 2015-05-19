@@ -29,18 +29,18 @@ def rc_tmxrc_ind_creation_batch(input_file,output_file):
     outcsv=csv.writer(outfile)
     
     ##### 2.instantiate scoring object #####
-    rc_entry_filename='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v3pmt/entry_list_reasoncode.csv'
+    rc_entry_filename='/fraud_model/Data/Model_Data_Signal_Tmx_v3pmt/entry_list_reasoncode.csv'
     step1_rc_ind_creation = rc_ind_creation(rc_entry_filename)
     
-    payer_tmxrc_entry_filename='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v3pmt/entry_list_tmxrc_payer_selected.csv'
-    payee_tmxrc_entry_filename='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v3pmt/entry_list_tmxrc_payee_selected.csv'
+    payer_tmxrc_entry_filename='/fraud_model/Data/Model_Data_Signal_Tmx_v3pmt/entry_list_tmxrc_payer_selected.csv'
+    payee_tmxrc_entry_filename='/fraud_model/Data/Model_Data_Signal_Tmx_v3pmt/entry_list_tmxrc_payee_selected.csv'
     step2_tmxrc_ind_creation = tmxrc_ind_creation(payer_tmxrc_entry_filename,payee_tmxrc_entry_filename)
     
     ###### 3.prepare new header ######
     header = incsv.fieldnames
     
     # additional header for rc ind #####
-    rc_entry_filename='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v3pmt/entry_list_reasoncode.csv'
+    rc_entry_filename='/fraud_model/Data/Model_Data_Signal_Tmx_v3pmt/entry_list_reasoncode.csv'
     rc_entry_file=open(rc_entry_filename,'rU')
     rc_entry_csv=csv.reader(rc_entry_file)
     rc_entry_list=[]
@@ -49,7 +49,7 @@ def rc_tmxrc_ind_creation_batch(input_file,output_file):
     header_rc=["tmx_payer_rc_ind_"+rc for rc in rc_entry_list] + ["tmx_payee_rc_ind_"+rc for rc in rc_entry_list]
             
     # additional header for tmxrc ind
-    tmxrc_ind_select_var_filename='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v3pmt/var_list_rc_tmxrc_ind_selected.csv'
+    tmxrc_ind_select_var_filename='/fraud_model/Data/Model_Data_Signal_Tmx_v3pmt/var_list_rc_tmxrc_ind_selected.csv'
     tmxrc_ind_select_var_file=open(tmxrc_ind_select_var_filename,'rU')
     tmxrc_ind_select_var_csv=csv.reader(tmxrc_ind_select_var_file)
     tmxrc_ind_select_var_list=[]
@@ -79,7 +79,7 @@ def rc_tmxrc_ind_creation_batch_helper(arg):
     rc_tmxrc_ind_creation_batch(arg[0],arg[1])
     
 if __name__=="__main__":
-    work_dir = "/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v3pmt/"
+    work_dir = "/fraud_model/Data/Model_Data_Signal_Tmx_v3pmt/"
     
     input_list = (
                   [work_dir+"model_data_pmt_ins_ds.csv.gz",work_dir+"model_data_pmt_ins_ds_rcind.csv.gz"],

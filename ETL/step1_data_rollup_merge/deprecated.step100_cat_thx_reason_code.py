@@ -10,7 +10,7 @@ import datetime
 #just need to be run once
 #===============================================================================
 
-work_dir="/home/junhe/fraud_model/Data/Raw_Data/tmx_reason_code/"
+work_dir="/fraud_model/Data/Raw_Data/tmx_reason_code/"
 
 day=datetime.date(2014,7,5) #start date
 nDays=180 # number of days to process

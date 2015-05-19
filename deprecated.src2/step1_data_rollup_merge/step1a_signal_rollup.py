@@ -8,7 +8,7 @@ import datetime
 
 
 
-work_dir="/home/junhe/fraud_model/Data/Raw_Data/signals/"
+work_dir="/fraud_model/Data/Raw_Data/signals/"
 prefix='signal_' #prefix to signal numbers
 
 day=datetime.date(2014,12,19) #start date

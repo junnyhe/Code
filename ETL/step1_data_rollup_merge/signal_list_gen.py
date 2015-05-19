@@ -8,7 +8,7 @@ from numpy import *
 
 dayEnd = datetime.date(2015,3,31)
 nDays = 60
-out_file_name = "/home/junhe/fraud_model/Data/Raw_Data/signals/signal_list_febmar.csv"
+out_file_name = "/fraud_model/Data/Raw_Data/signals/signal_list_febmar.csv"
 out_file = open(out_file_name,'w')
 outcsv = csv.writer(out_file)
 outcsv.writerow(['signal_id'])
@@ -21,7 +21,7 @@ def find_signal_list():
     day=dayEnd
     for iDay in range(nDays): 
         print "sample day:",str(day)
-        input_file="/home/junhe/fraud_model/Data/Raw_Data/signals/fraud_signal_"+str(day)+".csv.gz"
+        input_file="/fraud_model/Data/Raw_Data/signals/fraud_signal_"+str(day)+".csv.gz"
         infile=gzip.open(input_file,'rb')
         incsv=csv.DictReader(infile)
         

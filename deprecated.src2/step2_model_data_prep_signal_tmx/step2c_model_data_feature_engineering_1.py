@@ -6,7 +6,7 @@ import time
 import datetime
 import random
 from numpy import *
-sys.path.append("/home/junhe/fraud_model/Code/tools/csv_operations")
+sys.path.append("/fraud_model/Code/tools/csv_operations")
 import csv_ops
 from csv_ops import *
 
@@ -226,7 +226,7 @@ def feature_creation(input_file,output_file):
     outcsv=csv.writer(outfile)
     
     # datetime var list
-    time_var_filename='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/var_list_time_diff.csv'
+    time_var_filename='/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/var_list_time_diff.csv'
     time_var_file=open(time_var_filename,'rU')
     time_var_csv=csv.reader(time_var_file)
     time_var_list=[]
@@ -241,7 +241,7 @@ def feature_creation(input_file,output_file):
     'tmx_payer_true_ip']
     
     # ppcmp var list 
-    ppcmp_var_filename='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/var_list_ppcmp.csv'
+    ppcmp_var_filename='/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/var_list_ppcmp.csv'
     ppcmp_var_file=open(ppcmp_var_filename,'rU')
     ppcmp_var_csv=csv.reader(ppcmp_var_file)
     ppcmp_var_list=[]
@@ -249,7 +249,7 @@ def feature_creation(input_file,output_file):
         ppcmp_var_list.append(row[0])
     
     # leven dist var list
-    leven_dist_var_filename='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/var_list_leven_dist.csv'
+    leven_dist_var_filename='/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/var_list_leven_dist.csv'
     leven_dist_var_file=open(leven_dist_var_filename,'rU')
     leven_dist_var_csv=csv.reader(leven_dist_var_file)
     leven_dist_var_list=[]
@@ -311,7 +311,7 @@ def feature_creation_helper(arg):
     #feature_creation(input_file,output_file)
     
 
-work_dir='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/'
+work_dir='/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/'
 
 
 input_list = (

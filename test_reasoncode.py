@@ -12,8 +12,8 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
 
 from sklearn.metrics import roc_curve, auc
-sys.path.append("/home/junhe/fraud_model/Code/tools/model_tools")
-sys.path.append("/home/junhe/fraud_model/Code/tools/csv_operations")
+sys.path.append("/fraud_model/Code/tools/model_tools")
+sys.path.append("/fraud_model/Code/tools/csv_operations")
 
 from load_data import *
 import copy as cp
@@ -57,8 +57,8 @@ class rf_reason_code:
         return reasoncode_list
     
 
-data_dir='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v3pmt/'
-result_dir='/home/junhe/fraud_model/Results/Model_Results_Signal_Tmx_v3pmt_woeSmth=0/'
+data_dir='/fraud_model/Data/Model_Data_Signal_Tmx_v3pmt/'
+result_dir='/fraud_model/Results/Model_Results_Signal_Tmx_v3pmt_woeSmth=0/'
 
 ins_file=data_dir+'model_data_pmt_ins_ds_rcind_fc_imp_woe.csv.gz'
 var_list_filename=result_dir+'model_var_list_signal.csv'

@@ -2,7 +2,7 @@ import gzip
 import csv
 import random
 import sys
-sys.path.append("/home/junhe/fraud_model/Code/tools/model_tools")
+sys.path.append("/fraud_model/Code/tools/model_tools")
 from load_data import *
 from numpy import *
 
@@ -49,15 +49,15 @@ def downsample_filter(input_file,output_file, downsamle_fieldname, downsample_fi
 
 
 good_downsample_rate = 1 #used to scale back hit rate
-in_dir='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v3wd_newest_time/'
-out_dir='/home/junhe/fraud_model/Data/test/'
+in_dir='/fraud_model/Data/Model_Data_Signal_Tmx_v3wd_newest_time/'
+out_dir='/fraud_model/Data/test/'
 input_file=in_dir+"model_data_wd_oos.csv.gz"
 output_file=out_dir+"model_data_wd_oos_ds.csv.gz"
 downsample_filter(input_file,output_file, downsamle_fieldname='target', downsample_field_equal_value='0', downsample_frac=good_downsample_rate)
 
 
 # load down sampled data
-data_dir='/home/junhe/fraud_model/Data/test/'
+data_dir='/fraud_model/Data/test/'
 
 test_data_file=data_dir+'model_data_wd_oos_ds.csv.gz'
 var_list_filename=data_dir+'test_vars.csv'
@@ -83,10 +83,10 @@ print len(y),sum(y),sum(tag),catch_rate_rule, hit_rate_rule, refer_rate_rule
 '''
 good_downsample_rate = .2 #used to scale back hit rate
 # load down sampled data
-data_dir='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v3wd_newest_time/'
+data_dir='/fraud_model/Data/Model_Data_Signal_Tmx_v3wd_newest_time/'
 
 test_data_file=data_dir+'model_data_wd_oos_ds_rcind_fc_imp_woe.csv.gz'
-var_list_filename='/home/junhe/fraud_model/Data/test/test_vars.csv'
+var_list_filename='/fraud_model/Data/test/test_vars.csv'
 target_name='target'
 key_name='payment_request_id'
 tag_name='manual_review'

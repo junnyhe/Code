@@ -10,10 +10,10 @@ global signal_dir, tgt_dir, rule_dir, out_dir
 
 
 # get input
-signal_dir = "/home/junhe/fraud_model/Data/Raw_Data/signals/"
-tgt_dir = "/home/junhe/fraud_model/Data/Raw_Data/targets/"
-rule_dir = "/home/junhe/fraud_model/Data/Raw_Data/rule_results_pmt_direction/"
-out_dir='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt_signalonly_newest_time/'
+signal_dir = "/fraud_model/Data/Raw_Data/signals/"
+tgt_dir = "/fraud_model/Data/Raw_Data/targets/"
+rule_dir = "/fraud_model/Data/Raw_Data/rule_results_pmt_direction/"
+out_dir='/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt_signalonly_newest_time/'
 
     
 def cat_daily_files(start_day,nDays,out_file_name):

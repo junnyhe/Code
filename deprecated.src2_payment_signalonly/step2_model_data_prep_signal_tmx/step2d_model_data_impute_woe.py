@@ -5,7 +5,7 @@ import sys
 import datetime
 import random
 from numpy import *
-sys.path.append("/home/junhe/fraud_model/Code/tools/csv_operations")
+sys.path.append("/fraud_model/Code/tools/csv_operations")
 import csv_ops
 from csv_ops import *
 from csv_woe_cat import *
@@ -25,7 +25,7 @@ def woe_assign_pickle_helper(arg):
 
 
 '''
-work_dir='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt_signalonly/' # everything should/will be in work_dir
+work_dir='/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt_signalonly/' # everything should/will be in work_dir
 
 
 ################################################################################
@@ -103,7 +103,7 @@ csv_EDD(work_dir+'model_data_pmt_ins_ds_imp_woe.csv.gz')
 # Newest time
 #===============================================================================
 
-work_dir='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt_signalonly/' # everything should/will be in work_dir
+work_dir='/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt_signalonly/' # everything should/will be in work_dir
 
 
 ################################################################################

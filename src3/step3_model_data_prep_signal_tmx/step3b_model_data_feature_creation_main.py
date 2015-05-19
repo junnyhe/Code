@@ -26,9 +26,9 @@ def feature_creation_batch(input_file,output_file):
     outcsv=csv.writer(outfile)
     
     ##### 2. instantiate scoring object #####
-    time_var_filename='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/var_list_time_diff.csv'
-    ppcmp_var_filename='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/var_list_ppcmp.csv'
-    leven_dist_var_filename='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/var_list_leven_dist.csv'
+    time_var_filename='/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/var_list_time_diff.csv'
+    ppcmp_var_filename='/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/var_list_ppcmp.csv'
+    leven_dist_var_filename='/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/var_list_leven_dist.csv'
     
     step3_feature_creation = feature_creation(time_var_filename, ppcmp_var_filename, leven_dist_var_filename)
     
@@ -84,7 +84,7 @@ def feature_creation_batch_helper(arg):
     
 
 if __name__=="__main__":
-    work_dir='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v3pmt/'
+    work_dir='/fraud_model/Data/Model_Data_Signal_Tmx_v3pmt/'
     
     
     input_list = (

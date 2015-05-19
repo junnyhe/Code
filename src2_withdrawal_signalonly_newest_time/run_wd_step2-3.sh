@@ -1,7 +1,7 @@
 set -e
-pmt_data_dir=/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt_signalonly_newest_time/
-wd_data_dir=/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2wd_signalonly_newest_time/
-result_dir=/home/junhe/fraud_model/Results/Model_Results_Signal_Only_v2wd_woeSmth=0_newest_time/
+pmt_data_dir=/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt_signalonly_newest_time/
+wd_data_dir=/fraud_model/Data/Model_Data_Signal_Tmx_v2wd_signalonly_newest_time/
+result_dir=/fraud_model/Results/Model_Results_Signal_Only_v2wd_woeSmth=0_newest_time/
 
 opt=2 # opt=1 train model; opt=2 copy model files and test
 
@@ -17,11 +17,12 @@ elif [ $opt == 2 ]; then
 	
 	prod_dir=/code/model_scoring/
 	prod_support_dir=/code/model_scoring/withdrawal_signalonly/
-	model_dir=/home/junhe/fraud_model/Results/Model_Results_Signal_Only_v2wd_woeSmth=0_newest_time/RandomForest_signal/
-	impwoe_dir=/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2wd_signalonly_newest_time/
+	model_dir=/fraud_model/Results/Model_Results_Signal_Only_v2wd_woeSmth=0_newest_time/RandomForest_signal/
+	impwoe_dir=/fraud_model/Data/Model_Data_Signal_Tmx_v2wd_signalonly_newest_time/
 
 	cp ${model_dir}model.p    $prod_support_dir
 	gzip ${prod_support_dir}model.p -f
+	cp ${model_dir}trivial_input_values.p    $prod_support_dir
 	cp ${impwoe_dir}risk_table.p    $prod_support_dir
 	cp ${impwoe_dir}impute_values.p    $prod_support_dir
 	cd $prod_dir

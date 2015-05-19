@@ -6,9 +6,9 @@ direction=1 # = 1 for 'pmt' or 2 for 'wd'
 type='pmt' # = 'pmt' or 'wd'
 
 
-out_dir = '/home/junhe/fraud_model/Results/model_rule_optimization/'
+out_dir = '/fraud_model/Results/model_rule_optimization/'
 # load data
-df=pd.read_csv('/home/junhe/fraud_model/Data/model_rule_optimization/rule_score_'+type+'_20150409_20150415.csv')
+df=pd.read_csv('/fraud_model/Data/model_rule_optimization/rule_score_'+type+'_20150409_20150415.csv')
 
 # fill Nan
 df.blacklist_reason.fillna("Good",inplace=True)

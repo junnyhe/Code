@@ -5,7 +5,7 @@ import sys
 import datetime
 import random
 from numpy import *
-sys.path.append("/home/junhe/fraud_model/Code/tools/csv_operations")
+sys.path.append("/fraud_model/Code/tools/csv_operations")
 import csv_ops
 from csv_ops import *
 from multiprocessing import Pool
@@ -89,8 +89,8 @@ def downsample_filter(input_file,output_file, downsamle_fieldname, downsample_fi
 ################################################################################
 oos_frac=0.2 #fraction used for oos
 if len(sys.argv) <=1:
-    #in_dir='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt_newest_time/'
-    #out_dir='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2wd_newest_time/'
+    #in_dir='/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt_newest_time/'
+    #out_dir='/fraud_model/Data/Model_Data_Signal_Tmx_v2wd_newest_time/'
     in_dir=''
     out_dir=''
 elif len(sys.argv) ==3:

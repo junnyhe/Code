@@ -13,7 +13,7 @@ def roll_up_signal( day_start,  n_Days):
     day=day_start #start date
     nDays=n_Days# number of days to process
 
-    work_dir="/home/junhe/fraud_model/Data/Raw_Data/signals/"
+    work_dir="/fraud_model/Data/Raw_Data/signals/"
     prefix='signal_' #prefix to signal numbers
     
     #get signal list

@@ -159,17 +159,17 @@ def optimize_rule_w_score(score_ind_list):
 
 
 
-out_dir="/home/junhe/fraud_model/Results/model_rule_optimization/pmt/"
+out_dir="/fraud_model/Results/model_rule_optimization/pmt/"
 type='pmt'
 direction=1
 '''
-out_dir="/home/junhe/fraud_model/Results/model_rule_optimization/wd/"
+out_dir="/fraud_model/Results/model_rule_optimization/wd/"
 type='wd'
 direction=2
 '''
 
 # load header and get rule list
-input_file="/home/junhe/fraud_model/Data/model_rule_optimization/rule_score_"+type+"_20150409_20150415.csv"
+input_file="/fraud_model/Data/model_rule_optimization/rule_score_"+type+"_20150409_20150415.csv"
 infile=open(input_file,'rb')
 incsv=csv.reader(infile)
 header=incsv.next()

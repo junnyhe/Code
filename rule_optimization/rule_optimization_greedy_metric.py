@@ -114,7 +114,7 @@ def rule_optimizaiton(data,target,full_rule_num_list,metric_name):
     
 
 # load data to array
-input_file="/home/junhe/fraud_model/Data/rule_optimization/rule_fire_and_review_results_all.csv.gz"
+input_file="/fraud_model/Data/rule_optimization/rule_fire_and_review_results_all.csv.gz"
 infile=gzip.open(input_file,'rb')
 incsv=csv.reader(infile)
 header=incsv.next()
@@ -140,69 +140,69 @@ full_rule_num_list=[int(rule.replace('rule_','')) for rule in full_rule_num_list
 
 '''
 metric_name="F_measure"
-result_file="/home/junhe/fraud_model/Results/rule_optimization/rule_optimization_sequence_target_deny_"+metric_name+".csv"
+result_file="/fraud_model/Results/rule_optimization/rule_optimization_sequence_target_deny_"+metric_name+".csv"
 rule_optimizaiton(data,target_deny,full_rule_num_list,metric_name)
 
 metric_name="hit_rate"
-result_file="/home/junhe/fraud_model/Results/rule_optimization/rule_optimization_sequence_target_deny_"+metric_name+".csv"
+result_file="/fraud_model/Results/rule_optimization/rule_optimization_sequence_target_deny_"+metric_name+".csv"
 rule_optimizaiton(data,target_deny,full_rule_num_list,metric_name)
 
 metric_name="catch_rate"
-result_file="/home/junhe/fraud_model/Results/rule_optimization/rule_optimization_sequence_target_deny_"+metric_name+".csv"
+result_file="/fraud_model/Results/rule_optimization/rule_optimization_sequence_target_deny_"+metric_name+".csv"
 rule_optimizaiton(data,target_deny,full_rule_num_list,metric_name)
 
 
 metric_name="F_measure"
-result_file="/home/junhe/fraud_model/Results/rule_optimization/rule_optimization_sequence_target_state_"+metric_name+".csv"
+result_file="/fraud_model/Results/rule_optimization/rule_optimization_sequence_target_state_"+metric_name+".csv"
 rule_optimizaiton(data,target_deny,full_rule_num_list,metric_name)
 
 metric_name="hit_rate"
-result_file="/home/junhe/fraud_model/Results/rule_optimization/rule_optimization_sequence_target_state_"+metric_name+".csv"
+result_file="/fraud_model/Results/rule_optimization/rule_optimization_sequence_target_state_"+metric_name+".csv"
 rule_optimizaiton(data,target_deny,full_rule_num_list,metric_name)
 
 metric_name="catch_rate"
-result_file="/home/junhe/fraud_model/Results/rule_optimization/rule_optimization_sequence_target_state_"+metric_name+".csv"
+result_file="/fraud_model/Results/rule_optimization/rule_optimization_sequence_target_state_"+metric_name+".csv"
 rule_optimizaiton(data,target_deny,full_rule_num_list,metric_name)
 '''
 
 metric_name="metric1"
-result_file="/home/junhe/fraud_model/Results/rule_optimization/rule_optimization_sequence_target_deny_"+metric_name+".csv"
+result_file="/fraud_model/Results/rule_optimization/rule_optimization_sequence_target_deny_"+metric_name+".csv"
 rule_optimizaiton(data,target_deny,full_rule_num_list,metric_name)
 
 metric_name="metric1"
-result_file="/home/junhe/fraud_model/Results/rule_optimization/rule_optimization_sequence_target_state_"+metric_name+".csv"
+result_file="/fraud_model/Results/rule_optimization/rule_optimization_sequence_target_state_"+metric_name+".csv"
 rule_optimizaiton(data,target_deny,full_rule_num_list,metric_name)
 
 metric_name="metric2"
-result_file="/home/junhe/fraud_model/Results/rule_optimization/rule_optimization_sequence_target_deny_"+metric_name+".csv"
+result_file="/fraud_model/Results/rule_optimization/rule_optimization_sequence_target_deny_"+metric_name+".csv"
 rule_optimizaiton(data,target_deny,full_rule_num_list,metric_name)
 
 metric_name="metric2"
-result_file="/home/junhe/fraud_model/Results/rule_optimization/rule_optimization_sequence_target_state_"+metric_name+".csv"
+result_file="/fraud_model/Results/rule_optimization/rule_optimization_sequence_target_state_"+metric_name+".csv"
 rule_optimizaiton(data,target_deny,full_rule_num_list,metric_name)
 
 metric_name="metric3"
-result_file="/home/junhe/fraud_model/Results/rule_optimization/rule_optimization_sequence_target_deny_"+metric_name+".csv"
+result_file="/fraud_model/Results/rule_optimization/rule_optimization_sequence_target_deny_"+metric_name+".csv"
 rule_optimizaiton(data,target_deny,full_rule_num_list,metric_name)
 
 metric_name="metric3"
-result_file="/home/junhe/fraud_model/Results/rule_optimization/rule_optimization_sequence_target_state_"+metric_name+".csv"
+result_file="/fraud_model/Results/rule_optimization/rule_optimization_sequence_target_state_"+metric_name+".csv"
 rule_optimizaiton(data,target_deny,full_rule_num_list,metric_name)
 
 metric_name="metric4"
-result_file="/home/junhe/fraud_model/Results/rule_optimization/rule_optimization_sequence_target_deny_"+metric_name+".csv"
+result_file="/fraud_model/Results/rule_optimization/rule_optimization_sequence_target_deny_"+metric_name+".csv"
 rule_optimizaiton(data,target_deny,full_rule_num_list,metric_name)
 
 metric_name="metric4"
-result_file="/home/junhe/fraud_model/Results/rule_optimization/rule_optimization_sequence_target_state_"+metric_name+".csv"
+result_file="/fraud_model/Results/rule_optimization/rule_optimization_sequence_target_state_"+metric_name+".csv"
 rule_optimizaiton(data,target_deny,full_rule_num_list,metric_name)
 
 metric_name="metric5"
-result_file="/home/junhe/fraud_model/Results/rule_optimization/rule_optimization_sequence_target_deny_"+metric_name+".csv"
+result_file="/fraud_model/Results/rule_optimization/rule_optimization_sequence_target_deny_"+metric_name+".csv"
 rule_optimizaiton(data,target_deny,full_rule_num_list,metric_name)
 
 metric_name="metric5"
-result_file="/home/junhe/fraud_model/Results/rule_optimization/rule_optimization_sequence_target_state_"+metric_name+".csv"
+result_file="/fraud_model/Results/rule_optimization/rule_optimization_sequence_target_state_"+metric_name+".csv"
 rule_optimizaiton(data,target_deny,full_rule_num_list,metric_name)
 
 

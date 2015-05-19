@@ -5,7 +5,7 @@ import datetime
 import random
 from numpy import *
 import sys
-sys.path.append("/home/junhe/fraud_model/Code/tools/csv_operations")
+sys.path.append("/fraud_model/Code/tools/csv_operations")
 import csv_ops
 from csv_ops import *
 from multiprocessing import Pool
@@ -98,7 +98,7 @@ def downsample_filter_helper(arg):
 global work_dir
 
 if len(sys.argv) <=1:
-    work_dir=''#/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v3pmt_newest_time/' # everything should/will be in w
+    work_dir=''#/fraud_model/Data/Model_Data_Signal_Tmx_v3pmt_newest_time/' # everything should/will be in w
 elif len(sys.argv) ==2:
     work_dir=sys.argv[1]
 else:

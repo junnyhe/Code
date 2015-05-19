@@ -123,10 +123,10 @@ def cat_daily_files(start_day,out_file_name):
 global signal_dir, tgt_dir, rule_dir, out_dir
 
 # get input
-signal_dir = "/home/junhe/fraud_model/Data/Raw_Data/merged_data_w_tmxrc/"
-tgt_dir = "/home/junhe/fraud_model/Data/Raw_Data/targets/"
-rule_dir = "/home/junhe/fraud_model/Data/Raw_Data/rule_results_pmt_direction/"
-out_dir = "/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v3pmt_test_period/"
+signal_dir = "/fraud_model/Data/Raw_Data/merged_data_w_tmxrc/"
+tgt_dir = "/fraud_model/Data/Raw_Data/targets/"
+rule_dir = "/fraud_model/Data/Raw_Data/rule_results_pmt_direction/"
+out_dir = "/fraud_model/Data/Model_Data_Signal_Tmx_v3pmt_test_period/"
     
     
 # model data jan/feb

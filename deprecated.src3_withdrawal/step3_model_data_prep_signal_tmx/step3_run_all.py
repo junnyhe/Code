@@ -27,22 +27,22 @@ def model_data_processing_batch(input_file,output_file):
     outcsv=csv.writer(outfile)
     
     ##### 2.instantiate scoring object #####
-    rc_entry_filename='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v3wd/entry_list_reasoncode.csv'
+    rc_entry_filename='/fraud_model/Data/Model_Data_Signal_Tmx_v3wd/entry_list_reasoncode.csv'
     step1_rc_ind_creation = rc_ind_creation(rc_entry_filename)
     
-    payer_tmxrc_entry_filename='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v3wd/entry_list_tmxrc_payer_selected.csv'
-    payee_tmxrc_entry_filename='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v3wd/entry_list_tmxrc_payee_selected.csv'
+    payer_tmxrc_entry_filename='/fraud_model/Data/Model_Data_Signal_Tmx_v3wd/entry_list_tmxrc_payer_selected.csv'
+    payee_tmxrc_entry_filename='/fraud_model/Data/Model_Data_Signal_Tmx_v3wd/entry_list_tmxrc_payee_selected.csv'
     step2_tmxrc_ind_creation = tmxrc_ind_creation(payer_tmxrc_entry_filename,payee_tmxrc_entry_filename)
     
-    time_var_filename='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v3wd/var_list_time_diff.csv'
-    ppcmp_var_filename='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v3wd/var_list_ppcmp.csv'
-    leven_dist_var_filename='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v3wd/var_list_leven_dist.csv'
+    time_var_filename='/fraud_model/Data/Model_Data_Signal_Tmx_v3wd/var_list_time_diff.csv'
+    ppcmp_var_filename='/fraud_model/Data/Model_Data_Signal_Tmx_v3wd/var_list_ppcmp.csv'
+    leven_dist_var_filename='/fraud_model/Data/Model_Data_Signal_Tmx_v3wd/var_list_leven_dist.csv'
     step3_feature_creation = feature_creation(time_var_filename, ppcmp_var_filename, leven_dist_var_filename)
     
-    impute_value_filename = "/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v3wd/impute_values.p"
+    impute_value_filename = "/fraud_model/Data/Model_Data_Signal_Tmx_v3wd/impute_values.p"
     step4_impute_replace = impute_replace(impute_value_filename)
     
-    risk_table_filename = "/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v3wd/risk_table.p"
+    risk_table_filename = "/fraud_model/Data/Model_Data_Signal_Tmx_v3wd/risk_table.p"
     step5_woe_assign = woe_assign(risk_table_filename)
     
     pipeline=[
@@ -58,7 +58,7 @@ def model_data_processing_batch(input_file,output_file):
     header = incsv.fieldnames
     
     # additional header for rc ind #####
-    rc_entry_filename='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v3wd/entry_list_reasoncode.csv'
+    rc_entry_filename='/fraud_model/Data/Model_Data_Signal_Tmx_v3wd/entry_list_reasoncode.csv'
     rc_entry_file=open(rc_entry_filename,'rU')
     rc_entry_csv=csv.reader(rc_entry_file)
     rc_entry_list=[]
@@ -67,7 +67,7 @@ def model_data_processing_batch(input_file,output_file):
     header_rc=["tmx_payer_rc_ind_"+rc for rc in rc_entry_list] + ["tmx_payee_rc_ind_"+rc for rc in rc_entry_list]
             
     # additional header for tmxrc ind
-    tmxrc_ind_select_var_filename='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v3wd/var_list_rc_tmxrc_ind_selected.csv'
+    tmxrc_ind_select_var_filename='/fraud_model/Data/Model_Data_Signal_Tmx_v3wd/var_list_rc_tmxrc_ind_selected.csv'
     tmxrc_ind_select_var_file=open(tmxrc_ind_select_var_filename,'rU')
     tmxrc_ind_select_var_csv=csv.reader(tmxrc_ind_select_var_file)
     tmxrc_ind_select_var_list=[]
@@ -122,7 +122,7 @@ def model_data_processing_batch_helper(arg):
     model_data_processing_batch(arg[0],arg[1])
 
 
-work_dir = "/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v3wd/" 
+work_dir = "/fraud_model/Data/Model_Data_Signal_Tmx_v3wd/" 
 
 input_list = (
               [work_dir+"model_data_wd_ins_ds.csv.gz",work_dir+"model_data_wd_ins_ds_rcind_fc_imp_woe.csv.gz"],

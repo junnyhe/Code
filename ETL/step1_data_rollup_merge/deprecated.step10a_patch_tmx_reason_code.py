@@ -4,14 +4,14 @@ import os
 import datetime
 import random
 import sys
-sys.path.append("/home/junhe/fraud_model/Code/tools/csv_operations")
+sys.path.append("/fraud_model/Code/tools/csv_operations")
 import csv_ops
 from csv_ops import *
 
 
 
 # load tmx_reason_code to dict
-tmxrc_filename = '/home/junhe/fraud_model/Data/Raw_Data/tmx_reason_code/tmx_reason_code_jul_dec.csv.gz'
+tmxrc_filename = '/fraud_model/Data/Raw_Data/tmx_reason_code/tmx_reason_code_jul_dec.csv.gz'
 tmxrc_file = gzip.open(tmxrc_filename,'rb')
 tmxrc_csv = csv.reader(tmxrc_file)
 
@@ -31,8 +31,8 @@ nDays=59
 
 for iDay in range(nDays):
     
-    input_filename="/home/junhe/fraud_model/Data/Raw_Data/threatmetrix_payer/threatmetrix_payer_"+str(day)+".csv.gz"
-    output_filename="/home/junhe/fraud_model/Data/Raw_Data/threatmetrix_payer_w_tmxrc/threatmetrix_payer_"+str(day)+".csv.gz"
+    input_filename="/fraud_model/Data/Raw_Data/threatmetrix_payer/threatmetrix_payer_"+str(day)+".csv.gz"
+    output_filename="/fraud_model/Data/Raw_Data/threatmetrix_payer_w_tmxrc/threatmetrix_payer_"+str(day)+".csv.gz"
     
     header_out=['payment_request_id','threatmetrix_request_time','request_id','request_type','threatmetrix_request_id','key','value']
     output_file = gzip.open(output_filename,'w')
@@ -74,8 +74,8 @@ nDays=59
 
 for iDay in range(nDays):
     
-    input_filename="/home/junhe/fraud_model/Data/Raw_Data/threatmetrix_payee/threatmetrix_payee_"+str(day)+".csv.gz"
-    output_filename="/home/junhe/fraud_model/Data/Raw_Data/threatmetrix_payee_w_tmxrc/threatmetrix_payee_"+str(day)+".csv.gz"
+    input_filename="/fraud_model/Data/Raw_Data/threatmetrix_payee/threatmetrix_payee_"+str(day)+".csv.gz"
+    output_filename="/fraud_model/Data/Raw_Data/threatmetrix_payee_w_tmxrc/threatmetrix_payee_"+str(day)+".csv.gz"
     
     header_out=['payment_request_id','threatmetrix_request_time','request_id','request_type','threatmetrix_request_id','key','value']
     output_file = gzip.open(output_filename,'w')

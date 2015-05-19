@@ -5,7 +5,7 @@ import datetime
 import random
 from numpy import *
 import sys
-sys.path.append("/home/junhe/fraud_model/Code/tools/csv_operations")
+sys.path.append("/fraud_model/Code/tools/csv_operations")
 import csv_ops
 from csv_ops import *
 
@@ -88,7 +88,7 @@ def downsample_filter(input_file,output_file, downsamle_fieldname, downsample_fi
 # Split ins and oos                                                            #
 ################################################################################
 oos_frac=0.2 #fraction used for oos
-work_dir='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt_signalonly/'
+work_dir='/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt_signalonly/'
 input_file=work_dir+"model_data_pmt.csv.gz"
 ins_file=work_dir+"model_data_pmt_ins.csv.gz"
 oos_file=work_dir+"model_data_pmt_oos.csv.gz"

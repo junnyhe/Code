@@ -5,7 +5,7 @@ import sys
 import datetime
 import random
 from numpy import *
-sys.path.append("/home/junhe/fraud_model/Code/tools/csv_operations")
+sys.path.append("/fraud_model/Code/tools/csv_operations")
 import csv_ops
 from csv_ops import *
 from csv_woe_cat import *
@@ -23,7 +23,7 @@ def woe_assign_pickle_helper(arg):
     woe_assign_pickle(arg[0],arg[1],arg[2])
     #function inputs: woe_assign_pickle(work_dir,input_file,output_file)
     
-work_dir='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/' # everything should/will be in work_dir
+work_dir='/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/' # everything should/will be in work_dir
 
 
 ################################################################################
@@ -43,12 +43,12 @@ impute_create_mapping(work_dir,ins_file,imp_median_var_list_file,imp_zero_var_li
 # 2. Replace missing values                                                    #
 ################################################################################
 input_list = (
-              ['/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/',"model_data_pmt_ins_ds_fc.csv.gz","model_data_pmt_ins_ds_fc_imp.csv.gz"], 
-              ['/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/',"model_data_pmt_oos_ds_fc.csv.gz","model_data_pmt_oos_ds_fc_imp.csv.gz"],
-              ['/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/',"test_data_sept_pmt_ds_fc.csv.gz","test_data_sept_pmt_ds_fc_imp.csv.gz"],
-              ['/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/',"test_data_oct_pmt_ds_fc.csv.gz","test_data_oct_pmt_ds_fc_imp.csv.gz"],
-              ['/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/',"test_data_nov_pmt_ds_fc.csv.gz","test_data_nov_pmt_ds_fc_imp.csv.gz"],
-              ['/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/',"test_data_dec_pmt_ds_fc.csv.gz","test_data_dec_pmt_ds_fc_imp.csv.gz"]
+              ['/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/',"model_data_pmt_ins_ds_fc.csv.gz","model_data_pmt_ins_ds_fc_imp.csv.gz"], 
+              ['/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/',"model_data_pmt_oos_ds_fc.csv.gz","model_data_pmt_oos_ds_fc_imp.csv.gz"],
+              ['/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/',"test_data_sept_pmt_ds_fc.csv.gz","test_data_sept_pmt_ds_fc_imp.csv.gz"],
+              ['/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/',"test_data_oct_pmt_ds_fc.csv.gz","test_data_oct_pmt_ds_fc_imp.csv.gz"],
+              ['/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/',"test_data_nov_pmt_ds_fc.csv.gz","test_data_nov_pmt_ds_fc_imp.csv.gz"],
+              ['/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/',"test_data_dec_pmt_ds_fc.csv.gz","test_data_dec_pmt_ds_fc_imp.csv.gz"]
               )
             # Inputs: impute_replace_pickle(work_dir,input_file,output_file)
 pool = Pool(processes=3)
@@ -73,12 +73,12 @@ risk_table(work_dir, input_file, woe_var_list_file, target='target', smooth_num=
 ################################################################################
 
 input_list = (
-              ['/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/',"model_data_pmt_ins_ds_fc_imp.csv.gz","model_data_pmt_ins_ds_fc_imp_woe.csv.gz"],
-              ['/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/',"model_data_pmt_oos_ds_fc_imp.csv.gz","model_data_pmt_oos_ds_fc_imp_woe.csv.gz"],
-              ['/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/',"test_data_sept_pmt_ds_fc_imp.csv.gz","test_data_sept_pmt_ds_fc_imp_woe.csv.gz"],
-              ['/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/',"test_data_oct_pmt_ds_fc_imp.csv.gz","test_data_oct_pmt_ds_fc_imp_woe.csv.gz"],
-              ['/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/',"test_data_nov_pmt_ds_fc_imp.csv.gz","test_data_nov_pmt_ds_fc_imp_woe.csv.gz"],
-              ['/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/',"test_data_dec_pmt_ds_fc_imp.csv.gz","test_data_dec_pmt_ds_fc_imp_woe.csv.gz"]
+              ['/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/',"model_data_pmt_ins_ds_fc_imp.csv.gz","model_data_pmt_ins_ds_fc_imp_woe.csv.gz"],
+              ['/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/',"model_data_pmt_oos_ds_fc_imp.csv.gz","model_data_pmt_oos_ds_fc_imp_woe.csv.gz"],
+              ['/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/',"test_data_sept_pmt_ds_fc_imp.csv.gz","test_data_sept_pmt_ds_fc_imp_woe.csv.gz"],
+              ['/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/',"test_data_oct_pmt_ds_fc_imp.csv.gz","test_data_oct_pmt_ds_fc_imp_woe.csv.gz"],
+              ['/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/',"test_data_nov_pmt_ds_fc_imp.csv.gz","test_data_nov_pmt_ds_fc_imp_woe.csv.gz"],
+              ['/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/',"test_data_dec_pmt_ds_fc_imp.csv.gz","test_data_dec_pmt_ds_fc_imp_woe.csv.gz"]
               )
             # Inputs: woe_assign_pickle(work_dir,input_file,output_file)
 pool = Pool(processes=3)

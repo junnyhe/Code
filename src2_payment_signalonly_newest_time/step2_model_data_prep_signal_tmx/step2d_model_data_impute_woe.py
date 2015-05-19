@@ -5,7 +5,7 @@ import sys
 import datetime
 import random
 from numpy import *
-sys.path.append("/home/junhe/fraud_model/Code/tools/csv_operations")
+sys.path.append("/fraud_model/Code/tools/csv_operations")
 import csv_ops
 from csv_ops import *
 from csv_woe_cat import *
@@ -26,7 +26,7 @@ def woe_assign_pickle_helper(arg):
 global work_dir
 
 if len(sys.argv) <=1:
-    work_dir=''#/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt_signalonly_newest_time/' # everything should/will be in w
+    work_dir=''#/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt_signalonly_newest_time/' # everything should/will be in w
 elif len(sys.argv) ==2:
     work_dir=sys.argv[1]
 else:

@@ -14,7 +14,7 @@ from multiprocessing import Pool
 from sklearn.feature_extraction.text import TfidfVectorizer
 
 
-sys.path.append("/home/junhe/fraud_model/Code/src3/step3_model_data_prep_signal_tmx")
+sys.path.append("/fraud_model/Code/src3/step3_model_data_prep_signal_tmx")
 from step3a_model_data_rc_tmxrc_ind_creation import *
 from step3b_model_data_feature_creation import *
 from step3c_model_data_impute_woe_assigin import *
@@ -81,7 +81,7 @@ def rc_tmxrc_ind_creation_batch_helper(arg):
     rc_tmxrc_ind_creation_batch(arg[0],arg[1])
     
 
-work_dir = '/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v3pmt_test_period/'
+work_dir = '/fraud_model/Data/Model_Data_Signal_Tmx_v3pmt_test_period/'
 
 if __name__=="__main__":
     

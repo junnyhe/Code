@@ -8,10 +8,10 @@ import random
 def cat_daily_files(start_day,out_file_name):
     
     # get input
-    signal_dir = "/home/junhe/fraud_model/Data/Raw_Data/merged_data/"
-    tgt_dir = "/home/junhe/fraud_model/Data/Raw_Data/targets/"
-    rule_dir = "/home/junhe/fraud_model/Data/Raw_Data/rule_results_pmt_direction/"
-    out_dir = "/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/"
+    signal_dir = "/fraud_model/Data/Raw_Data/merged_data/"
+    tgt_dir = "/fraud_model/Data/Raw_Data/targets/"
+    rule_dir = "/fraud_model/Data/Raw_Data/rule_results_pmt_direction/"
+    out_dir = "/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/"
     
     
     # load target to dict

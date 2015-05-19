@@ -23,8 +23,8 @@ from sklearn.lda import LDA
 from sklearn.qda import QDA
 
 from sklearn.metrics import roc_curve, auc
-sys.path.append("/home/junhe/fraud_model/Code/tools/model_tools")
-sys.path.append("/home/junhe/fraud_model/Code/tools/csv_operations")
+sys.path.append("/fraud_model/Code/tools/model_tools")
+sys.path.append("/fraud_model/Code/tools/csv_operations")
 
 import csv_ops
 from csv_ops import *
@@ -219,10 +219,10 @@ classifiers = {
 ############################# Main: Run Different Classifiers ################################
 
 
-data_dir='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v3wd/'
+data_dir='/fraud_model/Data/Model_Data_Signal_Tmx_v3wd/'
 
 
-result_dir='/home/junhe/fraud_model/Results/Model_Results_Signal_Tmx_v3wd_tmxrc_ind/'
+result_dir='/fraud_model/Results/Model_Results_Signal_Tmx_v3wd_tmxrc_ind/'
 good_downsample_rate = 0.3 #used to scale back hit rate
 
 for job in joblist:

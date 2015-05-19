@@ -24,8 +24,8 @@ from sklearn.lda import LDA
 from sklearn.qda import QDA
 
 from sklearn.metrics import roc_curve, auc
-sys.path.append("/home/junhe/fraud_model/Code/tools/model_tools")
-sys.path.append("/home/junhe/fraud_model/Code/tools/csv_operations")
+sys.path.append("/fraud_model/Code/tools/model_tools")
+sys.path.append("/fraud_model/Code/tools/csv_operations")
 
 import csv_ops
 from csv_ops import *
@@ -209,8 +209,8 @@ def format_results_one_case(ks, auc, lorenz_curve_capt_rate, good_downsample_rat
 
 
 if len(sys.argv) <=1:
-    data_dir=''#/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt_signalonly_newest_time/'
-    result_dir=''#/home/junhe/fraud_model/Results/Model_Results_Signal_Only_v2pmt_woeSmth=0_newest_time/'
+    data_dir=''#/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt_signalonly_newest_time/'
+    result_dir=''#/fraud_model/Results/Model_Results_Signal_Only_v2pmt_woeSmth=0_newest_time/'
 elif len(sys.argv) ==3:
     data_dir=sys.argv[1]
     result_dir=sys.argv[2]

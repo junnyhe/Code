@@ -14,7 +14,7 @@ def impute_replace_woe_assign_batch_helper(arg):
     impute_replace_woe_assign_batch(arg[0],arg[1])
 
     
-work_dir='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v3wd/' # everything should/will be in work_dir
+work_dir='/fraud_model/Data/Model_Data_Signal_Tmx_v3wd/' # everything should/will be in work_dir
 
 
 class impute_replace:
@@ -64,10 +64,10 @@ def impute_replace_woe_assign_batch(input_file,output_file):
     outcsv=csv.writer(outfile)
     
     ##### 2.instantiate scoring object #####
-    impute_value_filename = "/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v3wd/impute_values.p"
+    impute_value_filename = "/fraud_model/Data/Model_Data_Signal_Tmx_v3wd/impute_values.p"
     step4_impute_replace = impute_replace(impute_value_filename)
     
-    risk_table_filename = "/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v3wd/risk_table.p"
+    risk_table_filename = "/fraud_model/Data/Model_Data_Signal_Tmx_v3wd/risk_table.p"
     step5_woe_assign = woe_assign(risk_table_filename)
     
     ###### 3.prepare new header ######

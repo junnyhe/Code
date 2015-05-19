@@ -22,7 +22,7 @@ def roll_up_tmx_payee( day_start,  n_Days):
     day=day_start#start date
     nDays=n_Days # number of days to process
     
-    work_dir="/home/junhe/fraud_model/Data/Raw_Data/threatmetrix_payee_w_tmxrc/"
+    work_dir="/fraud_model/Data/Raw_Data/threatmetrix_payee_w_tmxrc/"
     prefix='tmx_payee_' #prefix to signal numbers
 
     #get signal list

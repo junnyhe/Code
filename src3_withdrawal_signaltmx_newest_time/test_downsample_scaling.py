@@ -1,11 +1,11 @@
 import sys
-sys.path.append("/home/junhe/fraud_model/Code/tools/model_tools")
+sys.path.append("/fraud_model/Code/tools/model_tools")
 from load_data import *
 import random
 from numpy import *
 
-data_dir='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v3wd_newest_time/'
-result_dir='/home/junhe/fraud_model/Results/Model_Results_Signal_Tmx_v3wd_woeSmth=0_newest_time/'
+data_dir='/fraud_model/Data/Model_Data_Signal_Tmx_v3wd_newest_time/'
+result_dir='/fraud_model/Results/Model_Results_Signal_Tmx_v3wd_woeSmth=0_newest_time/'
 
 test_data_file=data_dir+'model_data_wd_oos_ds_rcind_fc_imp_woe.csv.gz'
 var_list_filename=result_dir+'model_var_list_signal_rc_tmxrc_ind.csv'

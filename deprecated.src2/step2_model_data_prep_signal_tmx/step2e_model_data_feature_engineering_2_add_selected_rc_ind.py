@@ -7,7 +7,7 @@ import datetime
 import random
 from numpy import *
 from operator import itemgetter
-sys.path.append("/home/junhe/fraud_model/Code/tools/csv_operations")
+sys.path.append("/fraud_model/Code/tools/csv_operations")
 import csv_ops
 from csv_ops import *
 from multiprocessing import Pool
@@ -71,7 +71,7 @@ def rc_ind_addition(input_file,output_file):
     outcsv=csv.writer(outfile)
     
     # payer rc var list 
-    payer_rc_var_filename='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/var_list_rc_ind_payer.csv'
+    payer_rc_var_filename='/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/var_list_rc_ind_payer.csv'
     payer_rc_var_file=open(payer_rc_var_filename,'rU')
     payer_rc_var_csv=csv.reader(payer_rc_var_file)
     payer_rc_var_list=[]
@@ -80,7 +80,7 @@ def rc_ind_addition(input_file,output_file):
     payer_rc_var_set=set(payer_rc_var_list)
     
     # payee rc var list 
-    payee_rc_var_filename='/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/var_list_rc_ind_payee.csv'
+    payee_rc_var_filename='/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/var_list_rc_ind_payee.csv'
     payee_rc_var_file=open(payee_rc_var_filename,'rU')
     payee_rc_var_csv=csv.reader(payee_rc_var_file)
     payee_rc_var_list=[]
@@ -89,7 +89,7 @@ def rc_ind_addition(input_file,output_file):
     payee_rc_var_set=set(payee_rc_var_list)
     
     # rc ind select var list 
-    rc_ind_select_var_filename='/home/junhe/fraud_model/Results/Model_Results_Signal_Tmx_v2pmt_rc_ind/model_var_list_rc_ind_400.csv'
+    rc_ind_select_var_filename='/fraud_model/Results/Model_Results_Signal_Tmx_v2pmt_rc_ind/model_var_list_rc_ind_400.csv'
     rc_ind_select_var_file=open(rc_ind_select_var_filename,'rU')
     rc_ind_select_var_csv=csv.reader(rc_ind_select_var_file)
     rc_ind_select_var_list=[]
@@ -117,7 +117,7 @@ def rc_ind_addition_helper(arg):
     rc_ind_addition(arg[0],arg[1])
     
 
-work_dir = "/home/junhe/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/"
+work_dir = "/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt/"
 
 input_list = (
               [work_dir+"model_data_pmt_ins_ds_fc_imp_woe.csv.gz",work_dir+"model_data_pmt_ins_ds_fc_imp_woe_add_rc_ind.csv.gz"],
