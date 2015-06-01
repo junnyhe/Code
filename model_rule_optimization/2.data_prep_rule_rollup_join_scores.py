@@ -124,7 +124,7 @@ def rollup_rules(output_file_pmt,output_file_wd):
     day=dayStart
     for iDay in range(nDays):
     
-        print "rolling up threatmetrix signals for day: ",str(day)
+        print "rolling up rules for day: ",str(day)
             
         input_file="/fraud_model/Data/Raw_Data/rule_fire_review_results/rule_fire_and_review_results_"+str(day)+".csv.gz"
         infile=gzip.open(input_file,'rb')
@@ -185,7 +185,7 @@ def rollup_rules(output_file_pmt,output_file_wd):
 
 global score_pmt_dict, score_wd_dict, rule_list, dayStart,nDays
 
-dayStart=datetime.date(2015,4,10) #start date
+dayStart=datetime.date(2015,5,18) #start date
 nDays=5 # number of days to process
 
 # load scores to dict
@@ -195,8 +195,8 @@ load_score_dict()
 rule_list = find_rule_list()
 
 # rollup and join
-output_file_pmt = "/fraud_model/Data/model_rule_optimization/rule_score_pmt_20150409_20150415.csv"
-output_file_wd  = "/fraud_model/Data/model_rule_optimization/rule_score_wd_20150409_20150415.csv"
+output_file_pmt = "/fraud_model/Data/model_rule_optimization/rule_score_pmt_20150518_20150522.csv"
+output_file_wd  = "/fraud_model/Data/model_rule_optimization/rule_score_wd_20150518_20150522.csv"
 rollup_rules(output_file_pmt,output_file_wd)
 
 

@@ -2,13 +2,23 @@ import pandas as pd
 import numpy as np
 
 global total_fraud_cnt, total_cnt, direction
-direction=1 # = 1 for 'pmt' or 2 for 'wd'
-type='pmt' # = 'pmt' or 'wd'
+
+type='wd' # = 'pmt' or 'wd'
+result_postfix='_20150518_20150522'
+
+
+if type=='pmt':
+    direction=1 # = 1 for 'pmt' or 2 for 'wd'
+elif type=='wd':
+    direction=2 # = 1 for 'pmt' or 2 for 'wd'
+else:
+    print "type only takes 'pmt' and 'wd'"
+    exit()
 
 
 out_dir = '/fraud_model/Results/model_rule_optimization/'
 # load data
-df=pd.read_csv('/fraud_model/Data/model_rule_optimization/rule_score_'+type+'_20150409_20150415.csv')
+df=pd.read_csv('/fraud_model/Data/model_rule_optimization/rule_score_'+type+'_20150518_20150522.csv')
 
 # fill Nan
 df.blacklist_reason.fillna("Good",inplace=True)
@@ -49,7 +59,7 @@ for rule in score_rule_list:
     fraud_cnt,good_cnt,hit_rate,catch_rate,refer_rate = analyze_hit_catch(rule)
     results.append([fraud_cnt,good_cnt,hit_rate,catch_rate,refer_rate])
 results_df = pd.DataFrame(np.array(results),index=score_rule_list,columns=['fraud_cnt','good_cnt','hit_rate','catch_rate','refer_rate'])
-results_df.to_csv(out_dir+type+'_score_cutoff_hit_catch.csv')
+results_df.to_csv(out_dir+type+'_score_cutoff_hit_catch'+result_postfix+'.csv')
 
 # analyze hit catch for different rules
 results = []
@@ -57,7 +67,7 @@ for rule in rule_list:
     fraud_cnt,good_cnt,hit_rate,catch_rate,refer_rate = analyze_hit_catch(rule)
     results.append([fraud_cnt,good_cnt,hit_rate,catch_rate,refer_rate])
 results_df = pd.DataFrame(np.array(results),index=rule_list,columns=['fraud_cnt','good_cnt','hit_rate','catch_rate','refer_rate'])
-results_df.to_csv(out_dir+type+'_rule_hit_catch.csv')
+results_df.to_csv(out_dir+type+'_rule_hit_catch'+result_postfix+'.csv')
 
 
 

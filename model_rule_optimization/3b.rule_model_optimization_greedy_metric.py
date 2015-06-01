@@ -159,17 +159,21 @@ def optimize_rule_w_score(score_ind_list):
 
 
 
-out_dir="/fraud_model/Results/model_rule_optimization/pmt/"
-type='pmt'
-direction=1
-'''
-out_dir="/fraud_model/Results/model_rule_optimization/wd/"
 type='wd'
-direction=2
-'''
+result_postfix='_20150518_20150522'
+
+out_dir="/fraud_model/Results/model_rule_optimization/"+ type + result_postfix+"/"
+
+if type=='pmt':
+    direction=1 # = 1 for 'pmt' or 2 for 'wd'
+elif type=='wd':
+    direction=2 # = 1 for 'pmt' or 2 for 'wd'
+else:
+    print "type only takes 'pmt' and 'wd'"
+    exit()
 
 # load header and get rule list
-input_file="/fraud_model/Data/model_rule_optimization/rule_score_"+type+"_20150409_20150415.csv"
+input_file="/fraud_model/Data/model_rule_optimization/rule_score_" + type + result_postfix+".csv"
 infile=open(input_file,'rb')
 incsv=csv.reader(infile)
 header=incsv.next()

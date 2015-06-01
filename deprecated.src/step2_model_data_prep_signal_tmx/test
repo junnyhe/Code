@@ -1,2 +1,0 @@
-clf=model.estimators_[0].tree_
-clf.predict_proba(X)
