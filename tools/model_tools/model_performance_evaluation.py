@@ -170,3 +170,42 @@ def performance_eval_test(y,p_pred,result_dir,output_suffix):
     print (output_suffix,auc,ks)
     
     return ks, auc, lorenz_curve_capt_rate
+
+
+
+def performance_eval_test_downsample(y,p_pred,result_dir,output_suffix,good_downsample_rate):
+    # evaluate model performance on two data samples, train and test
+    
+    # Compute KS, ROC curve and AUC for train
+    ks, ks_pos, pctl, tpr, fpr, tp_cumcnt, fp_cumcnt, threshold, lorenz_curve, lorenz_curve_capt_rate= ks_roc_precision(y,p_pred,good_downsample_rate)
+    auc = getAUC(p_pred,y)
+    
+    ############# # Output validation Lorenz and KS results to file ##############
+    
+    out_file = open(result_dir + 'KS_validation_' + str(output_suffix)+'.csv', 'wb')
+    out_csv = csv.writer(out_file)
+    
+    out_csv.writerow(["Good_Down_Sample_Rate_"+str(output_suffix)])
+    out_csv.writerow([good_downsample_rate])
+    out_csv.writerow(["AUC_"+str(output_suffix)])
+    out_csv.writerow([auc])
+    out_csv.writerow(["KS_"+str(output_suffix)])
+    out_csv.writerow([ks])
+    out_csv.writerow(["KS_Position_for_"+str(output_suffix)])
+    out_csv.writerow([ks_pos])
+    out_csv.writerow(["Capture_Rate_"+str(output_suffix)])
+    for row in lorenz_curve_capt_rate:
+        out_csv.writerow(row)
+    out_csv.writerow(["Lorenz_Curve_"+str(output_suffix)])
+    for row in lorenz_curve:
+        out_csv.writerow(row)
+        
+    out_file.close()
+        
+        
+    # Print results for all classifier
+    print (output_suffix,'AUC on test','KS on test')
+    print (output_suffix,auc,ks)
+    
+    return ks, auc, lorenz_curve_capt_rate
+

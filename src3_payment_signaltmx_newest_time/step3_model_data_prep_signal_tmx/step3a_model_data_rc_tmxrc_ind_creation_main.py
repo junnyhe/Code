@@ -19,6 +19,8 @@ from step3c_model_data_impute_woe_assigin import *
 
 def rc_tmxrc_ind_creation_batch(input_file,output_file):
     
+    print "Create tmx reason code indicator for file", input_file
+    
     ##### 1.input output files #####
     infile=gzip.open(input_file,'rb')
     incsv=csv.DictReader(infile)
@@ -69,7 +71,7 @@ def rc_tmxrc_ind_creation_batch(input_file,output_file):
         outcsv.writerow([row[key] for key in header])
         
         nRow+=1
-        if nRow%10000 == 0:
+        if nRow%100000 == 0:
             print nRow,"row has been processed; time lapsed:",time.time()-t0
 
 

@@ -19,6 +19,8 @@ from step3c_model_data_impute_woe_assigin import *
 
 def rc_tmxrc_ind_creation_batch(input_file,output_file):
     
+    print "Create tmx reason code indicator for file", input_file
+    
     ##### 1.input output files #####
     infile=gzip.open(input_file,'rb')
     incsv=csv.DictReader(infile)

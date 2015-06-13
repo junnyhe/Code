@@ -1,0 +1,9 @@
+Models were retrained, Performance test passed. 
+
+Performance test summary:
+pmt signal model performance test (prec_at_recall_70>0.2) PASSED: 0.28931533582696373
+wd signal model performance test (prec_at_recall_70>0.45) PASSED: 0.73367697594501713
+pmt signaltmx model performance test (prec_at_recall_70>0.2) PASSED: 0.26050666276175133
+wd signaltmx model performance test (prec_at_recall_70>0.45) PASSED: 0.697712418301
+
+Models are successfully pushed to GitHub, please closely monitor the model performance.

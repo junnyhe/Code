@@ -146,7 +146,8 @@ for i in range(len(df)):
         
 df['dollar_band']=dollar_band
 
-df2 = df[['score','amount','score_band','dollar_band',
+df2 = df[['payment_request_id',
+          'score','amount','score_band','dollar_band',
           'rule_96',
           'rule_367',
           'rule_407',

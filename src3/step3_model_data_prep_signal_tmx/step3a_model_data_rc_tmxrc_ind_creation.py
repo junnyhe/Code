@@ -106,7 +106,7 @@ class tmxrc_ind_creation:
             row["payee_tmxrc_ind_"+tmxrc]=0
             
         if row['tmx_payee_tmx_reason_code'] != '':
-            exec "payee_tmxrc_list_in_row="+str(row['tmx_payer_tmx_reason_code']).replace(';',',')
+            exec "payee_tmxrc_list_in_row="+str(row['tmx_payee_tmx_reason_code']).replace(';',',')
             
             for tmxrc in payee_tmxrc_list_in_row:
                 if tmxrc in self.payee_tmxrc_entry_set:

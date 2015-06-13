@@ -178,7 +178,7 @@ def tmxrc_ind_creation(input_file,output_file):
         outcsv.writerow([row_tmxrc_ind[key] for key in header])
         
         nRow+=1
-        if nRow%10000 ==0:
+        if nRow%100000 ==0:
             print nRow," rows are processed for file:",input_file
 
 

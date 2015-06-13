@@ -2,6 +2,7 @@ import csv
 import gzip
 import os
 import datetime
+import sys
 from multiprocessing import Pool
 
 # signal name list: id    payment_request_id    signal_id    sgn_bool    sgn_int    sgn_float    sgn_string    time
@@ -118,9 +119,23 @@ def roll_up_signal( day_start,  n_Days):
 def roll_up_signal_helper(arg):
     roll_up_signal(arg,1)
 
+
+# first day of the perirod
+if len(sys.argv) <=1: # if first day is not specified by stdin
+    year=2015
+    month=4
+    day=1
+    nDays = 30
+else:
+    year=int(sys.argv[1])
+    month=int(sys.argv[2])
+    day=int(sys.argv[3])
+    nDays=int(sys.argv[4])
+
+print "first day to roll up signals:",year,'-',month,'-',day
 nWorkers = 4
-dayStart = datetime.date(2015,3,1)
-nDays = 31
+dayStart = datetime.date(year, month, day)
+
 dateList = []
 for i in range(nDays):
     dateList.append(dayStart+datetime.timedelta(i))

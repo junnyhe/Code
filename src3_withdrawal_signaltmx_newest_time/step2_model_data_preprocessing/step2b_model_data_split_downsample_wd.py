@@ -46,7 +46,7 @@ def train_validation_split(input_file,oos_frac,ins_file,oos_file):
             ooscsv.writerow(row)
             
         nRow+=1
-        if nRow%10000 ==0:
+        if nRow%100000 ==0:
             print nRow," rows are processed"
             
     print "Total, ", nRow," rows are processed;"
@@ -80,7 +80,7 @@ def downsample_filter(input_file,output_file, downsamle_fieldname, downsample_fi
         #    print row['target'], row['target2'], row['blacklist_reason']
             
         nRow+=1
-        if nRow%10000 ==0:
+        if nRow%100000 ==0:
             print nRow," rows are processed"
 
 

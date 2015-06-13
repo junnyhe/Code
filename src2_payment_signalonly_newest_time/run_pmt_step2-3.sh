@@ -1,20 +1,22 @@
 set -e
-data_dir=/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt_signalonly_newest_time/
-result_dir=/fraud_model/Results/Model_Results_Signal_Only_v2pmt_woeSmth=0_newest_time/
 
 year=2015
-month=3
-day=31
+month=4
+day=30
 
 opt=2 # opt=1 train model; opt=2 copy model files and test
 
 if [ $opt == 1 ]; then
 	# opt=1 train model;
 	
-	python step2_model_data_prep_signal_tmx/step2a1_data_concat_daily_files.py $year $month $day
-	python step2_model_data_prep_signal_tmx/step2b_model_data_split_downsample.py $data_dir
-	python step2_model_data_prep_signal_tmx/step2d_model_data_impute_woe.py $data_dir
-	python step3_model_train/step3_model_train_signal_tmx_v2.py $data_dir $result_dir
+	code_dir=/fraud_model/Code/src2_payment_signalonly_newest_time/
+	data_dir=/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt_signalonly_newest_time/
+	result_dir=/fraud_model/Results/Model_Results_Signal_Only_v2pmt_woeSmth=0_newest_time/
+
+	python ${code_dir}step2_model_data_prep_signal_tmx/step2a1_data_concat_daily_files.py $year $month $day
+	python ${code_dir}step2_model_data_prep_signal_tmx/step2b_model_data_split_downsample.py $data_dir
+	python ${code_dir}step2_model_data_prep_signal_tmx/step2d_model_data_impute_woe.py $data_dir
+	python ${code_dir}step3_model_train/step3_model_train_signal_tmx_v2.py $data_dir $result_dir
 
 elif [ $opt == 2 ]; then
 	#opt=2 copy model files and test
@@ -33,4 +35,3 @@ elif [ $opt == 2 ]; then
 	python model_scoring_prod.py 1
 	
 fi
-

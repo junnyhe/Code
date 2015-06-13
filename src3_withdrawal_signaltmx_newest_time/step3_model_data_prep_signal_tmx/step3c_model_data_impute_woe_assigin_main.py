@@ -53,7 +53,7 @@ def impute_replace_woe_assign_batch(input_file,output_file):
         outcsv.writerow([row[var] for var in header])
         
         nRow+=1
-        if nRow%10000 == 0:
+        if nRow%100000 == 0:
             print nRow,"row has been processed; time lapsed:",time.time()-t0
 
 

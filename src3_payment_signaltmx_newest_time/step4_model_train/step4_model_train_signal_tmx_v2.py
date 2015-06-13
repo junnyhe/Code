@@ -34,6 +34,7 @@ from load_data import *
 #from ks_roc import *
 from model_performance_evaluation import performance_eval_train_validation
 from model_performance_evaluation import performance_eval_test
+from model_performance_evaluation import performance_eval_test_downsample
 
 
 def model_train_validation(ins_file, oos_file, classifier, var_list_filename, output_dir, output_suffix):
@@ -162,15 +163,16 @@ def model_test_data_evaluation_comp_ruletag(test_data_file, var_list_filename, m
 
     # Performance Evaluation: Test
     print 'Evalutate model performance ...'
-    ks, auc, lorenz_curve_capt_rate = performance_eval_test(y,p_pred,output_dir,output_suffix)
+    ks, auc, lorenz_curve_capt_rate = performance_eval_test_downsample(y,p_pred,output_dir,output_suffix,good_downsample_rate)
     
     ####################### compare catch_rate, hit_rate, refer_rate between model and rule ######################
     scale_factor = (1-y)*(1/good_downsample_rate)+y
+    '''
     rule_cmp_outfile=csv.writer(open(output_dir+"score_ruletag_"+output_suffix+".csv",'w'))
     rule_cmp_outfile.writerow(['payment_request_id','fraud_tag','score','manual_review_tag'])
     for i in range(len(p_pred)):
         rule_cmp_outfile.writerow([key[i],y[i],p_pred[i],tag[i],scale_factor[i]])
-    
+    '''
     # find rates of rule
     catch_rate_rule = sum(y*tag*scale_factor)/sum(y*scale_factor) # fraud found by rule tag / total fraud
     hit_rate_rule = sum(y*tag*scale_factor)/sum(tag*scale_factor) # fraud found by rule tag / total referred by rule
@@ -207,8 +209,8 @@ def format_results_one_case(ks, auc, lorenz_curve_capt_rate, good_downsample_rat
     
 
 if len(sys.argv) <=1:
-    data_dir=''#/fraud_model/Data/Model_Data_Signal_Tmx_v3pmt_newest_time/'
-    result_dir=''#/fraud_model/Results/Model_Results_Signal_Tmx_v3pmt_woeSmth=0_newest_time/'
+    data_dir='/fraud_model/Data/Model_Data_Signal_Tmx_v3pmt_newest_time/'
+    result_dir='/fraud_model/Results/Model_Results_Signal_Tmx_v3pmt_woeSmth=0_newest_time/'
 elif len(sys.argv) ==3:
     data_dir=sys.argv[1]
     result_dir=sys.argv[2]
@@ -245,14 +247,14 @@ joblist=[
         #(classifiers["RandomForest"],'RandomForest_tmxpayer_tmxpayee','model_var_list_tmxpayer_tmxpayee.csv'),
         #(classifiers["RandomForest"],'RandomForest_tmxpayerpayee_comp','model_var_list_tmxpayerpayee_comp.csv'),
         #(classifiers["RandomForest"],'RandomForest_signal_tmxboth','model_var_list_signal_tmxboth.csv'),
-        #(classifiers["RandomForest"],'RandomForest_signal_tmx_rc_ind','model_var_list_signal_tmx_rc_ind.csv'),
-        (classifiers["RandomForest"],'RandomForest_signal_rc_tmx_rc_ind','model_var_list_signal_rc_tmxrc_ind.csv'),
+        #(classifiers["RandomForest"],'RandomForest_signal_tmxrc_ind','model_var_list_signal_tmxrc_ind.csv'),
+        (classifiers["RandomForest"],'RandomForest_signal_rc_tmxrc_ind','model_var_list_signal_rc_tmxrc_ind.csv'),
         
-        #(classifiers["RandomForest"],'RandomForest_signal_rc_tmx_rc_ind_400','model_var_list_signal_rc_tmx_rc_ind_400.csv'),
-        #(classifiers["RandomForest"],'RandomForest_signal_rc_tmx_rc_ind_163','model_var_list_signal_rc_tmx_rc_ind_163.csv'),
-        #(classifiers["RandomForest"],'RandomForest_signal_rc_tmx_rc_ind_292','model_var_list_signal_rc_tmx_rc_ind_292.csv'),
-        #(classifiers["RandomForest"],'RandomForest_signal_rc_tmx_rc_ind_393','model_var_list_signal_rc_tmx_rc_ind_393.csv'),
-        #(classifiers["RandomForest"],'RandomForest_signal_rc_tmx_rc_ind_456','model_var_list_signal_rc_tmx_rc_ind_456.csv'),
+        #(classifiers["RandomForest"],'RandomForest_signal_rc_tmxrc_ind_400','model_var_list_signal_rc_tmxrc_ind_400.csv'),
+        #(classifiers["RandomForest"],'RandomForest_signal_rc_tmxrc_ind_163','model_var_list_signal_rc_tmxrc_ind_163.csv'),
+        #(classifiers["RandomForest"],'RandomForest_signal_rc_tmxrc_ind_292','model_var_list_signal_rc_tmxrc_ind_292.csv'),
+        #(classifiers["RandomForest"],'RandomForest_signal_rc_tmxrc_ind_393','model_var_list_signal_rc_tmxrc_ind_393.csv'),
+        #(classifiers["RandomForest"],'RandomForest_signal_rc_tmxrc_ind_456','model_var_list_signal_rc_tmxrc_ind_456.csv'),
         
         #(classifiers["Logistic"],'Logistic_signal_full','model_var_list_signal.csv'), # suffix and varlist
         #(DecisionTreeClassifier(max_depth=32),'DecisionTree_signal_full_depth=32','model_var_list_signal.csv'), # suffix and varlist

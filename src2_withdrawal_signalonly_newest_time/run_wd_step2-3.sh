@@ -1,16 +1,18 @@
 set -e
-pmt_data_dir=/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt_signalonly_newest_time/
-wd_data_dir=/fraud_model/Data/Model_Data_Signal_Tmx_v2wd_signalonly_newest_time/
-result_dir=/fraud_model/Results/Model_Results_Signal_Only_v2wd_woeSmth=0_newest_time/
 
 opt=2 # opt=1 train model; opt=2 copy model files and test
 
 if [ $opt == 1 ]; then
-	# opt=1 train model;
+	# opt=1 train model
 	
-	python step2_model_data_prep_signal_tmx/step2b_model_data_split_downsample.py $pmt_data_dir $wd_data_dir
-	python step2_model_data_prep_signal_tmx/step2d_model_data_impute_woe.py $wd_data_dir
-	python step3_model_train/step3_model_train_signal_tmx_v2.py $wd_data_dir $result_dir
+	code_dir=/fraud_model/Code/src2_withdrawal_signalonly_newest_time/
+	pmt_data_dir=/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt_signalonly_newest_time/
+	wd_data_dir=/fraud_model/Data/Model_Data_Signal_Tmx_v2wd_signalonly_newest_time/
+	result_dir=/fraud_model/Results/Model_Results_Signal_Only_v2wd_woeSmth=0_newest_time/
+
+	python ${code_dir}step2_model_data_prep_signal_tmx/step2b_model_data_split_downsample.py $pmt_data_dir $wd_data_dir
+	python ${code_dir}step2_model_data_prep_signal_tmx/step2d_model_data_impute_woe.py $wd_data_dir
+	python ${code_dir}step3_model_train/step3_model_train_signal_tmx_v2.py $wd_data_dir $result_dir
 
 elif [ $opt == 2 ]; then
 	#opt=2 copy model files and test
