@@ -1,3 +1,5 @@
+import sys
+import os
 import csv
 import gzip
 import datetime
@@ -11,13 +13,24 @@ def is_number(s):
         return False
     
 def create_connection():
-    return pymysql.connect(host='prd-analydb02', port=53306, user='junhe-ro', passwd='lohUj8B$jGn&!y1*Zb2BTsT5&BQ^mAHq', db='fraud')
+    return pymysql.connect(host='localhost', port=53306, user='junhe-ro', passwd='lohUj8B$jGn&!y1*Zb2BTsT5&BQ^mAHq', db='fraud')
 
 connection = create_connection()
 
-out_dir = "../Data/Raw_Data/targets/"
-day=datetime.date(2014,7,1)
-nDays=274
+out_dir = "/fraud_model/Data/Raw_Data/targets/"
+# Date to pull target data
+if len(sys.argv) <=1: # if day is not specified by stdin
+    year=2015
+    month=3
+    day=31
+    nDays=1
+else:
+    year=int(sys.argv[1])
+    month=int(sys.argv[2])
+    day=int(sys.argv[3])
+    nDays=int(sys.argv[4])
+    
+day=datetime.date(year,month,day)
 
 for iDay in range(nDays):
     
@@ -280,6 +293,10 @@ for iDay in range(nDays):
     cursor.close()
     
     print nRow,"rows processed for day",str(day)
+    
+    print "scp "+out_dir+"fraud_target_"+str(day)+".csv.gz junhe@riskanalytics:/fraud_model/Data/Raw_Data/rule_results_pmt_direction/"
+    os.system("scp "+out_dir+"fraud_target_"+str(day)+".csv.gz junhe@riskanalytics:/fraud_model/Data/Raw_Data/rule_results_pmt_direction/")
+    
     day = day+datetime.timedelta(1)
     
 

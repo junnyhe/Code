@@ -6,6 +6,9 @@ import sys
 
 from multiprocessing import Pool
 
+global work_dir
+work_dir="/fraud_model/Data/Raw_Data/threatmetrix_payee_w_tmxrc/"
+
 def is_number(s):
     try:
         float(s)
@@ -14,16 +17,11 @@ def is_number(s):
         return False
 
 
-
-
-
-
 def roll_up_tmx_payee( day_start,  n_Days):
     
     day=day_start#start date
     nDays=n_Days # number of days to process
     
-    work_dir="/fraud_model/Data/Raw_Data/threatmetrix_payee_w_tmxrc/"
     prefix='tmx_payee_' #prefix to signal numbers
 
     #get signal list
@@ -45,7 +43,7 @@ def roll_up_tmx_payee( day_start,  n_Days):
     
     for iDay in range(nDays):
         
-        print "rolling up threatmetrix signals for day: ",str(day)
+        print "rolling up payee threatmetrix signals for day: ",str(day)
         
         
         cmdout=os.system('zcat < '+work_dir.replace(" ","\ ")+'threatmetrix_payee_'+str(day)+'.csv.gz | head -1 > '+work_dir.replace(" ","\ ")+'threatmetrix_payee_'+str(day)+'_sorted.csv')
@@ -100,7 +98,7 @@ def roll_up_tmx_payee( day_start,  n_Days):
                         
         
             nRow+=1
-            if nRow%200000 ==0:
+            if nRow%500000 ==0:
                 print nRow,' rows are processed for:', str(day)
         #end of file output last row_flat
         outcsv.writerow([row_flat.get(var,'') for var in header_out])
@@ -118,13 +116,13 @@ def roll_up_tmx_payee( day_start,  n_Days):
 
 
 def roll_up_tmx_payee_helper(arg):
-    roll_up_tmx_payee(arg,1)
+    roll_up_tmx_payee(arg,1) # always 1 to deal with one day, multiple days are dealt by pool
 
-# first day of the perirod
-if len(sys.argv) <=1: # if first day is not specified by stdin
+# last day of the perirod
+if len(sys.argv) <=1: # if last day is not specified by stdin
     year=2015
     month=4
-    day=1
+    day=30
     nDays = 30
 else:
     year=int(sys.argv[1])
@@ -134,11 +132,17 @@ else:
 
 print "first day to roll up tmx payee:",year,'-',month,'-',day
 nWorkers = 4
-dayStart = datetime.date(year, month, day)
+dayEnd = datetime.date(year, month, day)
 
+# prepare datelist to roll up, skip dates that already have been rolled up
 dateList = []
 for i in range(nDays):
-    dateList.append(dayStart+datetime.timedelta(i))
+    dayToProcess=dayEnd-datetime.timedelta(i)
+    if os.path.exists(work_dir + "threatmetrix_payee_flat_"+str(dayToProcess)+".csv.gz"):
+        print "threatmetrix_payee_flat_"+str(dayToProcess)+".csv.gz"," already exits, skipping ..."
+    else:
+        print "threatmetrix_payee_flat_"+str(dayToProcess)+".csv.gz"," rollup will be processed"
+        dateList.append(dayToProcess)
 
 
 pool = Pool(processes=nWorkers)

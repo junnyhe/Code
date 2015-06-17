@@ -10,6 +10,8 @@ from csv_ops import *
 
 from multiprocessing import Pool
 
+global work_dir
+work_dir="/fraud_model/Data/Raw_Data/merged_data_w_tmxrc/"
 
 def merge_all_data_sources( day_start,  n_Days):
     
@@ -20,8 +22,8 @@ def merge_all_data_sources( day_start,  n_Days):
         file1="/fraud_model/Data/Raw_Data/signals/fraud_signal_flat_"+str(day)+".csv.gz"
         file2="/fraud_model/Data/Raw_Data/threatmetrix_payer_w_tmxrc/threatmetrix_payer_flat_"+str(day)+".csv.gz"
         file3="/fraud_model/Data/Raw_Data/threatmetrix_payee_w_tmxrc/threatmetrix_payee_flat_"+str(day)+".csv.gz"
-        file_out="/fraud_model/Data/Raw_Data/merged_data_w_tmxrc/signals_threatmetrix_payer_payee_"+str(day)+".csv.gz"
-        file_out_tmp= "/fraud_model/Data/Raw_Data/merged_data_w_tmxrc/merge_tmp_"+str(day)+".csv.gz"
+        file_out=work_dir+"signals_threatmetrix_payer_payee_"+str(day)+".csv.gz"
+        file_out_tmp= work_dir+"merge_tmp_"+str(day)+".csv.gz"
         
         
         key_list=['payment_request_id']
@@ -47,11 +49,11 @@ def merge_all_data_sources( day_start,  n_Days):
 def merge_all_data_sources_helper(arg):
     merge_all_data_sources(arg,1)
 
-# first day of the perirod
-if len(sys.argv) <=1: # if first day is not specified by stdin
+# last day of the perirod
+if len(sys.argv) <=1: # if last day is not specified by stdin
     year=2015
     month=4
-    day=1
+    day=30
     nDays = 30
 else:
     year=int(sys.argv[1])
@@ -61,11 +63,18 @@ else:
 
 print "first day to merge:",year,'-',month,'-',day
 nWorkers = 4
-dayStart = datetime.date(year, month, day)
+dayEnd = datetime.date(year, month, day)
 
+# prepare datelist to roll up, skip dates that already have been rolled up
 dateList = []
 for i in range(nDays):
-    dateList.append(dayStart+datetime.timedelta(i))
+    dayToProcess=dayEnd-datetime.timedelta(i)
+    if os.path.exists(work_dir + "signals_threatmetrix_payer_payee_"+str(dayToProcess)+".csv.gz"):
+        print "signals_threatmetrix_payer_payee_"+str(dayToProcess)+".csv.gz"," already exits, skipping ..."
+    else:
+        print "signals_threatmetrix_payer_payee_"+str(dayToProcess)+".csv.gz"," rollup will be processed"
+        dateList.append(dayToProcess)
+
 
 
 pool = Pool(processes=nWorkers)
