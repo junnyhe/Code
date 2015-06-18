@@ -78,7 +78,7 @@ def performance_eval_train_validation(y,p_pred,yv,pv_pred,result_dir,output_suff
     
     ############# # Output validation Lorenz and KS results to file ##############
     
-    out_file = open(result_dir + 'KS_validation_' + str(output_suffix)+'.csv', 'wb')
+    out_file = open(result_dir + 'performance_' + str(output_suffix)+'.csv', 'wb')
     out_csv = csv.writer(out_file)
     
     out_csv.writerow(["AUC_"+str(output_suffix)])
@@ -146,7 +146,7 @@ def performance_eval_test(y,p_pred,result_dir,output_suffix):
     
     ############# # Output validation Lorenz and KS results to file ##############
     
-    out_file = open(result_dir + 'KS_validation_' + str(output_suffix)+'.csv', 'wb')
+    out_file = open(result_dir + 'performance_' + str(output_suffix)+'.csv', 'wb')
     out_csv = csv.writer(out_file)
     
     out_csv.writerow(["AUC_"+str(output_suffix)])
@@ -182,7 +182,7 @@ def performance_eval_test_downsample(y,p_pred,result_dir,output_suffix,good_down
     
     ############# # Output validation Lorenz and KS results to file ##############
     
-    out_file = open(result_dir + 'KS_validation_' + str(output_suffix)+'.csv', 'wb')
+    out_file = open(result_dir + 'performance_' + str(output_suffix)+'.csv', 'wb')
     out_csv = csv.writer(out_file)
     
     out_csv.writerow(["Good_Down_Sample_Rate_"+str(output_suffix)])

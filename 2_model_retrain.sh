@@ -2,7 +2,7 @@
 set -e
 log_dir=/fraud_model/Code/
 
-days_shift=43
+days_shift=10
 year=$(date --date="$days_shift days ago" +%Y)
 month=$(date --date="$days_shift days ago" +%m)
 day=$(date --date="$days_shift days ago" +%d)

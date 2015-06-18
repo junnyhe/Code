@@ -240,7 +240,7 @@ classifiers = {
     }
 
 joblist=[
-        (classifiers["RandomForest"],'RandomForest_signal','model_var_list_signal.csv'), # suffix and varlist
+        (classifiers["RandomForest"],'pmt_signal','model_var_list_signal.csv'), # suffix and varlist
         #(classifiers["RandomForest"],'RandomForest_tmxpayer','model_var_list_tmxpayer.csv'),
         #(classifiers["RandomForest"],'RandomForest_tmxpayee','model_var_list_tmxpayee.csv'),
         #(classifiers["RandomForest"],'RandomForest_signal_tmxpayer','model_var_list_signal_tmxpayer.csv'),
@@ -321,37 +321,37 @@ for job in joblist:
     
     test_data_file = data_dir+'test_data_1mo_pmt_ds_imp_woe.csv.gz'
     model_file = output_dir+"model.p"
-    output_suffix = job[1]+'_test_1mo'
+    output_suffix = job[1]+'_1mo'
     ks, auc, lorenz_curve_capt_rate, rule_model_rates = model_test_data_evaluation_comp_ruletag(test_data_file, var_list_filename, model_file, output_dir, output_suffix,good_downsample_rate)
     result_summary.append(['1mo']+format_results_one_case(ks, auc, lorenz_curve_capt_rate, good_downsample_rate) + rule_model_rates)# append results for one case to summary
     
     test_data_file = data_dir+'test_data_2mo_pmt_ds_imp_woe.csv.gz'
     model_file = output_dir+"model.p"
-    output_suffix = job[1]+'_test_2mo'
+    output_suffix = job[1]+'_2mo'
     ks, auc, lorenz_curve_capt_rate, rule_model_rates = model_test_data_evaluation_comp_ruletag(test_data_file, var_list_filename, model_file, output_dir, output_suffix,good_downsample_rate)
     result_summary.append(['2mo']+format_results_one_case(ks, auc, lorenz_curve_capt_rate, good_downsample_rate) + rule_model_rates)# append results for one case to summary
     
     test_data_file = data_dir+'test_data_3mo_pmt_ds_imp_woe.csv.gz'
     model_file = output_dir+"model.p"
-    output_suffix = job[1]+'_test_3mo'
+    output_suffix = job[1]+'_3mo'
     ks, auc, lorenz_curve_capt_rate, rule_model_rates = model_test_data_evaluation_comp_ruletag(test_data_file, var_list_filename, model_file, output_dir, output_suffix,good_downsample_rate)
     result_summary.append(['3mo']+format_results_one_case(ks, auc, lorenz_curve_capt_rate, good_downsample_rate) + rule_model_rates)# append results for one case to summary
     
     test_data_file = data_dir+'test_data_4mo_pmt_ds_imp_woe.csv.gz'
     model_file = output_dir+"model.p"
-    output_suffix = job[1]+'_test_4mo'
+    output_suffix = job[1]+'_4mo'
     ks, auc, lorenz_curve_capt_rate, rule_model_rates = model_test_data_evaluation_comp_ruletag(test_data_file, var_list_filename, model_file, output_dir, output_suffix,good_downsample_rate)
     result_summary.append(['4mo']+format_results_one_case(ks, auc, lorenz_curve_capt_rate, good_downsample_rate) + rule_model_rates)# append results for one case to summary
     
     test_data_file = data_dir+'test_data_5mo_pmt_ds_imp_woe.csv.gz'
     model_file = output_dir+"model.p"
-    output_suffix = job[1]+'_test_5mo'
+    output_suffix = job[1]+'_5mo'
     ks, auc, lorenz_curve_capt_rate, rule_model_rates = model_test_data_evaluation_comp_ruletag(test_data_file, var_list_filename, model_file, output_dir, output_suffix,good_downsample_rate)
     result_summary.append(['5mo']+format_results_one_case(ks, auc, lorenz_curve_capt_rate, good_downsample_rate) + rule_model_rates)# append results for one case to summary
     
     test_data_file = data_dir+'test_data_6mo_pmt_ds_imp_woe.csv.gz'
     model_file = output_dir+"model.p"
-    output_suffix = job[1]+'_test_6mo'
+    output_suffix = job[1]+'_6mo'
     ks, auc, lorenz_curve_capt_rate, rule_model_rates = model_test_data_evaluation_comp_ruletag(test_data_file, var_list_filename, model_file, output_dir, output_suffix,good_downsample_rate)
     result_summary.append(['6mo']+format_results_one_case(ks, auc, lorenz_curve_capt_rate, good_downsample_rate) + rule_model_rates)# append results for one case to summary
     
@@ -359,7 +359,7 @@ for job in joblist:
     '''
     test_data_file = data_dir+'test_data_-1mo_pmt_ds_imp_woe.csv.gz'
     model_file = output_dir+"model.p"
-    output_suffix = job[1]+'_test_-1mo'
+    output_suffix = job[1]+'_-1mo'
     ks, auc, lorenz_curve_capt_rate, rule_model_rates = model_test_data_evaluation_comp_ruletag(test_data_file, var_list_filename, model_file, output_dir, output_suffix,good_downsample_rate)
     result_summary.append(['-1mo']+format_results_one_case(ks, auc, lorenz_curve_capt_rate, good_downsample_rate) + rule_model_rates)# append results for one case to summary
     '''
