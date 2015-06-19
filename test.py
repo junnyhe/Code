@@ -13,7 +13,3 @@ a = re.sub(r'O:([0-9]*):"stdClass"', 'a', a)
 a = loads(a,array_hook=OrderedDict)
 a = json.dumps(a)
 
-
-
-
-

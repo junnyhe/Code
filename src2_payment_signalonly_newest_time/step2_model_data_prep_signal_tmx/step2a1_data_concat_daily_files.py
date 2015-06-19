@@ -161,14 +161,15 @@ last_day=datetime.date(year,month,day)
 input_list = []
 
 # prepare training data with last two months
-start_day=last_day-datetime.timedelta(60-1) #start date
-nDays=60 # number of days to process
+train_period=80
+start_day=last_day-datetime.timedelta(train_period-1) #start date
+nDays=train_period # number of days to process
 out_file_name='model_data'
 input_list.append([start_day,nDays,out_file_name])
 
 # prepare test data 6 months before training data
 for i in range(1,7):
-    start_day=last_day-datetime.timedelta(60+30*i-1) #start date
+    start_day=last_day-datetime.timedelta(train_period+30*i-1) #start date
     nDays=30 # number of days to process
     out_file_name='test_data_'+str(i)+'mo'
     input_list.append([start_day,nDays,out_file_name])
