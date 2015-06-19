@@ -139,11 +139,11 @@ echo "["$(date)"] Withdrawal model signal tmx copying is done ..." >> ${log_dir}
 
 ################### git deploy and send success email ##################
 echo "["$(date)"] Committing and pushing to GitHub ..." >> ${log_dir}log_deploy.txt 
-
+cd /code
 git checkout master >>${log_dir}log_deploy.txt  2>&1
 git commit -a -m "Models have been refreshed and deployed on [$(date)]" >>${log_dir}log_deploy.txt  2>&1
 git pull --rebase >>${log_dir}log_deploy.txt  2>&1
-git push origin master >>${log_dir}log_deploy.txt  2>&1
+#git push origin master >>${log_dir}log_deploy.txt  2>&1
 
 
 title="[Models] Fraud Models were Successfully refreshed and deployed [$(date)]"
