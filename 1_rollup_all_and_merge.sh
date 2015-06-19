@@ -5,7 +5,7 @@ year=$(date --date="$days_shift days ago" +%Y)
 month=$(date --date="$days_shift days ago" +%m)
 day=$(date --date="$days_shift days ago" +%d)
 
-nDays=28  # number of days to try for rollup, if files have not been rolled up
+nDays=14  # number of days to try for rollup, if files have not been rolled up
 
 code_dir=/fraud_model/Code/ETL/step1_data_rollup_merge/
 log_dir=/fraud_model/Code/

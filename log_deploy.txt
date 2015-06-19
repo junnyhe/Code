@@ -1,1 +1,265 @@
-[Fri Jun 19 01:03:01 PDT 2015] Cron job model performance test starts ...
+[Fri Jun 19 11:10:25 PDT 2015] Cron job model performance test starts ...
+[Fri Jun 19 11:10:25 PDT 2015] Payment model signal only copying starts ...
+model_scoring object is created 3.81340503693 sec lapsed
+model_scoring object is created 2.70618605614 sec lapsed
+model_scoring object is created 3.96040701866 sec lapsed
+model_scoring object is created 4.02964901924 sec lapsed
+model_scoring object is created 2.82960295677 sec lapsed
+model_scoring object is created 2.8797750473 sec lapsed
+......test payment model......
+model_scoring object is created 3.96259284019 sec lapsed
+score_dev 0.825 score_prod 0.825 0.00691914558411 sec
+score_dev 0.825 score_prod 0.825 0.00660991668701 sec
+score_dev 1.0 score_prod 1.0 0.347218036652 sec
+score_dev 0.645 score_prod 0.645 0.00751304626465 sec
+score_dev 0.915 score_prod 0.915 0.00685787200928 sec
+score_dev 0.82 score_prod 0.82 0.00713706016541 sec
+score_dev 0.71 score_prod 0.71 0.00701498985291 sec
+score_dev 0.965 score_prod 0.965 0.362172842026 sec
+score_dev 0.905 score_prod 0.905 0.00734686851501 sec
+score_dev 0.68 score_prod 0.68 0.00709104537964 sec
+score_dev 0.55 score_prod 0.55 0.00731897354126 sec
+score_dev 0.76 score_prod 0.76 0.00779986381531 sec
+score_dev 0.7 score_prod 0.7 0.00745701789856 sec
+score_dev 0.945 score_prod 0.945 0.00702500343323 sec
+score_dev 0.67 score_prod 0.67 0.00713086128235 sec
+score_dev 0.62 score_prod 0.62 0.00688982009888 sec
+score_dev 0.96 score_prod 0.96 0.351619958878 sec
+score_dev 0.975 score_prod 0.975 0.346928834915 sec
+score_dev 0.77 score_prod 0.77 0.00704407691956 sec
+score_dev 0.98 score_prod 0.98 0.343581914902 sec
+score_dev 0.63 score_prod 0.63 0.00681114196777 sec
+score_dev 0.52 score_prod 0.52 0.00721287727356 sec
+score_dev 0.565 score_prod 0.565 0.0068359375 sec
+score_dev 0.82 score_prod 0.82 0.00671911239624 sec
+score_dev 0.99 score_prod 0.99 0.333702802658 sec
+score_dev 0.92 score_prod 0.92 0.00686097145081 sec
+score_dev 0.955 score_prod 0.955 0.337604045868 sec
+score_dev 0.91 score_prod 0.91 0.00716710090637 sec
+score_dev 0.91 score_prod 0.91 0.00696015357971 sec
+score_dev 0.505 score_prod 0.505 0.00676012039185 sec
+score_dev 0.995 score_prod 0.995 0.332208871841 sec
+score_dev 0.595 score_prod 0.595 0.00662803649902 sec
+score_dev 0.56 score_prod 0.56 0.00706696510315 sec
+score_dev 0.725 score_prod 0.725 0.00677800178528 sec
+score_dev 0.925 score_prod 0.925 0.00732898712158 sec
+score_dev 0.875 score_prod 0.875 0.00657606124878 sec
+score_dev 1.0 score_prod 1.0 0.341626882553 sec
+score_dev 0.775 score_prod 0.775 0.00699901580811 sec
+score_dev 1.0 score_prod 1.0 0.335796117783 sec
+1000 rows are processed
+score_dev 0.835 score_prod 0.835 0.00703406333923 sec
+score_dev 0.935 score_prod 0.935 0.00682306289673 sec
+score_dev 0.95 score_prod 0.95 0.344504117966 sec
+score_dev 0.94 score_prod 0.94 0.00642514228821 sec
+score_dev 0.99 score_prod 0.99 0.346567869186 sec
+score_dev 0.895 score_prod 0.895 0.00656819343567 sec
+score_dev 0.85 score_prod 0.85 0.00627994537354 sec
+score_dev 0.75 score_prod 0.75 0.00633597373962 sec
+score_dev 0.805 score_prod 0.805 0.00698399543762 sec
+score_dev 0.785 score_prod 0.785 0.00660181045532 sec
+score_dev 0.54 score_prod 0.54 0.00698018074036 sec
+score_dev 0.59 score_prod 0.59 0.00630688667297 sec
+score_dev 0.995 score_prod 0.995 0.342425823212 sec
+score_dev 0.845 score_prod 0.845 0.00674390792847 sec
+score_dev 0.845 score_prod 0.845 0.00675702095032 sec
+score_dev 0.96 score_prod 0.96 0.345455884933 sec
+score_dev 0.845 score_prod 0.845 0.00709104537964 sec
+score_dev 0.95 score_prod 0.95 0.345783948898 sec
+score_dev 0.86 score_prod 0.86 0.00698590278625 sec
+score_dev 0.995 score_prod 0.995 0.352254867554 sec
+score_dev 0.79 score_prod 0.79 0.00703096389771 sec
+score_dev 0.695 score_prod 0.695 0.00700092315674 sec
+score_dev 0.545 score_prod 0.545 0.00712609291077 sec
+score_dev 0.925 score_prod 0.925 0.00688004493713 sec
+score_dev 0.98 score_prod 0.98 0.345494031906 sec
+score_dev 0.61 score_prod 0.61 0.00702810287476 sec
+score_dev 0.61 score_prod 0.61 0.00707578659058 sec
+score_dev 0.975 score_prod 0.975 0.339308977127 sec
+score_dev 0.715 score_prod 0.715 0.00731301307678 sec
+score_dev 0.835 score_prod 0.835 0.00754189491272 sec
+score_dev 0.57 score_prod 0.57 0.0072660446167 sec
+score_dev 0.51 score_prod 0.51 0.00679707527161 sec
+score_dev 0.92 score_prod 0.92 0.00656199455261 sec
+score_dev 0.815 score_prod 0.815 0.00678110122681 sec
+score_dev 0.875 score_prod 0.875 0.00689291954041 sec
+score_dev 0.95 score_prod 0.95 0.346511125565 sec
+score_dev 0.99 score_prod 0.99 0.341740131378 sec
+score_dev 0.975 score_prod 0.975 0.338632106781 sec
+score_dev 0.815 score_prod 0.815 0.00680589675903 sec
+score_dev 0.995 score_prod 0.995 0.336949825287 sec
+score_dev 0.935 score_prod 0.935 0.00691604614258 sec
+score_dev 0.6 score_prod 0.6 0.00704097747803 sec
+score_dev 0.955 score_prod 0.955 0.342958927155 sec
+score_dev 0.525 score_prod 0.525 0.00686502456665 sec
+score_dev 1.0 score_prod 1.0 0.33776807785 sec
+score_dev 0.73 score_prod 0.73 0.00692796707153 sec
+score_dev 0.98 score_prod 0.98 0.337855100632 sec
+score_dev 0.82 score_prod 0.82 0.00652694702148 sec
+score_dev 0.53 score_prod 0.53 0.00678896903992 sec
+score_dev 0.835 score_prod 0.835 0.00674200057983 sec
+score_dev 0.925 score_prod 0.925 0.00730204582214 sec
+score_dev 0.575 score_prod 0.575 0.0068690776825 sec
+score_dev 0.77 score_prod 0.77 0.0074360370636 sec
+score_dev 0.52 score_prod 0.52 0.00696182250977 sec
+score_dev 1.0 score_prod 1.0 0.349407911301 sec
+score_dev 1.0 score_prod 1.0 0.351695775986 sec
+score_dev 0.99 score_prod 0.99 0.343940019608 sec
+score_dev 0.975 score_prod 0.975 0.335126876831 sec
+score_dev 1.0 score_prod 1.0 0.336015939713 sec
+score_dev 0.91 score_prod 0.91 0.00676798820496 sec
+score_dev 0.965 score_prod 0.965 0.340018987656 sec
+score_dev 0.98 score_prod 0.98 0.34880399704 sec
+2000 rows are processed
+score_dev 0.855 score_prod 0.855 0.00697898864746 sec
+score_dev 1.0 score_prod 1.0 0.351243972778 sec
+score_dev 0.825 score_prod 0.825 0.00752902030945 sec
+score_dev 0.71 score_prod 0.71 0.00712203979492 sec
+score_dev 1.0 score_prod 1.0 0.36661696434 sec
+score_dev 0.975 score_prod 0.975 0.339411973953 sec
+score_dev 0.995 score_prod 0.995 0.335825920105 sec
+score_dev 0.985 score_prod 0.985 0.346652984619 sec
+score_dev 0.82 score_prod 0.82 0.00715017318726 sec
+score_dev 0.61 score_prod 0.61 0.00712585449219 sec
+score_dev 0.6 score_prod 0.6 0.00694513320923 sec
+score_dev 0.93 score_prod 0.93 0.00656795501709 sec
+score_dev 0.88 score_prod 0.88 0.00648808479309 sec
+score_dev 0.8 score_prod 0.8 0.00665497779846 sec
+score_dev 0.885 score_prod 0.885 0.0066339969635 sec
+score_dev 0.895 score_prod 0.895 0.00705623626709 sec
+.......All 2500 test cases passed, ready to be deployed ! .......
+[Fri Jun 19 11:12:04 PDT 2015] Payment model signal only copying is done ...
+
+
+wd signal model performance test (prec_at_recall_70>0.60) FAILED: 0.55496308449548815
+
+
+[Fri Jun 19 11:12:04 PDT 2015] Payment model signal tmx copying starts ...
+model_scoring object is created 3.89546203613 sec lapsed
+model_scoring object is created 2.66432213783 sec lapsed
+model_scoring object is created 3.79057312012 sec lapsed
+model_scoring object is created 3.85989499092 sec lapsed
+model_scoring object is created 2.84683084488 sec lapsed
+model_scoring object is created 2.89777779579 sec lapsed
+......test payment signaltmx model......
+model_scoring object is created 3.84431791306 sec lapsed
+model_scoring object is created 3.91486501694 sec lapsed
+score_dev 0.74 score_prod 0.74 0.00888586044312 sec
+score_dev 0.8 score_prod 0.8 0.0091769695282 sec
+score_dev 0.855 score_prod 0.855 0.00873804092407 sec
+score_dev 0.95 score_prod 0.95 0.00995802879333 sec
+score_dev 0.93 score_prod 0.93 0.00994992256165 sec
+score_dev 0.82 score_prod 0.82 0.00875091552734 sec
+score_dev 0.62 score_prod 0.62 0.00998020172119 sec
+score_dev 0.965 score_prod 0.965 0.00869297981262 sec
+score_dev 0.765 score_prod 0.765 0.00922298431396 sec
+score_dev 0.645 score_prod 0.645 0.00976896286011 sec
+score_dev 0.535 score_prod 0.535 0.00856518745422 sec
+score_dev 0.595 score_prod 0.595 0.00898098945618 sec
+score_dev 0.655 score_prod 0.655 0.00895190238953 sec
+score_dev 0.925 score_prod 0.925 0.00994300842285 sec
+score_dev 0.56 score_prod 0.56 0.00813603401184 sec
+score_dev 0.61 score_prod 0.61 0.0109939575195 sec
+score_dev 0.95 score_prod 0.95 0.00843596458435 sec
+score_dev 0.925 score_prod 0.925 0.00894999504089 sec
+score_dev 0.51 score_prod 0.51 0.00909185409546 sec
+score_dev 0.95 score_prod 0.95 0.00850605964661 sec
+score_dev 0.545 score_prod 0.545 0.00927805900574 sec
+score_dev 0.76 score_prod 0.76 0.00970888137817 sec
+score_dev 0.99 score_prod 0.99 0.00969409942627 sec
+score_dev 0.86 score_prod 0.86 0.00890398025513 sec
+score_dev 0.86 score_prod 0.86 0.00935888290405 sec
+score_dev 0.895 score_prod 0.895 0.00836420059204 sec
+score_dev 0.85 score_prod 0.85 0.0088369846344 sec
+score_dev 0.98 score_prod 0.98 0.00876092910767 sec
+score_dev 0.54 score_prod 0.54 0.00905084609985 sec
+score_dev 0.625 score_prod 0.625 0.00900292396545 sec
+score_dev 0.63 score_prod 0.63 0.00858902931213 sec
+score_dev 0.69 score_prod 0.69 0.010073184967 sec
+score_dev 0.775 score_prod 0.775 0.00898790359497 sec
+score_dev 0.995 score_prod 0.995 0.0085928440094 sec
+score_dev 1.0 score_prod 1.0 0.00844812393188 sec
+1000 rows are processed
+score_dev 0.92 score_prod 0.92 0.00867104530334 sec
+score_dev 0.98 score_prod 0.98 0.00892901420593 sec
+score_dev 0.965 score_prod 0.965 0.00879621505737 sec
+score_dev 0.92 score_prod 0.92 0.00917887687683 sec
+score_dev 0.975 score_prod 0.975 0.0085461139679 sec
+score_dev 0.51 score_prod 0.51 0.00833296775818 sec
+score_dev 0.9 score_prod 0.9 0.00892114639282 sec
+score_dev 0.735 score_prod 0.735 0.00922107696533 sec
+score_dev 0.59 score_prod 0.59 0.00883293151855 sec
+score_dev 0.625 score_prod 0.625 0.00896692276001 sec
+score_dev 0.97 score_prod 0.97 0.00824594497681 sec
+score_dev 0.555 score_prod 0.555 0.00813102722168 sec
+score_dev 0.67 score_prod 0.67 0.00851082801819 sec
+score_dev 0.795 score_prod 0.795 0.0093719959259 sec
+score_dev 0.975 score_prod 0.975 0.00817084312439 sec
+score_dev 0.795 score_prod 0.795 0.00823903083801 sec
+score_dev 0.94 score_prod 0.94 0.00878500938416 sec
+score_dev 0.79 score_prod 0.79 0.00925087928772 sec
+score_dev 0.96 score_prod 0.96 0.0101890563965 sec
+score_dev 0.72 score_prod 0.72 0.00897789001465 sec
+score_dev 0.71 score_prod 0.71 0.00918316841125 sec
+score_dev 0.93 score_prod 0.93 0.00887012481689 sec
+score_dev 0.97 score_prod 0.97 0.00855302810669 sec
+score_dev 0.54 score_prod 0.54 0.00833511352539 sec
+score_dev 0.905 score_prod 0.905 0.00893306732178 sec
+score_dev 0.675 score_prod 0.675 0.00850796699524 sec
+score_dev 0.845 score_prod 0.845 0.00896692276001 sec
+score_dev 0.97 score_prod 0.97 0.00910401344299 sec
+score_dev 0.82 score_prod 0.82 0.00839805603027 sec
+score_dev 0.655 score_prod 0.655 0.00930213928223 sec
+score_dev 0.885 score_prod 0.885 0.0090320110321 sec
+score_dev 0.93 score_prod 0.93 0.00862717628479 sec
+score_dev 0.98 score_prod 0.98 0.00821685791016 sec
+score_dev 0.75 score_prod 0.75 0.00866198539734 sec
+score_dev 0.965 score_prod 0.965 0.00829410552979 sec
+score_dev 0.815 score_prod 0.815 0.00828003883362 sec
+score_dev 0.83 score_prod 0.83 0.00835704803467 sec
+score_dev 0.955 score_prod 0.955 0.00809597969055 sec
+score_dev 0.975 score_prod 0.975 0.00862002372742 sec
+score_dev 0.83 score_prod 0.83 0.0103418827057 sec
+score_dev 0.945 score_prod 0.945 0.00857996940613 sec
+score_dev 0.75 score_prod 0.75 0.0090229511261 sec
+score_dev 0.795 score_prod 0.795 0.00950407981873 sec
+score_dev 0.86 score_prod 0.86 0.00916600227356 sec
+score_dev 0.685 score_prod 0.685 0.00896906852722 sec
+score_dev 0.6 score_prod 0.6 0.00845408439636 sec
+score_dev 1.0 score_prod 1.0 0.00895214080811 sec
+score_dev 1.0 score_prod 1.0 0.00912308692932 sec
+score_dev 0.985 score_prod 0.985 0.00877594947815 sec
+score_dev 0.96 score_prod 0.96 0.00948905944824 sec
+score_dev 0.99 score_prod 0.99 0.00824403762817 sec
+score_dev 0.815 score_prod 0.815 0.00858116149902 sec
+score_dev 0.95 score_prod 0.95 0.00842094421387 sec
+score_dev 0.97 score_prod 0.97 0.00834894180298 sec
+2000 rows are processed
+score_dev 0.715 score_prod 0.715 0.00813508033752 sec
+score_dev 0.985 score_prod 0.985 0.0083909034729 sec
+score_dev 0.925 score_prod 0.925 0.00781393051147 sec
+score_dev 0.78 score_prod 0.78 0.00919389724731 sec
+score_dev 0.995 score_prod 0.995 0.0088951587677 sec
+score_dev 0.975 score_prod 0.975 0.00897312164307 sec
+score_dev 0.985 score_prod 0.985 0.00928401947021 sec
+score_dev 0.99 score_prod 0.99 0.00904178619385 sec
+score_dev 0.78 score_prod 0.78 0.00907897949219 sec
+score_dev 0.51 score_prod 0.51 0.00935697555542 sec
+score_dev 0.755 score_prod 0.755 0.00903296470642 sec
+score_dev 0.81 score_prod 0.81 0.00860404968262 sec
+score_dev 0.77 score_prod 0.77 0.00892996788025 sec
+score_dev 0.81 score_prod 0.81 0.00852584838867 sec
+score_dev 0.925 score_prod 0.925 0.00981903076172 sec
+.......All 2500 test cases passed, ready to be deployed ! .......
+[Fri Jun 19 11:13:34 PDT 2015] Payment model signal tmx copying is done ...
+
+
+wd signaltmx model performance test (prec_at_recall_70>0.60) FAILED: 0.56896551724137934
+
+
+pmt signal model performance test (prec_at_recall_70>0.25) PASSED: 0.40164851938536683
+wd signal model performance test (prec_at_recall_70>0.60) FAILED: 0.55496308449548815
+pmt signaltmx model performance test (prec_at_recall_70>0.25) PASSED: 0.43821472188297989
+wd signaltmx model performance test (prec_at_recall_70>0.60) FAILED: 0.56896551724137934
+[Fri Jun 19 11:13:34 PDT 2015] Committing and pushing to GitHub ...
+[Fri Jun 19 11:13:34 PDT 2015] Performance test failed for one or more models ! Models that passed performance tests are successfully pushed to GitHub ...

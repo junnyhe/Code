@@ -242,7 +242,7 @@ classifiers = {
     }
 
 joblist=[
-        (classifiers["RandomForest"],'RandomForest_signal','model_var_list_signal.csv'), # suffix and varlist
+        (classifiers["RandomForest"],'wd_signal','model_var_list_signal.csv'), # suffix and varlist
         ]
 
     
