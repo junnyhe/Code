@@ -1,9 +1,9 @@
-Fraud models were retrained on a 80-day-period ending on 2015-06-09. Performance were tested on 60~30 days before training. 
+Fraud models were retrained on a 80-day-period ending on 2015-06-12. Performance were tested on 60~30 days before training. 
 
 Performance test summary:
-pmt signal model performance test (prec_at_recall_70>0.25) PASSED: 0.40164851938536683
+pmt signal model performance test (prec_at_recall_70>0.25) PASSED: 0.3520478601012425
 wd signal model performance test (prec_at_recall_70>0.60) FAILED: 0.55496308449548815
-pmt signaltmx model performance test (prec_at_recall_70>0.25) PASSED: 0.43821472188297989
-wd signaltmx model performance test (prec_at_recall_70>0.60) FAILED: 0.56896551724137934
+pmt signaltmx model performance test (prec_at_recall_70>0.25) PASSED: 0.33073929961089493
+wd signaltmx model performance test (prec_at_recall_70>0.60) PASSED: 0.71530999578237031
 
-Models that passed performance tests are successfully pushed to GitHub, please closely monitor the model performance.
+Models that passed performance tests have been successfully pushed to GitHub, please closely monitor the model performance.

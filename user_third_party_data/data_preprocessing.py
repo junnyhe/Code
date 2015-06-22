@@ -44,3 +44,64 @@ for iDay in range(nDays):
     day = day+datetime.timedelta(1)
     infile.close()
     
+
+    
+data_fb=[ele['data'] for ele in data if  ele['data'] !=None]
+data_keys = [ele.keys() for ele in data_fb]
+data_keys = list(itertools.chain(*data_keys))
+data_keys = list(set(data_keys))
+
+data_fb_col = {}
+for key in data_keys:
+    data_fb_col[key]=[]
+    
+for row in data_fb:
+    for key in data_keys:
+        if key in row:
+            data_fb_col[key].append(row[key])
+        else:
+            data_fb_col[key].append(None)
+
+'''
+['feed',
+ 'picture',
+ 'verified',
+ 'name',
+ 'gender',
+ 'posts',
+ 'locations',
+ 'updated_time',
+ 'photos',
+ 'birthday',
+ 'likes',
+ 'timezone',
+ 'friends',
+ 'id']
+''' 
+    
+data_fb_col['feed'][:20]
+data_fb_col['picture'][:20]
+data_fb_col['verified'][:20]
+data_fb_col['name'][:20]
+data_fb_col['gender'][:20]
+data_fb_col['posts'][:20]
+data_fb_col['locations'][:20]
+data_fb_col['update_time'][:20]
+data_fb_col['photos'][:20]
+data_fb_col['birthday'][:20]
+data_fb_col['likes'][:20]
+data_fb_col['timezone'][:20]
+data_fb_col['friends'][:20]
+data_fb_col['id'][:20]
+
+#data_fb_col['posts'][11]['data'][2].keys()
+#data_fb_col['posts'][11]['data'][2]['likes']
+#data_fb_col['posts'][11]['data'][2]['likes']['data'] 
+#data_fb_col['locations'][11]['data'][8]
+nLocations=len(data_fb_col['locations'][11]['data'])
+data_fb_col['photos'][11]['data'][8]
+nPhotos=len(data_fb_col['photos'][11]['data'])
+len(data_fb_col['likes'][11]['data'])
+
+
+    
