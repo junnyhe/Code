@@ -103,5 +103,5 @@ data_fb_col['photos'][11]['data'][8]
 nPhotos=len(data_fb_col['photos'][11]['data'])
 len(data_fb_col['likes'][11]['data'])
 
-
+nFriends=len(data_fb_col['friends'][11])
     
