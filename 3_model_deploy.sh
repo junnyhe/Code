@@ -143,5 +143,5 @@ fi
 echo -e "Fraud models were retrained on a 80-day-period ending on $(date --date="$days_shift days ago" +%Y-%m-%d). Performance were tested on 60~30 days before training. \n\nPerformance test summary:" >${log_dir}final_success_message.txt
 echo -e $performance_test_msg >>${log_dir}final_success_message.txt
 echo -e "\nModels that passed performance tests have been successfully pushed to GitHub, please closely monitor the model performance." >>${log_dir}final_success_message.txt
-mutt -s "$title" -a "$perf_result_pmt_signal" -a "$perf_result_wd_signal" -a "$perf_result_pmt_signaltmx" -a "$perf_result_wd_signaltmx" -- junhe@wepay.com,ping.li@wepay.com,john.canfield@wepay.com,andre@wepay.com,yaqit@wepay.com,zoraz@wepay.com< ${log_dir}final_success_message.txt
+mutt -s "$title" -a "$perf_result_pmt_signal" -a "$perf_result_wd_signal" -a "$perf_result_pmt_signaltmx" -a "$perf_result_wd_signaltmx" -- junhe@wepay.com,ping.li@wepay.com,john.canfield@wepay.com,shyamm@wepay.com,andre@wepay.com,yaqit@wepay.com,zoraz@wepay.com< ${log_dir}final_success_message.txt
 
