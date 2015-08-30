@@ -107,7 +107,7 @@ def model_train_validation(ins_file, oos_file, classifier, var_list_filename, ou
 
     
 
-def model_test_data_evaluation(test_data_file, var_list_filename, model_file, output_dir, output_suffix):
+def model_test_data_evaluation(test_data_file, var_list_filename, model_file, output_dir, output_suffix, good_downsample_rate):
     
     #################### Load Model and Evaluate Performance ##################
     ############################### Test Data #################################
@@ -131,7 +131,7 @@ def model_test_data_evaluation(test_data_file, var_list_filename, model_file, ou
 
     # Performance Evaluation: Test
     print 'Evalutate model performance ...'
-    ks, auc, lorenz_curve_capt_rate = performance_eval_test(y,p_pred,output_dir,output_suffix)
+    ks, auc, lorenz_curve_capt_rate = performance_eval_test_downsample(y,p_pred,output_dir,output_suffix,good_downsample_rate)
     
     return ks, auc, lorenz_curve_capt_rate
     
@@ -210,10 +210,12 @@ def format_results_one_case(ks, auc, lorenz_curve_capt_rate, good_downsample_rat
 
 if len(sys.argv) <=1:
     data_dir='/fraud_model/Data/Model_Data_Signal_Tmx_v3wd_newest_time/'
+    support_dir='/fraud_model/Code/src3_withdrawal_signaltmx_newest_time/support_files/'
     result_dir='/fraud_model/Results/Model_Results_Signal_Tmx_v3wd_woeSmth=0_newest_time/'
-elif len(sys.argv) ==3:
+elif len(sys.argv) ==4:
     data_dir=sys.argv[1]
-    result_dir=sys.argv[2]
+    support_dir=sys.argv[2]
+    result_dir=sys.argv[3]
 else:
     print "stdin input should be 0 or 2 vars, 0 using data and result location in code, 2 using input."
  
@@ -239,6 +241,7 @@ classifiers = {
 
 joblist=[
         (classifiers["RandomForest"],'wd_signaltmx','model_var_list_signal_rc_tmxrc_ind.csv'),
+        #(classifiers["RandomForest"],'wd_signaltmx_old','model_var_list_signal_rc_tmxrc_ind_old.csv'),
         ]
 
 ############################# Main: Run Different Classifiers ################################
@@ -252,7 +255,7 @@ for job in joblist:
     # Train Model and Evaluate Performance on Train and Validation Data
     classifier=job[0]
     output_suffix=job[1]
-    var_list_filename=result_dir+job[2]
+    var_list_filename=support_dir+job[2]
     
     
     output_dir=result_dir+output_suffix+"/"

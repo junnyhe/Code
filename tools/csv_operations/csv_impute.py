@@ -22,8 +22,8 @@ def impute_create_mapping(work_dir,ins_file,imp_median_var_list_file,imp_zero_va
     4 inputs:
     work_dir='/Users/junhe/Documents/Data/' # everything should/will be in work_dir
     ins_file="model_data_ds.csv.gz" # in sample data used to calculate the stats
-    imp_median_var_list_file="impute_var_list_median.csv" # var list for imputing missing to median 
-    imp_zero_var_list_file="impute_var_list_zero.csv" # var list for imputeing missing to zero
+    imp_median_var_list_file=dir+"impute_var_list_median.csv" # var list for imputing missing to median 
+    imp_zero_var_list_file=dir+"impute_var_list_zero.csv" # var list for imputeing missing to zero
     (var list file format: one row one var name, no header, no coma, no quotes)
     '''
     
@@ -32,7 +32,7 @@ def impute_create_mapping(work_dir,ins_file,imp_median_var_list_file,imp_zero_va
     insfile=gzip.open(work_dir+ins_file,'rb')
     inscsv=csv.DictReader(insfile)
     
-    imp_median_file=open(work_dir+imp_median_var_list_file,'rU')
+    imp_median_file=open(imp_median_var_list_file,'rU')
     imp_median_csv=csv.reader(imp_median_file)
     
     imp_median_var_list=[]
@@ -40,7 +40,7 @@ def impute_create_mapping(work_dir,ins_file,imp_median_var_list_file,imp_zero_va
         imp_median_var_list.append(row[0])
         
     
-    imp_zero_file=open(work_dir+imp_zero_var_list_file,'rU')
+    imp_zero_file=open(imp_zero_var_list_file,'rU')
     imp_zero_csv=csv.reader(imp_zero_file)
     
     imp_zero_var_list=[]

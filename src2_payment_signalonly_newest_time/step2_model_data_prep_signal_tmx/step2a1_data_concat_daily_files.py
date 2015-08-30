@@ -72,7 +72,7 @@ def cat_daily_files(start_day,nDays,out_file_name):
     print header_signals
     
     # define output file
-    header_out=header_signals+['target','blacklist_reason','target2','manual_review', 'direction']
+    header_out=header_signals+['target','blacklist_reason','target2','manual_review', 'direction','type','amount']
     
     output_file_1=out_dir+out_file_name+"_pmt.csv.gz"
     outfile_1=gzip.open(output_file_1,'w')
@@ -109,19 +109,24 @@ def cat_daily_files(start_day,nDays,out_file_name):
             if rule_direction[row['payment_request_id']]['action']=='2':
                 #print "Manual review case found"
                 row['manual_review']=1
-            
+
             row['direction']=rule_direction[row['payment_request_id']]['direction']
+            row['type']=rule_direction[row['payment_request_id']]['type']
+            row['amount']=rule_direction[row['payment_request_id']]['amount']
             
             
             
-            if row['fs_payment_request_id'] !='' : # only output to model data if pr exist in fraud_signals table
+            if row['fs_payment_request_id'] !='':# and row['type']=='1': 
+                # only output to model data if pr exist in fraud_signals table (excluding state=11)
+                # only keep type=standard(1), exluding type of refund(4) and chargeback(5)
+                
                 # ouput to payment file
-                if row['direction']=='1':
+                if row['direction']=='1' and row['type']=='1':
                     outcsv_1.writerow([str(row[var]).replace(',',';') for var in header_out])
                     #outcsv_1.writerow([row[var] for var in header_out])
             
                 # output to withdrawal file
-                elif row['direction']=='2': 
+                elif row['direction']=='2' and row['type']=='1': 
                     outcsv_2.writerow([str(row[var]).replace(',',';')  for var in header_out])
                     #outcsv_2.writerow([row[var]  for var in header_out])
                 
@@ -145,8 +150,8 @@ def cat_daily_files_helper(arg):
 # last day the model will be trained on
 if len(sys.argv) <=1: # if last day is not specified by stdin
     year=2015
-    month=3
-    day=31
+    month=8
+    day=4
 else:
     year=int(sys.argv[1])
     month=int(sys.argv[2])
@@ -175,14 +180,16 @@ for i in range(1,7):
     input_list.append([start_day,nDays,out_file_name])
 
 
-pool = Pool(processes=4)
+pool = Pool(processes=8)
 pool.map(cat_daily_files_helper, input_list)
 
 
 
 
+'''
 # additional test data
 start_day=datetime.date(2015,4,1) #start date
 nDays=30 # number of days to process
 out_file_name='test_data_-1mo'
 cat_daily_files(start_day,nDays,out_file_name)
+'''

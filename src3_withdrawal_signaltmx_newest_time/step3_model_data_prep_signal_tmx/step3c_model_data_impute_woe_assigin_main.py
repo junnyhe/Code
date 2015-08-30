@@ -7,6 +7,9 @@ import datetime
 import random
 from numpy import *
 import pickle
+sys.path.append("/fraud_model/Code/tools/csv_operations")
+import csv_ops
+from csv_ops import *
 from multiprocessing import Pool
 
 
@@ -62,7 +65,7 @@ def impute_replace_woe_assign_batch_helper(arg):
     
     
 if len(sys.argv) <=1:
-    work_dir=''#/fraud_model/Data/Model_Data_Signal_Tmx_v3wd_newest_time/'
+    work_dir='/fraud_model/Data/Model_Data_Signal_Tmx_v3wd_newest_time/'
 elif len(sys.argv) ==2:
     work_dir=sys.argv[1]
 else:
@@ -80,14 +83,11 @@ if __name__=="__main__":
                   [work_dir+"test_data_5mo_wd_ds_rcind_fc.csv.gz",work_dir+"test_data_5mo_wd_ds_rcind_fc_imp_woe.csv.gz"],
                   [work_dir+"test_data_6mo_wd_ds_rcind_fc.csv.gz",work_dir+"test_data_6mo_wd_ds_rcind_fc_imp_woe.csv.gz"],
                   )
-    pool = Pool(processes=4)
+    pool = Pool(processes=8)
     pool.map(impute_replace_woe_assign_batch_helper, input_list)
     
-    #csv_EDD(work_dir+'model_data_wd_ins_ds_rcind_fc_imp_woe.csv.gz')]
+    csv_EDD(work_dir+'model_data_wd_ins_ds_rcind_fc_imp_woe.csv.gz')
     
-    #impute_replace_woe_assign_batch_helper([work_dir+"model_data_wd_oos_ds_rcind_fc.csv.gz",work_dir+"model_data_wd_oos_ds_rcind_fc_imp_woe0.csv.gz"])
-    
-
 
 
 

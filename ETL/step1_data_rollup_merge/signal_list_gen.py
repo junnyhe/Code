@@ -6,9 +6,9 @@ import copy as cp
 from numpy import *
 
 
-dayEnd = datetime.date(2015,3,31)
-nDays = 60
-out_file_name = "/fraud_model/Data/Raw_Data/signals/signal_list_febmar.csv"
+dayEnd = datetime.date(2015,7,19)
+nDays = 120
+out_file_name = "/fraud_model/Data/Raw_Data/signals/signal_list_Apr-Jul.csv"
 out_file = open(out_file_name,'w')
 outcsv = csv.writer(out_file)
 outcsv.writerow(['signal_id'])

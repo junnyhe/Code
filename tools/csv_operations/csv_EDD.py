@@ -80,8 +80,11 @@ def csv_EDD(input_file_name,delimiter=","):
 	p90 ={}
 	p95 = {}
 	p99 = {}
+	uniqStats = {}
+	numVals = {}
 	for f in numeric:
 		print "calculating stats for numeric var:", f
+		# stats
 		if len(numStats[f]) == 0:
 			mins[f] = maxs[f] = means[f] = meds[f] = stds[f] = None
 			p1[f]=p5[f]=p10[f]=p25[f]=p50[f]=p75[f]=p90[f]=p95[f]=p99[f]=None
@@ -101,13 +104,31 @@ def csv_EDD(input_file_name,delimiter=","):
 			p90[f] = percentile(x, 90)
 			p95[f] = percentile(x, 95)
 			p99[f] = percentile(x, 99)
+		# uniq cnts
+		uniqStats[f] = len(set(numStats[f]))
+		# val cnts
+		if uniqStats[f]<=20:
+			vals = {}
+			for v in numStats[f]:
+				try:
+					vals[v] += 1
+				except KeyError:
+					vals[v] = 1
+			vals = vals.items()
+			vals.sort(key = lambda x: x[1], reverse = True)
+			numVals[f] = ['%s:%i'%(str(i[0]).rstrip('0').rstrip('.'), i[1]) for i in vals]
+			numVals[f] = ' | '.join(numVals[f][:20])
+		else:
+			numVals[f]=''
+			
 	catVals = {}
 	for f in categoric:
 		print "calculating stats for categorical var:", f
+		# uniq cnts
+		uniqStats[f] = len(set(catStats[f]))
+		# val cnts
 		vals = {}
-		
 		for v in catStats[f]:
-			
 			try:
 				vals[v] += 1
 			except KeyError:
@@ -118,12 +139,14 @@ def csv_EDD(input_file_name,delimiter=","):
 			catVals[f] = 'All Unique'
 		else:
 			catVals[f] = ['%s:%i'%(i[0], i[1]) for i in vals]
-			catVals[f] = ' | '.join(catVals[f][:10])
+			catVals[f] = ' | '.join(catVals[f][:20])
+			
+		
 
 			
 	# Output results
 	header = ['Field Num', 'Field Name', 'Type', 'Num Blanks', 'Num Entries',
-		'Num Unique', 'Top 10 Cat Values',
+		'Num Unique', 'Top 20 Cat Values',
 		'Mean', 'Median', 'Stddev',
 		'Min', 'P1', 'P5', 'P10', 'P25', 'P50', 'P75', 'P90', 'P95', 'P99','Max'
 		]
@@ -137,7 +160,8 @@ def csv_EDD(input_file_name,delimiter=","):
 			print "write results for numeric var:", ct, f
 			result_row={'Field Num' : ct+1, 'Field Name' : f, 'Type' : 'Num', 
 				'Num Blanks' : blankStats[f], 'Num Entries' : len(numStats[f]),
-				'Num Unique' : len(set(numStats[f])), # do not output number of unique for numerics to speed up
+				'Num Unique' : uniqStats[f], # do not output number of unique for numerics to speed up
+				'Top 20 Cat Values' : numVals[f],
 				'Mean' : means[f], 'Median' : meds[f],'Stddev' : stds[f],
 				'Min' : mins[f],'Max' : maxs[f],
 				'P1' : p1.get(f,''), 'P5' : p5.get(f,''), 'P10' : p10.get(f,''), 'P25' : p25.get(f,''), 'P50' : p50.get(f,''), 'P75' : p75.get(f,''), 'P90' : p90.get(f,''), 'P95' : p95.get(f,''), 'P99' : p99.get(f,'')
@@ -147,8 +171,8 @@ def csv_EDD(input_file_name,delimiter=","):
 			print "write results for categorical var:", ct, f
 			result_row={'Field Num' : ct+1, 'Field Name' : f, 'Type' : 'Cat',
 				'Num Blanks' : blankStats[f], 'Num Entries' : len(catStats[f]),
-				'Num Unique' : len(set(catStats[f])),
-				'Top 10 Cat Values' : catVals[f]}
+				'Num Unique' : uniqStats[f],
+				'Top 20 Cat Values' : catVals[f]}
 			writer.writerow([result_row.get(key,'') for key in header])
 
 	output_file.close()

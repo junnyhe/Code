@@ -26,9 +26,11 @@ def woe_assign_pickle_helper(arg):
 global work_dir
 
 if len(sys.argv) <=1:
-    work_dir=''#/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt_signalonly_newest_time/' # everything should/will be in w
-elif len(sys.argv) ==2:
+    work_dir='/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt_signalonly_newest_time/' # everything should/will be in w
+    support_dir='/fraud_model/Code/src2_payment_signalonly_newest_time/support_files/'
+elif len(sys.argv) ==3:
     work_dir=sys.argv[1]
+    support_dir=sys.argv[2]
 else:
     print "stdin input should be 0 or 1 vars, 0 using data location in code, 1 using input."
 
@@ -39,8 +41,8 @@ else:
 ################################################################################
 
 ins_file="model_data_pmt_ins_ds.csv.gz" # in sample data used to calculate the stats
-imp_median_var_list_file="var_list_impute_median.csv" # var list for imputing missing to median 
-imp_zero_var_list_file="var_list_impute_zero.csv" # var list for imputeing missing to zero
+imp_median_var_list_file=support_dir+"var_list_impute_median.csv" # var list for imputing missing to median 
+imp_zero_var_list_file=support_dir+"var_list_impute_zero.csv" # var list for imputeing missing to zero
 
 impute_create_mapping(work_dir,ins_file,imp_median_var_list_file,imp_zero_var_list_file)
 
@@ -58,10 +60,10 @@ input_list = (
               [work_dir,"test_data_4mo_pmt_ds.csv.gz","test_data_4mo_pmt_ds_imp.csv.gz"],
               [work_dir,"test_data_5mo_pmt_ds.csv.gz","test_data_5mo_pmt_ds_imp.csv.gz"],
               [work_dir,"test_data_6mo_pmt_ds.csv.gz","test_data_6mo_pmt_ds_imp.csv.gz"],
-              [work_dir,"test_data_-1mo_pmt_ds.csv.gz","test_data_-1mo_pmt_ds_imp.csv.gz"]
+              #[work_dir,"test_data_-1mo_pmt_ds.csv.gz","test_data_-1mo_pmt_ds_imp.csv.gz"]
               )
             # Inputs: impute_replace_pickle(work_dir,input_file,output_file)
-pool = Pool(processes=5)
+pool = Pool(processes=8)
 pool.map(impute_replace_pickle_helper, input_list)
 
 
@@ -73,9 +75,9 @@ pool.map(impute_replace_pickle_helper, input_list)
 ################################################################################
 
 input_file='model_data_pmt_ins_ds_imp.csv.gz'
-woe_var_list_file='var_list_woe.csv'
+woe_var_list_file=support_dir+'var_list_woe.csv'
 
-risk_table(work_dir, input_file, woe_var_list_file, target='target', smooth_num=0, target_value='1')
+risk_table(work_dir, input_file, woe_var_list_file, target='target', smooth_num=100, target_value='1')
 
 ################################################################################
 # Create WOE variables                                                         #
@@ -94,7 +96,7 @@ input_list = (
               #[work_dir,"test_data_-1mo_pmt_ds_imp.csv.gz","test_data_-1mo_pmt_ds_imp_woe.csv.gz"]
               )
             # Inputs: woe_assign_pickle(work_dir,input_file,output_file)
-pool = Pool(processes=5)
+pool = Pool(processes=8)
 pool.map(woe_assign_pickle_helper, input_list)
 
 
@@ -102,6 +104,6 @@ pool.map(woe_assign_pickle_helper, input_list)
 # check data quality, determine modeling var list                              #
 ################################################################################
 
-csv_EDD(work_dir+'model_data_pmt_ins_ds_imp_woe.csv.gz')
+#csv_EDD(work_dir+'model_data_pmt_ins_ds_imp_woe.csv.gz')
 
 

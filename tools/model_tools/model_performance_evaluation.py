@@ -4,11 +4,11 @@ from ks_roc import *
 #import matplotlib.pyplot as pl
 import pickle
 
-'''
+
 #for comparison with sklearn
 import numpy as np
 from sklearn import metrics
-'''
+
 
 
 def performance_eval_train_validation(y,p_pred,yv,pv_pred,result_dir,output_suffix):
@@ -18,22 +18,23 @@ def performance_eval_train_validation(y,p_pred,yv,pv_pred,result_dir,output_suff
     ks, ks_pos, pctl, tpr, fpr, tp_cumcnt, fp_cumcnt, threshold, lorenz_curve, lorenz_curve_capt_rate= ks_roc(y,p_pred)
     auc = getAUC(p_pred,y)
     
-    '''
+    
     #for comparison with sklearn
     fprx, tprx, thresholds = metrics.roc_curve(y, p_pred)
-    auc2=metrics.auc(fprx, tprx)
-    print auc,auc2
-    '''
+    auc=metrics.auc(fprx, tprx)
+    ks=max(tprx-fprx)
+    
+    
     # Compute KS, ROC curve and AUC for validation
     ks_v, ks_pos_v, pctl_v, tpr_v, fpr_v, tp_cumcnt_v, fp_cumcnt_v, threshold_v, lorenz_curve_v, lorenz_curve_capt_rate_v = ks_roc(yv,pv_pred)
     auc_v = getAUC(pv_pred,yv)
     
-    '''
+    
     #for comparison with sklearn
     fpry, tpry, thresholds = metrics.roc_curve(yv, pv_pred)
-    auc_v2=metrics.auc(fpry, tpry)
-    print auc_v,auc_v2
-    '''
+    auc_v=metrics.auc(fpry, tpry)
+    ks_v=max(tpry-fpry)
+    
     
     
     '''
@@ -74,6 +75,13 @@ def performance_eval_train_validation(y,p_pred,yv,pv_pred,result_dir,output_suff
     # save results to disk
     pickle.dump(pv_pred,open(result_dir+"pv_pred.p",'wb'))
     pickle.dump(yv,open(result_dir+"yv.p",'wb'))
+    fout=open(result_dir+"pv_pred.csv",'wb')
+    score_csv=csv.writer(fout)
+    tmp=zip(yv,pv_pred)
+    score_csv.writerow(['y','score'])
+    for row in tmp:
+        score_csv.writerow(row)
+    fout.close()
     
     
     ############# # Output validation Lorenz and KS results to file ##############
@@ -109,8 +117,13 @@ def performance_eval_test(y,p_pred,result_dir,output_suffix):
     
     # Compute KS, ROC curve and AUC for train
     ks, ks_pos, pctl, tpr, fpr, tp_cumcnt, fp_cumcnt, threshold, lorenz_curve, lorenz_curve_capt_rate= ks_roc(y,p_pred)
-    auc = getAUC(p_pred,y)
-
+    # using formula to calculate auc
+    #auc = getAUC(p_pred,y)
+    
+    # using sklearn to calculate auc
+    fprx, tprx, thresholds = metrics.roc_curve(y, p_pred)
+    auc=metrics.auc(fprx, tprx)
+    ks = max(tprx-fprx)
 
     '''    
     # Plot ROC
@@ -178,7 +191,14 @@ def performance_eval_test_downsample(y,p_pred,result_dir,output_suffix,good_down
     
     # Compute KS, ROC curve and AUC for train
     ks, ks_pos, pctl, tpr, fpr, tp_cumcnt, fp_cumcnt, threshold, lorenz_curve, lorenz_curve_capt_rate= ks_roc_precision(y,p_pred,good_downsample_rate)
+    # using formula to calculate auc
     auc = getAUC(p_pred,y)
+    
+    # using sklearn to calculate auc
+    fprx, tprx, thresholds = metrics.roc_curve(y, p_pred)
+    auc = metrics.auc(fprx, tprx)
+    ks = max(tprx-fprx)
+    
     
     ############# # Output validation Lorenz and KS results to file ##############
     
@@ -199,7 +219,15 @@ def performance_eval_test_downsample(y,p_pred,result_dir,output_suffix,good_down
     out_csv.writerow(["Lorenz_Curve_"+str(output_suffix)])
     for row in lorenz_curve:
         out_csv.writerow(row)
-        
+    
+#     # ouput scikit ROC results
+#     scikit_roc=zip(thresholds, fprx, tprx)
+#     out_csv.writerow(["SciKit_ROC_"+str(output_suffix)])
+#     out_csv.writerow(['thresholds', 'fpr', 'tpr'])
+#     for row in scikit_roc:
+#         out_csv.writerow(row)
+    
+
     out_file.close()
         
         
@@ -207,5 +235,5 @@ def performance_eval_test_downsample(y,p_pred,result_dir,output_suffix,good_down
     print (output_suffix,'AUC on test','KS on test')
     print (output_suffix,auc,ks)
     
-    return ks, auc, lorenz_curve_capt_rate
+    return ks, auc, lorenz_curve
 

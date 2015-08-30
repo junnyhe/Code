@@ -97,7 +97,7 @@ def downsample_filter_helper(arg):
 global work_dir
 
 if len(sys.argv) <=1:
-    work_dir=''#/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt_signalonly_newest_time/' # everything should/will be in w
+    work_dir='/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt_signalonly_newest_time/' # everything should/will be in w
 elif len(sys.argv) ==2:
     work_dir=sys.argv[1]
 else:
@@ -126,9 +126,10 @@ input_list = [["model_data_pmt_ins.csv.gz","model_data_pmt_ins_ds.csv.gz"],
 for i in range(1,7):
     input_list.append(["test_data_"+str(i)+"mo_pmt.csv.gz","test_data_"+str(i)+"mo_pmt_ds.csv.gz"])
 
-pool = Pool(processes=4)
+pool = Pool(processes=8)
 pool.map(downsample_filter_helper, input_list)
 
+#csv_EDD(work_dir+'model_data_pmt_ins_ds.csv.gz')
 
 '''
 # additional test data

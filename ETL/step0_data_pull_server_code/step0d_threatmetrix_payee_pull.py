@@ -49,6 +49,7 @@ for iDay in range(nDays):
         wepay.groups as grp
         on 
         pr.payee_account_id = grp.account_id
+        and pr.payee_account_id <> 0
         
         left join
         log.threatmetrix_requests as tr

@@ -7,10 +7,13 @@ from multiprocessing import Pool
 
 # signal name list: id    payment_request_id    signal_id    sgn_bool    sgn_int    sgn_float    sgn_string    time
 
-global work_dir
+global work_dir, support_dir
 work_dir="/fraud_model/Data/Raw_Data/signals/"
+support_dir="/fraud_model/Code/ETL/step1_data_rollup_merge/support_files/"
 
 def roll_up_signal( day_start,  n_Days):
+    
+    signal_exclude_list=[633,634,636,637,640,641,642,643,644,645,646,647,648,649,650,651,652,653,654,655,656,657,658,659]
     
     day=day_start #start date
     nDays=n_Days# number of days to process
@@ -18,13 +21,14 @@ def roll_up_signal( day_start,  n_Days):
     prefix='signal_' #prefix to signal numbers
     
     #get signal list
-    signalnames_filename=work_dir+"signal_list.csv"
+    signalnames_filename=support_dir+"signal_list.csv"
     signalnamesfile=open(signalnames_filename,'rU')
     signalnamescsv=csv.reader(signalnamesfile)
     
     signal_num_list=[]
     for row in signalnamescsv:
-        signal_num_list.append(row[0])
+        if row[0] not in signal_exclude_list:
+            signal_num_list.append(row[0])
     
     signal_num_list=signal_num_list[1:]
     
@@ -123,9 +127,9 @@ def roll_up_signal_helper(arg):
 # last day of the perirod
 if len(sys.argv) <=1: # if last day is not specified by stdin
     year=2015
-    month=4
-    day=30
-    nDays = 30
+    month=7
+    day=19
+    nDays = 1
 else:
     year=int(sys.argv[1])
     month=int(sys.argv[2])
@@ -133,7 +137,7 @@ else:
     nDays=int(sys.argv[4])
 
 print "last day to roll up signals:",year,'-',month,'-',day
-nWorkers = 4
+nWorkers = 8
 dayEnd = datetime.date(year, month, day)
 
 # prepare datelist to roll up, skip dates that already have been rolled up

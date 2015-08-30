@@ -27,9 +27,9 @@ def feature_creation_batch(input_file,output_file):
     outcsv=csv.writer(outfile)
     
     ##### 2. instantiate scoring object #####
-    time_var_filename=work_dir+'var_list_time_diff.csv'
-    ppcmp_var_filename=work_dir+'var_list_ppcmp.csv'
-    leven_dist_var_filename=work_dir+'var_list_leven_dist.csv'
+    time_var_filename=support_dir+'var_list_time_diff.csv'
+    ppcmp_var_filename=support_dir+'var_list_ppcmp.csv'
+    leven_dist_var_filename=support_dir+'var_list_leven_dist.csv'
     
     step3_feature_creation = feature_creation(time_var_filename, ppcmp_var_filename, leven_dist_var_filename)
     
@@ -85,9 +85,11 @@ def feature_creation_batch_helper(arg):
     
 
 if len(sys.argv) <=1:
-    work_dir=''#/fraud_model/Data/Model_Data_Signal_Tmx_v3wd_newest_time/'
-elif len(sys.argv) ==2:
+    work_dir='/fraud_model/Data/Model_Data_Signal_Tmx_v3wd_newest_time/'
+    support_dir='/fraud_model/Code/src3_withdrawal_signaltmx_newest_time/support_files/'
+elif len(sys.argv) ==3:
     work_dir=sys.argv[1]
+    support_dir=sys.argv[2]
 else:
     print "stdin input should be 0 or 1 vars, 0 using data location in code, 1 using input."
 
@@ -105,7 +107,7 @@ if __name__=="__main__":
                   [work_dir+"test_data_6mo_wd_ds_rcind.csv.gz",work_dir+"test_data_6mo_wd_ds_rcind_fc.csv.gz"],
                   )
                 # Inputs: feature_creation(input_file,output_file)
-    pool = Pool(processes=4)
+    pool = Pool(processes=8)
     pool.map(feature_creation_batch_helper, input_list)
     
     #feature_creation_helper([work_dir+"model_data_wd_oos_ds_rcind.csv.gz",work_dir+"model_data_wd_oos_ds_rcind_fc.csv.gz"])    #csv_EDD(work_dir+"model_data_wd_ins_ds_rcind_fc.csv.gz")

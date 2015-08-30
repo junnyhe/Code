@@ -13,7 +13,7 @@ def risk_table(work_dir, input_file, woe_var_list_file, target, smooth_num=0, ta
     Input:
     work_dir='/Users/junhe/Documents/Data/' # everything should/will be in this folder
     input_file='model_data_ds_ins_imp.csv.gz' # var list file
-    woe_var_list_file='woe_var_list.csv' # var list file for woe
+    woe_var_list_file=dir+'woe_var_list.csv' # var list file for woe
     (var list file format: one row one var name, no header, no coma, no quotes)
     target: name of the target field (target take the value of 0 and 1);
     smooth_num: number of record to smooth the log odds with average target rate, by default =0; think about 200~5000
@@ -27,11 +27,13 @@ def risk_table(work_dir, input_file, woe_var_list_file, target, smooth_num=0, ta
 
     print "\nCreating Risk Table ..."
     
-    woe_var_file=open(work_dir+woe_var_list_file,'rU')
+    woe_var_file=open(woe_var_list_file,'rU')
     woe_var_csv=csv.reader(woe_var_file)
     woe_var_list=[]
     for row in woe_var_csv:
         woe_var_list.append(row[0])
+    
+    print woe_var_list
         
     if input_file[-2:] =='gz':
         fin = gzip.open(work_dir+input_file,'rb')
@@ -182,7 +184,7 @@ def woe_assign(work_dir, input_file, output_file):
                 row['lo_'+var_name]= table[var_name][row[var_name]]['log_odds_sm']
             except:
                 row['lo_'+var_name]= table[var_name]['default']['log_odds_sm']
-                print 'Warning: new value of the variable: ',var_name,'=',row[var_name],' is not found in the risk table. Default log_odds of overall population is assigned.'
+                #print 'Warning: new value of the variable: ',var_name,'=',row[var_name],' is not found in the risk table. Default log_odds of overall population is assigned.'
         outfile.writerow([row[key] for key in field_list])
 
     print "Done assigning WOE "
@@ -240,7 +242,7 @@ def woe_assign_pickle(work_dir, input_file, output_file):
                 row['lo_'+var_name]= table[var_name][row[var_name]]['log_odds_sm']
             except:
                 row['lo_'+var_name]= table[var_name]['default']['log_odds_sm']
-                print 'Warning: new value of the variable: ',var_name,'=',row[var_name],' is not found in the risk table. Default log_odds of overall population is assigned.'
+                #print 'Warning: new value of the variable: ',var_name,'=',row[var_name],' is not found in the risk table. Default log_odds of overall population is assigned.'
         outfile.writerow([row[key] for key in field_list])
 
     print "Done assigning WOE "

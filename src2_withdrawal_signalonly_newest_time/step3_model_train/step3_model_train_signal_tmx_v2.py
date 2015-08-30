@@ -106,7 +106,7 @@ def model_train_validation(ins_file, oos_file, classifier, var_list_filename, ou
 
     
 
-def model_test_data_evaluation(test_data_file, var_list_filename, model_file, output_dir, output_suffix):
+def model_test_data_evaluation(test_data_file, var_list_filename, model_file, output_dir, output_suffix, good_downsample_rate):
     
     #################### Load Model and Evaluate Performance ##################
     ############################### Test Data #################################
@@ -130,7 +130,7 @@ def model_test_data_evaluation(test_data_file, var_list_filename, model_file, ou
 
     # Performance Evaluation: Test
     print 'Evalutate model performance ...'
-    ks, auc, lorenz_curve_capt_rate = performance_eval_test(y,p_pred,output_dir,output_suffix)
+    ks, auc, lorenz_curve_capt_rate = performance_eval_test_downsample(y,p_pred,output_dir,output_suffix,good_downsample_rate)
     
     return ks, auc, lorenz_curve_capt_rate
     
@@ -213,10 +213,12 @@ def format_results_one_case(ks, auc, lorenz_curve_capt_rate, good_downsample_rat
 
 if len(sys.argv) <=1:
     data_dir='/fraud_model/Data/Model_Data_Signal_Tmx_v2wd_signalonly_newest_time/'
+    support_dir='/fraud_model/Code/src2_withdrawal_signalonly_newest_time/support_files/'
     result_dir='/fraud_model/Results/Model_Results_Signal_Only_v2wd_woeSmth=0_newest_time/'
-elif len(sys.argv) ==3:
+elif len(sys.argv) ==4:
     data_dir=sys.argv[1]
-    result_dir=sys.argv[2]
+    support_dir=sys.argv[2]
+    result_dir=sys.argv[3]
 else:
     print "stdin input should be 0 or 2 vars, 0 using data and result location in code, 2 using input."
 
@@ -232,8 +234,8 @@ classifiers = {
     "LinearSVM":SVC(kernel="linear", C=0.025),
     "RBFSVM":SVC(gamma=2, C=1),
     "DecisionTree":DecisionTreeClassifier(max_depth=32),
-    "RandomForest":RandomForestClassifier(max_depth=None, n_estimators=200, max_features="auto",random_state=0,n_jobs=4),
-    "RandomForest2":RandomForestClassifier(max_depth=8, n_estimators=200, max_features="auto",random_state=0,n_jobs=4),
+    "RandomForest":RandomForestClassifier(max_depth=None, n_estimators=200, max_features="auto",random_state=0,n_jobs=8),
+    "RandomForest2":RandomForestClassifier(max_depth=8, n_estimators=200, max_features="auto",random_state=0,n_jobs=8),
     "AdaBoost":AdaBoostClassifier(n_estimators=500,random_state=0),
     "GradientBoost":GradientBoostingClassifier(n_estimators=500, learning_rate=1.0,max_depth=None, random_state=0),
     "NaiveBayes":GaussianNB(),
@@ -243,6 +245,7 @@ classifiers = {
 
 joblist=[
         (classifiers["RandomForest"],'wd_signal','model_var_list_signal.csv'), # suffix and varlist
+        #(classifiers["RandomForest"],'wd_signal_old','model_var_list_signal_old.csv'), # suffix and varlist
         ]
 
     
@@ -257,7 +260,7 @@ for job in joblist:
     # Train Model and Evaluate Performance on Train and Validation Data
     classifier=job[0]
     output_suffix=job[1]
-    var_list_filename=result_dir+job[2]
+    var_list_filename=support_dir+job[2]
     
     
     output_dir=result_dir+output_suffix+"/"

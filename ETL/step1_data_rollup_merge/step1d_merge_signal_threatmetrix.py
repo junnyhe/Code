@@ -62,7 +62,7 @@ else:
     nDays=int(sys.argv[4])
 
 print "first day to merge:",year,'-',month,'-',day
-nWorkers = 4
+nWorkers = 8
 dayEnd = datetime.date(year, month, day)
 
 # prepare datelist to roll up, skip dates that already have been rolled up

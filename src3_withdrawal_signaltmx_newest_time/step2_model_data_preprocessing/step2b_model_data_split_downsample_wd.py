@@ -89,16 +89,16 @@ def downsample_filter(input_file,output_file, downsamle_fieldname, downsample_fi
 ################################################################################
 oos_frac=0.2 #fraction used for oos
 if len(sys.argv) <=1:
-    #in_dir='/fraud_model/Data/Model_Data_Signal_Tmx_v2pmt_newest_time/'
-    #out_dir='/fraud_model/Data/Model_Data_Signal_Tmx_v2wd_newest_time/'
-    in_dir=''
-    out_dir=''
+    in_dir='/fraud_model/Data/Model_Data_Signal_Tmx_v3pmt_newest_time/'
+    out_dir='/fraud_model/Data/Model_Data_Signal_Tmx_v3wd_newest_time/'
+    #in_dir=''
+    #out_dir=''
 elif len(sys.argv) ==3:
     in_dir=sys.argv[1]
     out_dir=sys.argv[2]
 else:
     print "stdin input should be 0 or 2 vars, 0 using  pmt_data and wd_data location in code, 2 using input."
-    
+
 
 input_file=in_dir+"model_data_wd.csv.gz"
 ins_file=out_dir+"model_data_wd_ins.csv.gz"
@@ -126,5 +126,9 @@ input_list = [[out_dir+"model_data_wd_ins.csv.gz",out_dir+"model_data_wd_ins_ds.
 for i in range(1,7):
     input_list.append([in_dir+"test_data_"+str(i)+"mo_wd.csv.gz",out_dir+"test_data_"+str(i)+"mo_wd_ds.csv.gz"])
 
-pool = Pool(processes=4)
+pool = Pool(processes=8)
 pool.map(downsample_filter_helper, input_list)
+
+
+#csv_EDD(out_dir+"model_data_wd_ins_ds.csv.gz")
+

@@ -6,8 +6,9 @@ import sys
 
 from multiprocessing import Pool
 
-global work_dir
+global work_dir, support_dir
 work_dir="/fraud_model/Data/Raw_Data/threatmetrix_payer_w_tmxrc/"
+support_dir="/fraud_model/Code/ETL/step1_data_rollup_merge/support_files/"
 
 def is_number(s):
     try:
@@ -26,7 +27,7 @@ def roll_up_tmx_payer( day_start,  n_Days):
     
     
     #get signal list
-    signalnames_filename=work_dir+"threatmetrix_var_list.csv"
+    signalnames_filename=support_dir+"threatmetrix_var_list.csv"
     signalnamesfile=open(signalnames_filename,'rU')
     signalnamescsv=csv.reader(signalnamesfile)
     
@@ -129,7 +130,7 @@ else:
     nDays=int(sys.argv[4])
 
 print "last day to roll up tmx payer:",year,'-',month,'-',day
-nWorkers = 4
+nWorkers = 8
 dayEnd = datetime.date(year, month, day)
 
 # prepare datelist to roll up, skip dates that already have been rolled up
